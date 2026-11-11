@@ -1,451 +1,879 @@
-```python
-from weasyprint import HTML
-
-# Definindo o código HTML completo estruturado para o site educativo/informativo
-html_content = """
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>AgroSustentável - O Futuro da Produção Coexistindo com a Natureza</title>
-    <style>
-        /* Configurações Globais de Página para o WeasyPrint */
-        @page {
-            size: A4;
-            margin: 15mm 12mm;
-            background-color: #f7f9f6;
-            @bottom-right {
-                content: counter(page);
-                font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-                font-size: 8pt;
-                color: #718096;
-            }
-            @bottom-left {
-                content: "Plataforma AgroSustentável Brasil";
-                font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-                font-size: 8pt;
-                color: #718096;
-            }
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Projeto educativo sobre sensores de luz e acompanhamento da radiação solar.">
+<title>SolarSense | Sensores de Luz e Radiação Solar</title>
 
-        *, *::before, *::after {
-            box-sizing: border-box;
-        }
+<style>
+:root {
+  --navy: #101d35;
+  --blue: #183b62;
+  --gold: #ffc857;
+  --paper: #f5f8fc;
+  --ink: #17243a;
+  --muted: #64748b;
+}
 
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            font-size: 10pt;
-            line-height: 1.5;
-            color: #2d3748;
-            background-color: #f7f9f6;
-        }
+* {
+  box-sizing: border-box;
+}
 
-        /* Cores do Projeto:
-           Verde Escuro: #1b4332
-           Verde Médio: #2d6a4f
-           Verde Claro/Destaque: #40916c
-           Terra/Acordo: #b07d62
-           Fundo Alternativo: #edf2f4
-        */
+html {
+  scroll-behavior: smooth;
+}
 
-        /* Banner de Abertura / Header Full-Bleed Efeito */
-        .hero-banner {
-            margin: -15mm -12mm 20px -12mm;
-            padding: 25px 12mm;
-            background-color: #1b4332;
-            color: #ffffff;
-            border-bottom: 5px solid #b07d62;
-        }
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.6;
+}
 
-        .hero-grid {
-            display: table;
-            width: 100%;
-        }
+header {
+  background: var(--navy);
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  box-shadow: 0 3px 15px #0002;
+}
 
-        .hero-cell {
-            display: table-cell;
-            vertical-align: middle;
-        }
+nav {
+  max-width: 1100px;
+  margin: auto;
+  padding: 14px 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
 
-        .hero-title {
-            font-size: 20pt;
-            font-weight: bold;
-            margin: 0 0 5px 0;
-            color: #ffffff;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
+.logo {
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: var(--gold);
+}
 
-        .hero-subtitle {
-            font-size: 11pt;
-            color: #d8f3dc;
-            margin: 0 0 15px 0;
-            font-style: italic;
-        }
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 8px;
+  font-size: .93rem;
+}
 
-        .nav-placeholder {
-            border-top: 1px solid rgba(255,255,255,0.2);
-            padding-top: 8px;
-            font-size: 8.5pt;
-            color: #e9ecef;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+nav a:hover {
+  color: var(--gold);
+}
 
-        .nav-placeholder span {
-            margin-right: 15px;
-            font-weight: bold;
-        }
+.hero {
+  background: linear-gradient(120deg, #101d35, #1d527b);
+  color: white;
+  padding: 75px 22px;
+  text-align: center;
+}
 
-        /* Títulos de Seções */
-        h2 {
-            font-size: 13pt;
-            color: #1b4332;
-            border-left: 4px solid #b07d62;
-            padding-left: 8px;
-            margin-top: 25px;
-            margin-bottom: 12px;
-            text-transform: uppercase;
-            page-break-after: avoid;
-        }
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.12;
+  margin: 0 0 18px;
+}
 
-        h3 {
-            font-size: 11pt;
-            color: #2d6a4f;
-            margin-top: 15px;
-            margin-bottom: 6px;
-            page-break-after: avoid;
-        }
+.hero p {
+  max-width: 720px;
+  margin: auto;
+  color: #e5edf7;
+  font-size: 1.1rem;
+}
 
-        p {
-            margin: 0 0 10px 0;
-            text-align: justify;
-        }
+.hero a,
+.btn {
+  display: inline-block;
+  background: var(--gold);
+  color: #18243a;
+  border: 0;
+  border-radius: 9px;
+  padding: 11px 18px;
+  text-decoration: none;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 20px;
+}
 
-        .intro-text {
-            font-size: 10.5pt;
-            line-height: 1.6;
-            color: #4a5568;
-            margin-bottom: 20px;
-        }
+main {
+  max-width: 1100px;
+  margin: auto;
+  padding: 25px 22px;
+}
 
-        /* Estrutura de Duas Colunas simulada por tabela */
-        .row-table {
-            display: table;
-            width: 100%;
-            margin-bottom: 15px;
-            table-layout: fixed;
-        }
+section {
+  padding: 34px 0;
+  scroll-margin-top: 80px;
+}
 
-        .col-cell {
-            display: table-cell;
-            vertical-align: top;
-            padding-right: 15px;
-        }
+.section-title {
+  font-size: 2rem;
+  color: var(--navy);
+  margin: 0 0 8px;
+}
 
-        .col-cell:last-child {
-            padding-right: 0;
-        }
+.intro {
+  color: var(--muted);
+  margin: 0 0 22px;
+}
 
-        /* Callouts e Destaques */
-        .stat-box {
-            background-color: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-top: 3px solid #2d6a4f;
-            border-radius: 4px;
-            padding: 10px;
-            text-align: center;
-            margin-bottom: 10px;
-            page-break-inside: avoid;
-        }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 17px;
+}
 
-        .stat-value {
-            font-size: 18pt;
-            font-weight: bold;
-            color: #2d6a4f;
-            margin-bottom: 2px;
-        }
+.card {
+  background: white;
+  padding: 21px;
+  border-radius: 15px;
+  box-shadow: 0 5px 18px #152b4610;
+  border: 1px solid #e7edf5;
+}
 
-        .stat-label {
-            font-size: 8.5pt;
-            color: #4a5568;
-            font-weight: 500;
-        }
+.card h3 {
+  margin-top: 0;
+  color: var(--blue);
+}
 
-        .alert-box {
-            background-color: #fff5f5;
-            border: 1px solid #feb2b2;
-            border-left: 4px solid #e53e3e;
-            padding: 10px;
-            border-radius: 4px;
-            margin-bottom: 12px;
-            page-break-inside: avoid;
-        }
+.tag {
+  display: inline-block;
+  background: #fff0c7;
+  color: #795100;
+  border-radius: 20px;
+  padding: 3px 10px;
+  font-size: .8rem;
+  font-weight: bold;
+}
 
-        .solution-box {
-            background-color: #f0fff4;
-            border: 1px solid #9ae6b4;
-            border-left: 4px solid #38a169;
-            padding: 10px;
-            border-radius: 4px;
-            margin-bottom: 12px;
-            page-break-inside: avoid;
-        }
+.panel {
+  background: white;
+  border-radius: 16px;
+  padding: 22px;
+  box-shadow: 0 5px 18px #152b4610;
+  margin: 16px 0;
+}
 
-        .box-title {
-            font-weight: bold;
-            font-size: 9.5pt;
-            margin-bottom: 4px;
-            display: block;
-        }
+.controls {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 14px 0;
+}
 
-        .alert-box .box-title { color: #9b2c2c; }
-        .solution-box .box-title { color: #22543d; }
+.controls label {
+  font-weight: 700;
+}
 
-        /* Listas Estilizadas */
-        ul {
-            margin: 0 0 10px 0;
-            padding-left: 18px;
-        }
+.controls input[type=range] {
+  flex: 1;
+  min-width: 180px;
+  accent-color: #e99b22;
+}
 
-        li {
-            margin-bottom: 4px;
-        }
+.metric {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #c77c08;
+}
 
-        /* Elementos de Simulação Gráfica / Progress Bars */
-        .bar-container {
-            background-color: #e2e8f0;
-            border-radius: 3px;
-            height: 12px;
-            width: 100%;
-            margin-top: 4px;
-            margin-bottom: 10px;
-        }
+.small {
+  font-size: .88rem;
+  color: var(--muted);
+}
 
-        .bar-fill {
-            height: 100%;
-            border-radius: 3px;
-            background-color: #40916c;
-        }
+canvas {
+  width: 100%;
+  height: 260px;
+  display: block;
+  background: #fbfdff;
+  border-radius: 10px;
+}
 
-        /* Classe de Equações / Expressões Matemáticas Simples */
-        .math {
-            font-family: 'Times New Roman', serif;
-            font-style: italic;
-            font-weight: bold;
-            color: #1b4332;
-        }
+select,
+button {
+  font: inherit;
+}
 
-        /* Recursos Interativos (Simulados em PDF) */
-        .interactive-section {
-            background-color: #edf2f4;
-            border: 1px dashed #b07d62;
-            border-radius: 6px;
-            padding: 12px;
-            margin-top: 15px;
-            page-break-inside: avoid;
-        }
+select {
+  padding: 9px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: white;
+}
 
-        .interactive-title {
-            font-size: 10.5pt;
-            font-weight: bold;
-            color: #b07d62;
-            margin-bottom: 6px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
+.btn {
+  margin-top: 8px;
+}
 
-        .quiz-option {
-            background: #ffffff;
-            border: 1px solid #cbd5e0;
-            padding: 6px 10px;
-            margin-bottom: 5px;
-            border-radius: 4px;
-            font-size: 9pt;
-        }
+.result {
+  font-weight: 700;
+  color: var(--blue);
+  min-height: 28px;
+}
 
-        .quiz-option.correct {
-            border-left: 4px solid #38a169;
-        }
+.sun-stage {
+  height: 210px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  background: linear-gradient(#9bd8f5, #eaf7ff);
+  margin: 15px 0;
+}
 
-        /* Rodapé de Página Final */
-        .footer-banner {
-            margin-top: 30px;
-            padding: 15px;
-            background-color: #1b4332;
-            color: #ffffff;
-            text-align: center;
-            border-radius: 4px;
-            page-break-inside: avoid;
-        }
+.horizon {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 35%;
+  background: linear-gradient(#9bcf83, #5e9d63);
+  border-radius: 50% 50% 0 0/30% 30% 0 0;
+}
 
-        .footer-banner p {
-            text-align: center;
-            margin: 0;
-            font-size: 10pt;
-            font-weight: bold;
-        }
+.sun {
+  position: absolute;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #ffc533;
+  box-shadow: 0 0 28px #ffc533;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+}
 
-    </style>
+.quiz-q {
+  font-weight: 700;
+  margin: 12px 0;
+}
+
+.answers button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: #f1f5f9;
+  border: 1px solid #dbe3ed;
+  padding: 10px 13px;
+  border-radius: 8px;
+  margin: 7px 0;
+  cursor: pointer;
+}
+
+.answers button:hover {
+  background: #fff0c7;
+}
+
+footer {
+  text-align: center;
+  background: var(--navy);
+  color: #dbe7f5;
+  padding: 25px;
+  margin-top: 35px;
+}
+
+@media(max-width:600px) {
+  nav {
+    justify-content: center;
+  }
+
+  nav div:last-child {
+    text-align: center;
+  }
+
+  .hero {
+    padding: 55px 18px;
+  }
+}
+</style>
 </head>
+
 <body>
 
-    <div class="hero-banner">
-        <div class="hero-grid">
-            <div class="hero-cell">
-                <div class="hero-title">AgroSustentável Brasil</div>
-                <div class="hero-subtitle">Equilibrando Economia, Tecnologia e Regeneração Ambiental</div>
-                <div class="nav-placeholder">
-                    <span>• HOME</span> <span>• PRODUÇÃO</span> <span>• SUSTENTABILIDADE</span> <span>• DESAFIOS</span> <span>• SOLUÇÕES</span> <span>• INTERATIVO</span>
-                </div>
-            </div>
-        </div>
-    </div>
+<header>
+<nav>
+  <div class="logo">☀ SolarSense</div>
 
-    <p class="intro-text">
-        O agronegócio consolidou-se como o principal motor econômico do Brasil. Contudo, o grande desafio do século XXI reside em transitar de um modelo puramente expansivo para uma liderança baseada na sustentabilidade real. Este portal demonstra como o país pode (e deve) aliar a sua força produtiva à preservação absoluta de seus ecossistemas, utilizando tecnologia de ponta e práticas agrícolas regenerativas.
-    </p>
+  <div>
+    <a href="#sensores">Sensores</a>
+    <a href="#monitoramento">Monitoramento</a>
+    <a href="#laboratorio">Laboratório</a>
+    <a href="#quiz">Quiz</a>
+  </div>
+</nav>
+</header>
 
-    <h2>1. O Gigante Econômico e a Necessidade de Evolução</h2>
-    <p>
-        A produção agropecuária brasileira atinge recordes sucessivos de produtividade. O setor atua como estabilizador da balança comercial do país, gerando divisas essenciais para o desenvolvimento de infraestruturas nacionais e empregando milhões de pessoas direta e indiretamente.
-    </p>
+<div class="hero">
+  <h1>Sensores de Luz e<br>Acompanhamento da Radiação Solar</h1>
 
-    <div class="row-table">
-        <div class="col-cell" style="width: 33%;">
-            <div class="stat-box">
-                <div class="stat-value">23% - 29%</div>
-                <div class="stat-label">Participação Estimada no PIB Nacional</div>
-            </div>
-        </div>
-        <div class="col-cell" style="width: 33%;">
-            <div class="stat-box">
-                <div class="stat-value">~40%</div>
-                <div class="stat-label">Do Total das Exportações Brasileiras</div>
-            </div>
-        </div>
-        <div class="col-cell" style="width: 34%;">
-            <div class="stat-box">
-                <div class="stat-value">Top 1</div>
-                <div class="stat-label">Exportador de Soja, Café e Carne Bovina</div>
-            </div>
-        </div>
-    </div>
+  <p>
+    Explore como a luz solar pode ser detectada, analisada e acompanhada
+    por meio de sensores e ferramentas de medição.
+  </p>
 
-    <p>
-        <strong>Mecanização e Genética:</strong> A expansão nas últimas décadas ocorreu principalmente por meio da incorporação de biotecnologia, sementes de alto rendimento e maquinários conectados, permitindo a lógica essencial: <span class="math">P = Q / A</span> (onde o aumento da Produtividade <span class="math">P</span> mitiga a necessidade de abertura de novas Áreas <span class="math">A</span> para a mesma Quantidade produzida <span class="math">Q</span>). Contudo, a simples otimização de insumos tradicionais já não basta para garantir a resiliência climática futura.
-    </p>
+  <a href="#monitoramento">Explorar monitoramento ↓</a>
+</div>
 
-    <h2>2. Os Desafios Ambientais Reais (Métricas e Riscos)</h2>
-    <p>
-        Ignorar os impactos ambientais coloca em risco a própria perenidade do agronegócio. A degradação dos ecossistemas afeta o regime de chuvas e reduz a fertilidade natural do solo, gerando prejuízos bilionários imediatos ao produtor.
-    </p>
+<main>
 
-    <div class="alert-box">
-        <span class="box-title">Desmatamento e Mudança no Uso da Terra</span>
-        <p style="margin:0; font-size:9pt;">A conversão de vegetação nativa em pastagens e lavouras no Cerrado e na Amazônia representa a maior fonte de emissões de Gases de Efeito Estufa (GEE) do Brasil, além de desestruturar microclimas regionais.</p>
-    </div>
+<section id="sensores">
 
-    <div class="alert-box">
-        <span class="box-title">Consumo e Escassez de Água Doce</span>
-        <p style="margin:0; font-size:9pt;">A agricultura irrigada responde por cerca de 70% do consumo global de água doce. Sistemas de irrigação ineficientes exacerbam conflitos hídricos e vulnerabilidades em períodos de estiagem prolongada.</p>
-    </div>
+<h2 class="section-title">Conheça os sensores</h2>
 
-    <div class="alert-box">
-        <span class="box-title">Emissões de Gases de Efeito Estufa (GEE)</span>
-        <p style="margin:0; font-size:9pt;">A fermentação entérica da pecuária emite volumes massivos de Metano (<span class="math">CH<sub>4</sub></span>), enquanto o manejo inadequado do solo e fertilizantes nitrogenados liberam Óxido Nitroso (<span class="math">N<sub>2</sub>O</span>), acelerando o aquecimento global.</p>
-    </div>
+<p class="intro">
+Cada dispositivo possui uma função diferente na observação da luz e da energia solar.
+</p>
 
-    <h2>3. A Revolução Tecnológica e Práticas Regenerativas</h2>
-    <p>
-        A resposta para os desafios listados não está no recuo da produção, mas sim na sofisticação científica do campo. As tecnologias de monitoramento associadas às práticas que imitam a natureza criam sistemas circulares de alta eficiência.
-    </p>
+<div class="grid">
 
-    <h3>A. Agricultura de Precisão e Eficiência de Insumos</h3>
-    <p>
-        O uso de sensores locais, dados de satélite e aplicação em taxa variável transforma a lavoura. Em vez de tratar o talhão de forma homogênea, cada planta recebe a dosagem exata necessária.
-    </p>
-    <div style="font-size:9pt; font-weight:bold; color:#4a5568; margin-bottom:2px;">Redução Média de Desperdício de Fertilizantes / Defensivos:</div>
-    <div class="bar-container">
-        <div class="bar-fill" style="width: 30%;"></div>
-    </div>
+<article class="card">
+  <span class="tag">Sensor de luz</span>
+  <h3>LDR</h3>
+  <p>
+    O LDR é um resistor cuja resistência elétrica varia conforme a
+    quantidade de luz que recebe. É útil para detectar ambientes claros ou escuros.
+  </p>
+</article>
 
-    <h3>B. Tecnologias de Monitoramento e Automação</h3>
-    <ul>
-        <li><strong>Drones de Alta Resolução:</strong> Identificação precoce de reboleiras de pragas e estresse hídrico, evitando pulverizações em área total.</li>
-        <li><strong>Sensores de Umidade de Solo:</strong> Conectados via IoT, ativam a irrigação automatizada apenas quando o solo atinge o ponto de murcha permanente crítico, gerando economia expressiva de água.</li>
-        <li><strong>Energias Renováveis no Campo:</strong> Substituição de geradores a diesel por matrizes fotovoltaicas nas bombas de irrigação e infraestruturas internas.</li>
-    </ul>
+<article class="card">
+  <span class="tag">Sensor óptico</span>
+  <h3>Fotodiodo</h3>
+  <p>
+    Converte luz em corrente elétrica. Pode responder rapidamente à
+    iluminação e é usado em sistemas de detecção óptica.
+  </p>
+</article>
 
-    <h3>C. Práticas Regenerativas e a Nova Fronteira Agro</h3>
-    <p>
-        A transição sustentável baseia-se na recuperação de solos degradados por meio de técnicas consolidadas:
-    </p>
+<article class="card">
+  <span class="tag">Medição solar</span>
+  <h3>Piranômetro</h3>
+  <p>
+    Instrumento usado para medir a irradiância solar que chega a uma
+    superfície, normalmente expressa em watts por metro quadrado (W/m²).
+  </p>
+</article>
 
-    <div class="solution-box">
-        <span class="box-title">Sistema de Plantio Direto (SPD)</span>
-        <p style="margin:0; font-size:9pt;">O solo nunca fica descoberto. A palhada da cultura anterior protege a terra contra a erosão, preserva a umidade e fixa carbono orgânico no perfil produtivo.</p>
-    </div>
+</div>
+</section>
 
-    <div class="solution-box">
-        <span class="box-title">Integração Lavoura-Pecuária-Floresta (ILPF)</span>
-        <p style="margin:0; font-size:9pt;">Consórcio que otimiza a mesma área com grãos, carne/leite e árvores. As árvores fornecem sombra ao gado (bem-estar animal), retêm água e sequestram toneladas de CO₂ equivalente por hectare ao ano.</p>
-    </div>
+<section id="monitoramento">
 
-    <div class="solution-box">
-        <span class="box-title">Bioinsumos e Manejo Integrado (MIP)</span>
-        <p style="margin:0; font-size:9pt;">Uso de bactérias fixadoras de nitrogênio (como o <i>Bradyrhizobium</i>) e fungos controladores de pragas, reduzindo drasticamente a dependência de defensivos químicos de síntese industrial.</p>
-    </div>
+<h2 class="section-title">Acompanhamento da radiação solar</h2>
 
-    <h2>4. Espaço Interativo: Ferramentas de Conscientização</h2>
-    <p>
-        Abaixo, apresentamos as maquetes operacionais das ferramentas interativas desenvolvidas para engajar produtores, estudantes e o público geral na plataforma online.
-    </p>
+<p class="intro">
+Observe uma curva diária simulada de irradiância solar. Os valores
+representam um exemplo educativo, não uma medição em tempo real.
+</p>
 
-    <div class="row-table">
-        <div class="col-cell" style="width: 50%;">
-            <div class="interactive-section">
-                <div class="interactive-title">📊 Calculadora de Impacto Agro</div>
-                <p style="font-size:8.5pt; margin-bottom:8px;">Insira a área da sua propriedade para estimar os ganhos ao migrar para a agricultura de precisão e plantio direto:</p>
-                <div style="background:#ffffff; border:1px solid #cbd5e0; padding:6px; font-size:8.5pt; border-radius:4px; margin-bottom:6px; color:#718096;">
-                    Área simulada: <strong>100 Hectares</strong>
-                </div>
-                <div style="font-size:8.5pt; color:#2d6a4f; font-weight:bold;">
-                    ✓ Economia estimada de Água: ~250.000 Litros/ano<br>
-                    ✓ Carbono Sequestrado: ~120 Toneladas de CO₂eq/ano
-                </div>
-            </div>
-        </div>
-        <div class="col-cell" style="width: 50%;">
-            <div class="interactive-section">
-                <div class="interactive-title">💡 Quiz: Visão de Futuro</div>
-                <p style="font-size:8.5pt; margin-bottom:8px;"><strong>Pergunta:</strong> Qual prática apresenta maior potencial para zerar o balanço de carbono na pecuária extensiva brasileira?</p>
-                <div class="quiz-option">A) Aumento de fertilizantes sintéticos simples.</div>
-                <div class="quiz-option correct">✓ B) Implementação de Sistemas ILPF (Sistemas Silvipastoris).</div>
-                <div class="quiz-option">C) Uso exclusivo de irrigação por aspersão convencional.</div>
-            </div>
-        </div>
-    </div>
+<div class="panel">
 
-    <div class="footer-banner">
-        <p>“Um agro forte, tecnológico e sustentável é perfeitamente possível e absolutamente necessário para as próximas gerações.”</p>
-        <span style="font-size: 8pt; display:block; margin-top:5px; color:#d8f3dc; font-weight:normal;">Assine nossa Newsletter para receber relatórios técnicos mensais e atualizações de tecnologias verdes.</span>
-   <img src="assets/agro1.jpg" alt="Imagem 1">
-<img src="assets/ana2.jpg" alt="Imagem 2">
-    
-    </div>
+<div class="grid">
+
+<div>
+  <div class="small">Irradiância simulada</div>
+  <div class="metric" id="irrValue">650 W/m²</div>
+</div>
+
+<div>
+  <div class="small">Horário selecionado</div>
+  <div class="metric" id="timeValue">12:00</div>
+</div>
+
+<div>
+  <div class="small">Condição do céu</div>
+  <div class="metric" id="skyValue">Aberto</div>
+</div>
+
+</div>
+
+<canvas id="solarChart" width="900" height="280"
+aria-label="Gráfico simulado de irradiância solar durante o dia"></canvas>
+
+<div class="controls">
+  <label for="timeSlider">Horário:</label>
+  <input id="timeSlider" type="range" min="6" max="18" step=".5" value="12">
+  <strong id="sliderTime">12:00</strong>
+</div>
+
+<p class="small">
+A irradiância tende a aumentar durante a manhã, atingir valores mais altos
+próximo ao meio-dia solar e diminuir à tarde. Nuvens e condições atmosféricas
+alteram esse padrão.
+</p>
+
+</div>
+
+<div class="panel">
+
+<h3>Compare as condições do céu</h3>
+
+<div class="controls">
+  <label for="weather">Condição:</label>
+
+  <select id="weather">
+    <option value="1">Céu aberto</option>
+    <option value=".7">Parcialmente nublado</option>
+    <option value=".35">Nublado</option>
+  </select>
+</div>
+
+<p class="result" id="weatherText">
+Com céu aberto, a simulação considera maior incidência de radiação.
+</p>
+
+</div>
+</section>
+
+<section id="laboratorio">
+
+<h2 class="section-title">Laboratório interativo</h2>
+
+<p class="intro">
+Experimente alterar a luz e veja como um LDR reage.
+</p>
+
+<div class="grid">
+
+<div class="panel">
+
+<h3>Simulador de LDR</h3>
+
+<div class="controls">
+  <label for="lightSlider">Intensidade da luz:</label>
+  <input id="lightSlider" type="range" min="0" max="100" value="60">
+</div>
+
+<div class="metric" id="lightPct">60%</div>
+
+<p>
+Resistência estimada:
+<strong id="resistance">7,0 kΩ</strong>
+</p>
+
+<p class="small">
+Em geral, quanto maior a iluminação, menor a resistência de um LDR.
+Os números são ilustrativos.
+</p>
+
+</div>
+
+<div class="panel">
+
+<h3>Movimento aparente do Sol</h3>
+
+<p>
+Altere o horário para acompanhar a posição ilustrativa do Sol no céu.
+</p>
+
+<div class="sun-stage">
+  <div class="sun" id="sun"></div>
+  <div class="horizon"></div>
+</div>
+
+<div class="small" id="sunText">
+Próximo ao meio-dia: Sol mais alto no céu.
+</div>
+
+</div>
+</div>
+
+<div class="panel">
+
+<h3>Mini laboratório: qual instrumento usar?</h3>
+
+<p>Escolha o objetivo:</p>
+
+<div class="controls">
+
+<select id="instrument">
+  <option value="ldr">Identificar se o ambiente está claro ou escuro</option>
+  <option value="solar">Medir irradiância solar em W/m²</option>
+  <option value="optical">Detectar um feixe de luz rapidamente</option>
+</select>
+
+<button class="btn" id="chooseInstrument">Ver resposta</button>
+
+</div>
+
+<p class="result" id="instrumentResult"></p>
+
+</div>
+</section>
+
+<section id="quiz">
+
+<h2 class="section-title">Teste seus conhecimentos</h2>
+
+<div class="panel">
+
+<div id="quizBox">
+
+<p class="quiz-q" id="question"></p>
+
+<div class="answers" id="answers"></div>
+
+<p class="result" id="quizResult"></p>
+
+<button class="btn" id="nextQuestion" hidden>
+Próxima pergunta
+</button>
+
+</div>
+
+<p class="small" id="score"></p>
+
+</div>
+</section>
+
+<section>
+
+<h2 class="section-title">Onde esses sensores são utilizados?</h2>
+
+<div class="grid">
+
+<div class="card">
+  <h3>Energia solar</h3>
+  <p>
+    Acompanhar a disponibilidade de radiação para estudar o desempenho
+    de painéis fotovoltaicos.
+  </p>
+</div>
+
+<div class="card">
+  <h3>Agricultura</h3>
+  <p>
+    Observar a iluminação recebida pelas plantas e auxiliar no
+    monitoramento de cultivos.
+  </p>
+</div>
+
+<div class="card">
+  <h3>Automação</h3>
+  <p>
+    Acender lâmpadas automaticamente e ajustar sistemas conforme
+    a iluminação do ambiente.
+  </p>
+</div>
+
+</div>
+</section>
+
+</main>
+
+<footer>
+<strong>SolarSense</strong><br>
+
+Projeto educativo — sensores de luz e acompanhamento da radiação solar.
+
+<br>
+
+<span class="small">
+Gráficos e valores deste site são simulados e não substituem
+instrumentos reais de medição.
+</span>
+</footer>
+
+<script>
+
+const $ = id => document.getElementById(id);
+
+const slider = $('timeSlider');
+const weather = $('weather');
+const canvas = $('solarChart');
+const ctx = canvas.getContext('2d');
+
+function baseIrr(h) {
+  if (h <= 6 || h >= 18) return 0;
+
+  return Math.max(
+    0,
+    850 * Math.sin(Math.PI * (h - 6) / 12)
+  );
+}
+
+function timeText(h) {
+  let hh = Math.floor(h);
+  let mm = (h % 1) * 60;
+
+  return String(hh).padStart(2, '0') + ':' +
+         String(mm).padStart(2, '0');
+}
+
+function drawChart() {
+
+  let w = canvas.width;
+  let h = canvas.height;
+
+  ctx.clearRect(0, 0, w, h);
+
+  let pad = {
+    l: 58,
+    r: 20,
+    t: 20,
+    b: 38
+  };
+
+  let cw = w - pad.l - pad.r;
+  let ch = h - pad.t - pad.b;
+
+  ctx.strokeStyle = '#dbe4ee';
+  ctx.fillStyle = '#64748b';
+  ctx.font = '14px Arial';
+  ctx.lineWidth = 1;
+
+  for (let v = 0; v <= 1000; v += 200) {
+
+    let y = pad.t + ch - (v / 1000) * ch;
+
+    ctx.beginPath();
+    ctx.moveTo(pad.l, y);
+    ctx.lineTo(w - pad.r, y);
+    ctx.stroke();
+
+    ctx.fillText(v, pad.l - 42, y + 5);
+  }
+
+  for (let hr = 6; hr <= 18; hr += 2) {
+
+    let x = pad.l + (hr - 6) / 12 * cw;
+
+    ctx.fillText(hr + 'h', x - 10, h - 10);
+  }
+
+  ctx.beginPath();
+
+  for (let i = 0; i <= 120; i++) {
+
+    let hr = 6 + i / 10;
+
+    let val = baseIrr(hr) * Number(weather.value);
+
+    let x = pad.l + (hr - 6) / 12 * cw;
+
+    let y = pad.t + ch - (val / 1000) * ch;
+
+    if (i === 0) {
+      ctx.moveTo(x, y);
+    } else {
+      ctx.lineTo(x, y);
+    }
+  }
+
+  ctx.strokeStyle = '#e99b22';
+  ctx.lineWidth = 4;
+  ctx.stroke();
+
+  let hour = Number(slider.value);
+
+  let val = baseIrr(hour) * Number(weather.value);
+
+  let x = pad.l + (hour - 6) / 12 * cw;
+
+  let y = pad.t + ch - (val / 1000) * ch;
+
+  ctx.beginPath();
+  ctx.arc(x, y, 7, 0, Math.PI * 2);
+
+  ctx.fillStyle = '#183b62';
+  ctx.fill();
+
+  ctx.fillStyle = '#183b62';
+
+  ctx.fillText(
+    Math.round(val) + ' W/m²',
+    Math.min(x + 12, w - 115),
+    Math.max(y - 12, 15)
+  );
+
+  $('irrValue').textContent = Math.round(val) + ' W/m²';
+  $('timeValue').textContent = timeText(hour);
+  $('sliderTime').textContent = timeText(hour);
+
+  $('skyValue').textContent =
+    weather.options[weather.selectedIndex].text;
+
+  let angle = (hour - 6) / 12 * Math.PI;
+
+  let sun = $('sun');
+
+  sun.style.left = (8 + 84 * (hour - 6) / 12) + '%';
+
+  sun.style.top = (78 - 58 * Math.sin(angle)) + '%';
+
+  $('sunText').textContent =
+    hour < 8
+      ? 'Início da manhã: o Sol está baixo no céu.'
+      : hour > 16
+      ? 'Fim da tarde: o Sol está baixo no céu.'
+      : 'Durante o dia, a posição aparente do Sol fica mais alta perto do meio-dia.';
+}
+
+slider.addEventListener('input', drawChart);
+
+weather.addEventListener('change', () => {
+
+  let t = Number(weather.value);
+
+  $('weatherText').textContent =
+    t === 1
+      ? 'Com céu aberto, a simulação considera maior incidência de radiação.'
+      : t === .7
+      ? 'Com nuvens parciais, a irradiância simulada diminui.'
+      : 'Com céu nublado, a irradiância simulada é consideravelmente menor.';
+
+  drawChart();
+});
+
+$('lightSlider').addEventListener('input', e => {
+
+  let v = Number(e.target.value);
+
+  let r = 100 / (v + 1);
+
+  $('lightPct').textContent = v + '%';
+
+  $('resistance').textContent =
+    r.toFixed(1).replace('.', ',') + ' kΩ';
+});
+
+$('chooseInstrument').addEventListener('click', () => {
+
+  let v = $('instrument').value;
+
+  $('instrumentResult').textContent =
+    v === 'ldr'
+      ? 'LDR: sua resistência varia conforme a iluminação.'
+      : v === 'solar'
+      ? 'Piranômetro: mede a irradiância solar em W/m².'
+      : 'Fotodiodo: detecta luz e pode responder rapidamente.';
+});
+
+const questions = [
+
+  {
+    q: 'Qual instrumento é usado para medir a irradiância solar em W/m²?',
+    a: ['LDR', 'Piranômetro', 'Termômetro'],
+    c: 1,
+    e: 'O piranômetro mede a irradiância solar.'
+  },
+
+  {
+    q: 'O que geralmente acontece com a resistência de um LDR quando a luz aumenta?',
+    a: ['Diminui', 'Aumenta', 'Não muda'],
+    c: 0,
+    e: 'Em geral, mais luz faz a resistência do LDR diminuir.'
+  },
+
+  {
+    q: 'Qual unidade aparece no gráfico de irradiância?',
+    a: ['W/m²', 'Quilômetros', 'Graus Celsius'],
+    c: 0,
+    e: 'A irradiância é expressa em watts por metro quadrado (W/m²).'
+  }
+
+];
+
+let qi = 0;
+let score = 0;
+let answered = false;
+
+function showQ() {
+
+  answered = false;
+
+  $('question').textContent =
+    (qi + 1) + '. ' + questions[qi].q;
+
+  $('answers').innerHTML = '';
+
+  questions[qi].a.forEach((a, i) => {
+
+    let b = document.createElement('button');
+
+    b.textContent = a;
+
+    b.addEventListener('click', () => answer(i));
+
+    $('answers').appendChild(b);
+  });
+
+  $('quizResult').textContent = '';
+
+  $('nextQuestion').hidden = true;
+
+  $('score').textContent =
+    'Pontuação: ' + score + '/' + questions.length;
+}
+
+function answer(i) {
+
+  if (answered) return;
+
+  answered = true;
+
+  let q = questions[qi];
+
+  if (i === q.c) {
+    score++;
+  }
+
+  $('quizResult').textContent =
+    (i === q.c ? 'Correto! ' : 'Não é essa. ') + q.e;
+
+  $('nextQuestion').hidden = false;
+
+  $('score').textContent =
+    'Pontuação: ' + score + '/' + questions.length;
+}
+
+$('nextQuestion').addEventListener('click', () => {
+
+  qi++;
+
+  if (qi < questions.length) {
+
+    showQ();
+
+  } else {
+
+    $('question').textContent = 'Quiz concluído!';
+
+    $('answers').innerHTML = '';
+
+    $('quizResult').textContent =
+      'Você acertou ' + score + ' de ' +
+      questions.length + ' questões.';
+
+    $('nextQuestion').textContent = 'Refazer quiz';
+
+    $('nextQuestion').hidden = false;
+
+    $('nextQuestion').onclick = () => {
+
+      qi = 0;
+      score = 0;
+
+      $('nextQuestion').textContent = 'Próxima pergunta';
+
+      $('nextQuestion').onclick = null;
+
+      showQ();
+    };
+  }
+});
+
+drawChart();
+showQ();
+
+</script>
 
 </body>
 </html>
-"""
-
-# Nome do arquivo de saída
-output_pdf = "plataforma_agro_sustentavel.pdf"
-
-# Gerando o PDF a partir da string HTML usando WeasyPrint
-HTML(string=html_content).write_pdf(output_pdf)
-print(f"PDF gerado com sucesso: {output_pdf}")
-```
-
