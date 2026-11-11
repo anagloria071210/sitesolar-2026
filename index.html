@@ -1,23 +1,27 @@
+
+```html
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Projeto educativo sobre sensores de luz e acompanhamento da radiação solar.">
-<title>SolarSense | Sensores de Luz e Radiação Solar</title>
+<title>SolarSense | Monitoramento Solar</title>
 
 <style>
 :root {
-  --navy: #101d35;
-  --blue: #183b62;
-  --gold: #ffc857;
-  --paper: #f5f8fc;
-  --ink: #17243a;
-  --muted: #64748b;
+  --azul: #123b5d;
+  --azul-claro: #eaf5fc;
+  --amarelo: #ffca55;
+  --branco: #ffffff;
+  --texto: #263746;
+  --fundo: #f5f9fc;
 }
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html {
@@ -25,272 +29,328 @@ html {
 }
 
 body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background: var(--paper);
-  color: var(--ink);
+  font-family: Arial, sans-serif;
+  background: var(--fundo);
+  color: var(--texto);
   line-height: 1.6;
 }
 
-header {
-  background: var(--navy);
-  color: white;
-  position: sticky;
-  top: 0;
-  z-index: 5;
-  box-shadow: 0 3px 15px #0002;
+a {
+  color: inherit;
 }
 
-nav {
-  max-width: 1100px;
-  margin: auto;
-  padding: 14px 22px;
+button, input, select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 10px;
+  background: white;
+  padding: 12px;
+  z-index: 1000;
+}
+
+.skip-link:focus {
+  left: 10px;
+}
+
+header {
+  background: var(--azul);
+  color: white;
+  padding: 18px 7%;
+}
+
+.navbar {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 16px;
+  justify-content: space-between;
   flex-wrap: wrap;
+  gap: 15px;
 }
 
 .logo {
-  font-weight: 800;
-  font-size: 1.25rem;
-  color: var(--gold);
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.logo span {
+  color: var(--amarelo);
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
 }
 
 nav a {
-  color: white;
   text-decoration: none;
-  margin: 0 8px;
-  font-size: .93rem;
+  font-weight: bold;
 }
 
 nav a:hover {
-  color: var(--gold);
+  color: var(--amarelo);
+}
+
+.accessibility {
+  background: #eaf5fc;
+  padding: 12px 7%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.accessibility button {
+  border: 1px solid #b5cbdc;
+  background: white;
+  color: var(--azul);
+  padding: 7px 12px;
+  border-radius: 6px;
+}
+
+.accessibility button:hover {
+  background: var(--amarelo);
 }
 
 .hero {
-  background: linear-gradient(120deg, #101d35, #1d527b);
+  background: linear-gradient(120deg, #123b5d, #287ba5);
   color: white;
-  padding: 75px 22px;
+  padding: 75px 8%;
   text-align: center;
 }
 
 .hero h1 {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  line-height: 1.12;
-  margin: 0 0 18px;
+  font-size: clamp(32px, 5vw, 52px);
+  margin-bottom: 15px;
 }
 
 .hero p {
-  max-width: 720px;
-  margin: auto;
-  color: #e5edf7;
-  font-size: 1.1rem;
+  max-width: 750px;
+  margin: 0 auto 25px;
+  font-size: 18px;
 }
 
-.hero a,
-.btn {
+.hero a {
   display: inline-block;
-  background: var(--gold);
-  color: #18243a;
-  border: 0;
-  border-radius: 9px;
-  padding: 11px 18px;
+  background: var(--amarelo);
+  color: #263746;
+  padding: 12px 24px;
+  border-radius: 8px;
   text-decoration: none;
-  font-weight: 700;
-  cursor: pointer;
-  margin-top: 20px;
-}
-
-main {
-  max-width: 1100px;
-  margin: auto;
-  padding: 25px 22px;
+  font-weight: bold;
 }
 
 section {
-  padding: 34px 0;
-  scroll-margin-top: 80px;
+  padding: 55px 8%;
+  scroll-margin-top: 20px;
 }
 
 .section-title {
-  font-size: 2rem;
-  color: var(--navy);
-  margin: 0 0 8px;
+  color: var(--azul);
+  font-size: 30px;
+  margin-bottom: 12px;
 }
 
-.intro {
-  color: var(--muted);
-  margin: 0 0 22px;
+.section-intro {
+  max-width: 800px;
+  margin-bottom: 25px;
 }
 
-.grid {
+.cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 17px;
+  gap: 20px;
+  margin-top: 25px;
 }
 
 .card {
   background: white;
-  padding: 21px;
-  border-radius: 15px;
-  box-shadow: 0 5px 18px #152b4610;
-  border: 1px solid #e7edf5;
+  padding: 22px;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px #00000012;
 }
 
 .card h3 {
-  margin-top: 0;
-  color: var(--blue);
+  color: var(--azul);
+  margin-bottom: 10px;
 }
 
-.tag {
-  display: inline-block;
-  background: #fff0c7;
-  color: #795100;
-  border-radius: 20px;
-  padding: 3px 10px;
-  font-size: .8rem;
-  font-weight: bold;
+.card-icon {
+  font-size: 35px;
+  margin-bottom: 8px;
 }
 
-.panel {
+.interactive-box {
   background: white;
-  border-radius: 16px;
-  padding: 22px;
-  box-shadow: 0 5px 18px #152b4610;
-  margin: 16px 0;
+  border-radius: 12px;
+  padding: 25px;
+  margin-top: 20px;
+  box-shadow: 0 3px 12px #00000012;
 }
 
-.controls {
-  display: flex;
-  gap: 15px;
-  align-items: center;
-  flex-wrap: wrap;
-  margin: 14px 0;
+.control {
+  margin: 18px 0;
 }
 
-.controls label {
-  font-weight: 700;
+.control label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 7px;
 }
 
-.controls input[type=range] {
-  flex: 1;
-  min-width: 180px;
-  accent-color: #e99b22;
+input[type="range"] {
+  width: 100%;
+  accent-color: #287ba5;
 }
 
-.metric {
-  font-size: 1.8rem;
-  font-weight: 800;
-  color: #c77c08;
+select {
+  padding: 10px;
+  border: 1px solid #b5cbdc;
+  border-radius: 7px;
+  max-width: 100%;
 }
 
-.small {
-  font-size: .88rem;
-  color: var(--muted);
+.action-button {
+  background: var(--azul);
+  color: white;
+  border: none;
+  padding: 11px 18px;
+  border-radius: 7px;
+  margin: 5px;
+}
+
+.action-button:hover {
+  background: #287ba5;
+}
+
+.result {
+  background: var(--azul-claro);
+  border-left: 5px solid #287ba5;
+  padding: 15px;
+  border-radius: 6px;
+  margin-top: 15px;
+}
+
+.chart-area {
+  width: 100%;
+  min-height: 250px;
+  background: #f5f9fc;
+  border-radius: 8px;
+  padding: 10px;
 }
 
 canvas {
   width: 100%;
-  height: 260px;
+  height: 250px;
   display: block;
-  background: #fbfdff;
-  border-radius: 10px;
 }
 
-select,
-button {
-  font: inherit;
-}
-
-select {
-  padding: 9px;
-  border: 1px solid #cbd5e1;
-  border-radius: 8px;
-  background: white;
-}
-
-.btn {
-  margin-top: 8px;
-}
-
-.result {
-  font-weight: 700;
-  color: var(--blue);
-  min-height: 28px;
-}
-
-.sun-stage {
-  height: 210px;
+.sun-scene {
   position: relative;
-  overflow: hidden;
+  height: 230px;
+  background: linear-gradient(#8bd0f5, #eaf5fc);
   border-radius: 12px;
-  background: linear-gradient(#9bd8f5, #eaf7ff);
-  margin: 15px 0;
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+.sun {
+  position: absolute;
+  width: 55px;
+  height: 55px;
+  background: #ffca55;
+  border-radius: 50%;
+  box-shadow: 0 0 35px #ffca55;
+  left: 50%;
+  top: 35%;
+  transform: translate(-50%, -50%);
 }
 
 .horizon {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 35%;
-  background: linear-gradient(#9bcf83, #5e9d63);
-  border-radius: 50% 50% 0 0/30% 30% 0 0;
+  height: 45px;
+  background: #65a76c;
 }
 
-.sun {
-  position: absolute;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  background: #ffc533;
-  box-shadow: 0 0 28px #ffc533;
-  left: 50%;
-  top: 40%;
-  transform: translate(-50%, -50%);
-}
-
-.quiz-q {
-  font-weight: 700;
-  margin: 12px 0;
-}
-
-.answers button {
+.quiz-option {
   display: block;
   width: 100%;
   text-align: left;
-  background: #f1f5f9;
-  border: 1px solid #dbe3ed;
-  padding: 10px 13px;
-  border-radius: 8px;
-  margin: 7px 0;
-  cursor: pointer;
+  padding: 12px;
+  margin: 8px 0;
+  border: 1px solid #b5cbdc;
+  background: white;
+  border-radius: 7px;
 }
 
-.answers button:hover {
-  background: #fff0c7;
+.quiz-option:hover {
+  background: var(--azul-claro);
 }
 
 footer {
+  background: var(--azul);
+  color: white;
   text-align: center;
-  background: var(--navy);
-  color: #dbe7f5;
-  padding: 25px;
-  margin-top: 35px;
+  padding: 28px;
 }
 
-@media(max-width:600px) {
-  nav {
-    justify-content: center;
+.high-contrast {
+  background: #000 !important;
+  color: #fff !important;
+}
+
+.high-contrast header,
+.high-contrast footer,
+.high-contrast .hero {
+  background: #000 !important;
+  color: #fff !important;
+}
+
+.high-contrast .card,
+.high-contrast .interactive-box {
+  background: #171717 !important;
+  color: #fff !important;
+  border: 1px solid white;
+}
+
+.high-contrast h2,
+.high-contrast h3 {
+  color: #ffeb3b !important;
+}
+
+.high-contrast .result {
+  background: #222 !important;
+  color: white !important;
+}
+
+@media (max-width: 600px) {
+  header {
+    padding: 15px 5%;
   }
 
-  nav div:last-child {
-    text-align: center;
+  nav {
+    gap: 10px;
+  }
+
+  nav a {
+    font-size: 14px;
+  }
+
+  section {
+    padding: 40px 6%;
   }
 
   .hero {
-    padding: 55px 18px;
+    padding: 55px 6%;
   }
 }
 </style>
@@ -298,582 +358,666 @@ footer {
 
 <body>
 
-<header>
-<nav>
-  <div class="logo">☀ SolarSense</div>
+<a href="#conteudo" class="skip-link">Pular para o conteúdo</a>
 
-  <div>
-    <a href="#sensores">Sensores</a>
-    <a href="#monitoramento">Monitoramento</a>
-    <a href="#laboratorio">Laboratório</a>
-    <a href="#quiz">Quiz</a>
+<header>
+  <div class="navbar">
+    <div class="logo">Solar<span>Sense</span> ☀️</div>
+
+    <nav aria-label="Menu principal">
+      <a href="#inicio">Início</a>
+      <a href="#sensores">Sensores</a>
+      <a href="#monitoramento">Monitoramento</a>
+      <a href="#sol">Movimento do Sol</a>
+      <a href="#quiz">Quiz</a>
+    </nav>
   </div>
-</nav>
 </header>
 
-<div class="hero">
-  <h1>Sensores de Luz e<br>Acompanhamento da Radiação Solar</h1>
-
-  <p>
-    Explore como a luz solar pode ser detectada, analisada e acompanhada
-    por meio de sensores e ferramentas de medição.
-  </p>
-
-  <a href="#monitoramento">Explorar monitoramento ↓</a>
+<div class="accessibility">
+  <strong>Acessibilidade:</strong>
+  <button id="increaseFont">A+</button>
+  <button id="decreaseFont">A-</button>
+  <button id="resetFont">Tamanho normal</button>
+  <button id="contrastButton">Alto contraste</button>
+  <button id="readButton">🔊 Ler página</button>
+  <button id="stopButton">⏹ Parar leitura</button>
 </div>
 
-<main>
+<main id="conteudo">
+
+<section class="hero" id="inicio">
+  <h1>Conheça a energia do Sol</h1>
+  <p>
+    Descubra como sensores de luz ajudam a acompanhar a luminosidade
+    e a radiação solar, entendendo sua importância no nosso cotidiano.
+  </p>
+  <a href="#monitoramento">Explorar monitoramento</a>
+</section>
 
 <section id="sensores">
-
-<h2 class="section-title">Conheça os sensores</h2>
-
-<p class="intro">
-Cada dispositivo possui uma função diferente na observação da luz e da energia solar.
-</p>
-
-<div class="grid">
-
-<article class="card">
-  <span class="tag">Sensor de luz</span>
-  <h3>LDR</h3>
-  <p>
-    O LDR é um resistor cuja resistência elétrica varia conforme a
-    quantidade de luz que recebe. É útil para detectar ambientes claros ou escuros.
+  <h2 class="section-title">O que são sensores de luz?</h2>
+  <p class="section-intro">
+    Sensores de luz são dispositivos capazes de detectar a intensidade
+    luminosa do ambiente e transformar essa informação em sinais que
+    podem ser interpretados por equipamentos eletrônicos.
   </p>
-</article>
 
-<article class="card">
-  <span class="tag">Sensor óptico</span>
-  <h3>Fotodiodo</h3>
-  <p>
-    Converte luz em corrente elétrica. Pode responder rapidamente à
-    iluminação e é usado em sistemas de detecção óptica.
-  </p>
-</article>
+  <div class="cards">
+    <article class="card">
+      <div class="card-icon">💡</div>
+      <h3>Sensor LDR</h3>
+      <p>
+        Sua resistência elétrica muda de acordo com a quantidade
+        de luz que recebe. É utilizado em postes automáticos e
+        sistemas de iluminação.
+      </p>
+    </article>
 
-<article class="card">
-  <span class="tag">Medição solar</span>
-  <h3>Piranômetro</h3>
-  <p>
-    Instrumento usado para medir a irradiância solar que chega a uma
-    superfície, normalmente expressa em watts por metro quadrado (W/m²).
-  </p>
-</article>
+    <article class="card">
+      <div class="card-icon">📡</div>
+      <h3>Fotodiodo</h3>
+      <p>
+        Converte a luz recebida em corrente elétrica.
+        Pode ser utilizado em equipamentos de medição e comunicação.
+      </p>
+    </article>
 
-</div>
+    <article class="card">
+      <div class="card-icon">☀️</div>
+      <h3>Piranômetro</h3>
+      <p>
+        Mede a radiação solar que chega a uma superfície.
+        É utilizado em estudos ambientais e sistemas de energia solar.
+      </p>
+    </article>
+  </div>
 </section>
 
 <section id="monitoramento">
+  <h2 class="section-title">Monitoramento da radiação solar</h2>
+  <p class="section-intro">
+    Explore uma simulação de como a intensidade da radiação solar
+    pode variar ao longo do dia.
+  </p>
 
-<h2 class="section-title">Acompanhamento da radiação solar</h2>
+  <div class="interactive-box">
+    <h3>Variação da radiação durante o dia</h3>
+    <p>
+      O gráfico apresenta valores simulados para demonstrar
+      como a radiação pode mudar conforme o horário.
+    </p>
 
-<p class="intro">
-Observe uma curva diária simulada de irradiância solar. Os valores
-representam um exemplo educativo, não uma medição em tempo real.
-</p>
+    <div class="chart-area">
+      <canvas id="radiationChart" aria-label="Gráfico de radiação solar simulada"></canvas>
+    </div>
 
-<div class="panel">
+    <div class="control">
+      <label for="skySelect">Condição do céu:</label>
+      <select id="skySelect">
+        <option value="1">Céu limpo</option>
+        <option value="0.7">Parcialmente nublado</option>
+        <option value="0.4">Nublado</option>
+      </select>
+    </div>
 
-<div class="grid">
+    <div class="control">
+      <label for="timeSlider">Horário: <span id="timeValue">12:00</span></label>
+      <input type="range" id="timeSlider" min="6" max="18" value="12">
+    </div>
 
-<div>
-  <div class="small">Irradiância simulada</div>
-  <div class="metric" id="irrValue">650 W/m²</div>
-</div>
-
-<div>
-  <div class="small">Horário selecionado</div>
-  <div class="metric" id="timeValue">12:00</div>
-</div>
-
-<div>
-  <div class="small">Condição do céu</div>
-  <div class="metric" id="skyValue">Aberto</div>
-</div>
-
-</div>
-
-<canvas id="solarChart" width="900" height="280"
-aria-label="Gráfico simulado de irradiância solar durante o dia"></canvas>
-
-<div class="controls">
-  <label for="timeSlider">Horário:</label>
-  <input id="timeSlider" type="range" min="6" max="18" step=".5" value="12">
-  <strong id="sliderTime">12:00</strong>
-</div>
-
-<p class="small">
-A irradiância tende a aumentar durante a manhã, atingir valores mais altos
-próximo ao meio-dia solar e diminuir à tarde. Nuvens e condições atmosféricas
-alteram esse padrão.
-</p>
-
-</div>
-
-<div class="panel">
-
-<h3>Compare as condições do céu</h3>
-
-<div class="controls">
-  <label for="weather">Condição:</label>
-
-  <select id="weather">
-    <option value="1">Céu aberto</option>
-    <option value=".7">Parcialmente nublado</option>
-    <option value=".35">Nublado</option>
-  </select>
-</div>
-
-<p class="result" id="weatherText">
-Com céu aberto, a simulação considera maior incidência de radiação.
-</p>
-
-</div>
+    <div class="result" id="radiationResult" aria-live="polite">
+      Radiação simulada: calculando...
+    </div>
+  </div>
 </section>
 
+<section id="sol">
+  <h2 class="section-title">Movimento aparente do Sol</h2>
+  <p class="section-intro">
+    A posição aparente do Sol muda ao longo do dia devido à rotação
+    da Terra. Movimente o controle para observar uma simulação.
+  </p>
+
+  <div class="interactive-box">
+    <div class="sun-scene">
+      <div class="sun" id="sun"></div>
+      <div class="horizon"></div>
+    </div>
+
+    <div class="control">
+      <label for="sunSlider">
+        Horário: <span id="sunTime">12:00</span>
+      </label>
+      <input type="range" id="sunSlider" min="6" max="18" value="12">
+    </div>
+
+    <div class="result" id="sunDescription" aria-live="polite">
+      O Sol está aproximadamente no alto do céu.
+    </div>
+  </div>
+</section>
+</main>
+```
+
 <section id="laboratorio">
+  <h2 class="section-title">Laboratório interativo</h2>
+  <p class="section-intro">
+    Faça uma simulação para entender como um sensor LDR reage
+    às mudanças na luminosidade.
+  </p>
 
-<h2 class="section-title">Laboratório interativo</h2>
+  <div class="interactive-box">
+    <h3>Simulador de sensor LDR</h3>
 
-<p class="intro">
-Experimente alterar a luz e veja como um LDR reage.
-</p>
+    <div class="control">
+      <label for="lightSlider">
+        Intensidade da luz: <span id="lightValue">50%</span>
+      </label>
+      <input type="range" id="lightSlider" min="0" max="100" value="50">
+    </div>
 
-<div class="grid">
+    <div class="result" id="ldrResult" aria-live="polite">
+      O sensor está recebendo uma quantidade moderada de luz.
+    </div>
 
-<div class="panel">
+    <p id="ldrResistance">
+      Resistência simulada: 50%
+    </p>
+  </div>
 
-<h3>Simulador de LDR</h3>
+  <div class="interactive-box">
+    <h3>Onde podemos utilizar sensores de luz?</h3>
 
-<div class="controls">
-  <label for="lightSlider">Intensidade da luz:</label>
-  <input id="lightSlider" type="range" min="0" max="100" value="60">
-</div>
+    <div class="control">
+      <label for="applicationSelect">Escolha uma aplicação:</label>
+      <select id="applicationSelect">
+        <option value="postes">Postes de iluminação automática</option>
+        <option value="solar">Painéis solares</option>
+        <option value="agricultura">Agricultura</option>
+        <option value="ambiente">Monitoramento ambiental</option>
+      </select>
+    </div>
 
-<div class="metric" id="lightPct">60%</div>
-
-<p>
-Resistência estimada:
-<strong id="resistance">7,0 kΩ</strong>
-</p>
-
-<p class="small">
-Em geral, quanto maior a iluminação, menor a resistência de um LDR.
-Os números são ilustrativos.
-</p>
-
-</div>
-
-<div class="panel">
-
-<h3>Movimento aparente do Sol</h3>
-
-<p>
-Altere o horário para acompanhar a posição ilustrativa do Sol no céu.
-</p>
-
-<div class="sun-stage">
-  <div class="sun" id="sun"></div>
-  <div class="horizon"></div>
-</div>
-
-<div class="small" id="sunText">
-Próximo ao meio-dia: Sol mais alto no céu.
-</div>
-
-</div>
-</div>
-
-<div class="panel">
-
-<h3>Mini laboratório: qual instrumento usar?</h3>
-
-<p>Escolha o objetivo:</p>
-
-<div class="controls">
-
-<select id="instrument">
-  <option value="ldr">Identificar se o ambiente está claro ou escuro</option>
-  <option value="solar">Medir irradiância solar em W/m²</option>
-  <option value="optical">Detectar um feixe de luz rapidamente</option>
-</select>
-
-<button class="btn" id="chooseInstrument">Ver resposta</button>
-
-</div>
-
-<p class="result" id="instrumentResult"></p>
-
-</div>
+    <div class="result" id="applicationResult" aria-live="polite">
+      Sensores podem identificar quando escurece e ajudar a acionar
+      automaticamente a iluminação pública.
+    </div>
+  </div>
 </section>
 
 <section id="quiz">
+  <h2 class="section-title">Teste seus conhecimentos!</h2>
+  <p class="section-intro">
+    Responda às perguntas e descubra o que aprendeu sobre sensores
+    de luz e radiação solar.
+  </p>
 
-<h2 class="section-title">Teste seus conhecimentos</h2>
+  <div class="interactive-box">
+    <h3 id="question">Carregando pergunta...</h3>
 
-<div class="panel">
+    <div id="options"></div>
 
-<div id="quizBox">
+    <div class="result" id="quizResult" aria-live="polite">
+      Escolha uma alternativa para responder.
+    </div>
 
-<p class="quiz-q" id="question"></p>
+    <p id="quizScore">Pontuação: 0</p>
 
-<div class="answers" id="answers"></div>
-
-<p class="result" id="quizResult"></p>
-
-<button class="btn" id="nextQuestion" hidden>
-Próxima pergunta
-</button>
-
-</div>
-
-<p class="small" id="score"></p>
-
-</div>
+    <button class="action-button" id="nextQuestion" type="button">
+      Próxima pergunta
+    </button>
+  </div>
 </section>
 
-<section>
-
-<h2 class="section-title">Onde esses sensores são utilizados?</h2>
-
-<div class="grid">
-
-<div class="card">
-  <h3>Energia solar</h3>
-  <p>
-    Acompanhar a disponibilidade de radiação para estudar o desempenho
-    de painéis fotovoltaicos.
+<section id="sobre">
+  <h2 class="section-title">Sobre o SolarSense</h2>
+  <p class="section-intro">
+    O SolarSense é um projeto educativo que apresenta conceitos
+    relacionados à luminosidade, aos sensores de luz e ao
+    monitoramento da radiação solar.
   </p>
-</div>
 
-<div class="card">
-  <h3>Agricultura</h3>
-  <p>
-    Observar a iluminação recebida pelas plantas e auxiliar no
-    monitoramento de cultivos.
-  </p>
-</div>
+  <div class="cards">
+    <article class="card">
+      <div class="card-icon">🔬</div>
+      <h3>Ciência</h3>
+      <p>Aprenda como a luz pode ser detectada e medida por sensores.</p>
+    </article>
 
-<div class="card">
-  <h3>Automação</h3>
-  <p>
-    Acender lâmpadas automaticamente e ajustar sistemas conforme
-    a iluminação do ambiente.
-  </p>
-</div>
+    <article class="card">
+      <div class="card-icon">🌱</div>
+      <h3>Sustentabilidade</h3>
+      <p>Conheça aplicações da medição solar em projetos ambientais.</p>
+    </article>
 
-</div>
+    <article class="card">
+      <div class="card-icon">💻</div>
+      <h3>Tecnologia</h3>
+      <p>Explore simulações interativas para compreender os fenômenos.</p>
+    </article>
+  </div>
 </section>
-
-</main>
 
 <footer>
-<strong>SolarSense</strong><br>
-
-Projeto educativo — sensores de luz e acompanhamento da radiação solar.
-
-<br>
-
-<span class="small">
-Gráficos e valores deste site são simulados e não substituem
-instrumentos reais de medição.
-</span>
+  <p><strong>SolarSense ☀️</strong></p>
+  <p>Educação, tecnologia e energia solar.</p>
+  <p>Projeto educativo — valores apresentados nas simulações são fictícios.</p>
 </footer>
 
+<!-- VLibras: tradução automática de conteúdos para Libras -->
+<div vw class="enabled">
+  <div vw-access-button class="active"></div>
+  <div vw-plugin-wrapper>
+    <div class="vw-plugin-top-wrapper"></div>
+  </div>
+</div>
+
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+
+  
 <script>
+/* ==========================
+   ACESSIBILIDADE
+========================== */
 
-const $ = id => document.getElementById(id);
+let fontSize = 16;
 
-const slider = $('timeSlider');
-const weather = $('weather');
-const canvas = $('solarChart');
-const ctx = canvas.getContext('2d');
+document.getElementById("increaseFont").addEventListener("click", () => {
+  fontSize = Math.min(fontSize + 2, 26);
+  document.body.style.fontSize = fontSize + "px";
+});
 
-function baseIrr(h) {
-  if (h <= 6 || h >= 18) return 0;
+document.getElementById("decreaseFont").addEventListener("click", () => {
+  fontSize = Math.max(fontSize - 2, 12);
+  document.body.style.fontSize = fontSize + "px";
+});
 
-  return Math.max(
-    0,
-    850 * Math.sin(Math.PI * (h - 6) / 12)
-  );
-}
+document.getElementById("resetFont").addEventListener("click", () => {
+  fontSize = 16;
+  document.body.style.fontSize = "16px";
+});
 
-function timeText(h) {
-  let hh = Math.floor(h);
-  let mm = (h % 1) * 60;
+document.getElementById("contrastButton").addEventListener("click", () => {
+  document.body.classList.toggle("high-contrast");
+});
 
-  return String(hh).padStart(2, '0') + ':' +
-         String(mm).padStart(2, '0');
+document.getElementById("readButton").addEventListener("click", () => {
+  if (!("speechSynthesis" in window)) {
+    alert("Seu navegador não oferece leitura automática.");
+    return;
+  }
+
+  speechSynthesis.cancel();
+
+  const texto = document.querySelector("main").innerText;
+  const leitura = new SpeechSynthesisUtterance(texto);
+  leitura.lang = "pt-BR";
+  speechSynthesis.speak(leitura);
+});
+
+document.getElementById("stopButton").addEventListener("click", () => {
+  if ("speechSynthesis" in window) {
+    speechSynthesis.cancel();
+  }
+});
+
+
+/* ==========================
+   GRÁFICO DE RADIAÇÃO SOLAR
+========================== */
+
+const canvas = document.getElementById("radiationChart");
+const ctx = canvas.getContext("2d");
+
+const timeSlider = document.getElementById("timeSlider");
+const skySelect = document.getElementById("skySelect");
+
+function calculateRadiation(hour, sky) {
+  const angle = Math.PI * (hour - 6) / 12;
+  const sunlight = Math.max(0, Math.sin(angle));
+
+  return Math.round(1000 * sunlight * Number(sky));
 }
 
 function drawChart() {
+  const width = canvas.clientWidth;
+  const height = 250;
 
-  let w = canvas.width;
-  let h = canvas.height;
+  const ratio = window.devicePixelRatio || 1;
 
-  ctx.clearRect(0, 0, w, h);
+  canvas.width = width * ratio;
+  canvas.height = height * ratio;
 
-  let pad = {
-    l: 58,
-    r: 20,
-    t: 20,
-    b: 38
-  };
+  ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
 
-  let cw = w - pad.l - pad.r;
-  let ch = h - pad.t - pad.b;
+  ctx.clearRect(0, 0, width, height);
 
-  ctx.strokeStyle = '#dbe4ee';
-  ctx.fillStyle = '#64748b';
-  ctx.font = '14px Arial';
+  const left = 45;
+  const right = width - 15;
+  const top = 20;
+  const bottom = height - 35;
+
+  ctx.strokeStyle = "#d5e1e9";
   ctx.lineWidth = 1;
 
-  for (let v = 0; v <= 1000; v += 200) {
-
-    let y = pad.t + ch - (v / 1000) * ch;
+  for (let i = 0; i <= 4; i++) {
+    const y = bottom - (i / 4) * (bottom - top);
 
     ctx.beginPath();
-    ctx.moveTo(pad.l, y);
-    ctx.lineTo(w - pad.r, y);
+    ctx.moveTo(left, y);
+    ctx.lineTo(right, y);
     ctx.stroke();
 
-    ctx.fillText(v, pad.l - 42, y + 5);
+    ctx.fillStyle = "#263746";
+    ctx.font = "11px Arial";
+    ctx.fillText(String(i * 250), 5, y + 4);
   }
 
-  for (let hr = 6; hr <= 18; hr += 2) {
-
-    let x = pad.l + (hr - 6) / 12 * cw;
-
-    ctx.fillText(hr + 'h', x - 10, h - 10);
-  }
-
+  ctx.strokeStyle = "#287ba5";
+  ctx.lineWidth = 3;
   ctx.beginPath();
 
-  for (let i = 0; i <= 120; i++) {
+  for (let hour = 6; hour <= 18; hour++) {
+    const value = calculateRadiation(hour, skySelect.value);
+    const x = left + ((hour - 6) / 12) * (right - left);
+    const y = bottom - (value / 1000) * (bottom - top);
 
-    let hr = 6 + i / 10;
-
-    let val = baseIrr(hr) * Number(weather.value);
-
-    let x = pad.l + (hr - 6) / 12 * cw;
-
-    let y = pad.t + ch - (val / 1000) * ch;
-
-    if (i === 0) {
+    if (hour === 6) {
       ctx.moveTo(x, y);
     } else {
       ctx.lineTo(x, y);
     }
   }
 
-  ctx.strokeStyle = '#e99b22';
-  ctx.lineWidth = 4;
   ctx.stroke();
 
-  let hour = Number(slider.value);
+  ctx.fillStyle = "#263746";
+  ctx.font = "11px Arial";
 
-  let val = baseIrr(hour) * Number(weather.value);
-
-  let x = pad.l + (hour - 6) / 12 * cw;
-
-  let y = pad.t + ch - (val / 1000) * ch;
-
-  ctx.beginPath();
-  ctx.arc(x, y, 7, 0, Math.PI * 2);
-
-  ctx.fillStyle = '#183b62';
-  ctx.fill();
-
-  ctx.fillStyle = '#183b62';
-
-  ctx.fillText(
-    Math.round(val) + ' W/m²',
-    Math.min(x + 12, w - 115),
-    Math.max(y - 12, 15)
-  );
-
-  $('irrValue').textContent = Math.round(val) + ' W/m²';
-  $('timeValue').textContent = timeText(hour);
-  $('sliderTime').textContent = timeText(hour);
-
-  $('skyValue').textContent =
-    weather.options[weather.selectedIndex].text;
-
-  let angle = (hour - 6) / 12 * Math.PI;
-
-  let sun = $('sun');
-
-  sun.style.left = (8 + 84 * (hour - 6) / 12) + '%';
-
-  sun.style.top = (78 - 58 * Math.sin(angle)) + '%';
-
-  $('sunText').textContent =
-    hour < 8
-      ? 'Início da manhã: o Sol está baixo no céu.'
-      : hour > 16
-      ? 'Fim da tarde: o Sol está baixo no céu.'
-      : 'Durante o dia, a posição aparente do Sol fica mais alta perto do meio-dia.';
-}
-
-slider.addEventListener('input', drawChart);
-
-weather.addEventListener('change', () => {
-
-  let t = Number(weather.value);
-
-  $('weatherText').textContent =
-    t === 1
-      ? 'Com céu aberto, a simulação considera maior incidência de radiação.'
-      : t === .7
-      ? 'Com nuvens parciais, a irradiância simulada diminui.'
-      : 'Com céu nublado, a irradiância simulada é consideravelmente menor.';
-
-  drawChart();
-});
-
-$('lightSlider').addEventListener('input', e => {
-
-  let v = Number(e.target.value);
-
-  let r = 100 / (v + 1);
-
-  $('lightPct').textContent = v + '%';
-
-  $('resistance').textContent =
-    r.toFixed(1).replace('.', ',') + ' kΩ';
-});
-
-$('chooseInstrument').addEventListener('click', () => {
-
-  let v = $('instrument').value;
-
-  $('instrumentResult').textContent =
-    v === 'ldr'
-      ? 'LDR: sua resistência varia conforme a iluminação.'
-      : v === 'solar'
-      ? 'Piranômetro: mede a irradiância solar em W/m².'
-      : 'Fotodiodo: detecta luz e pode responder rapidamente.';
-});
-
-const questions = [
-
-  {
-    q: 'Qual instrumento é usado para medir a irradiância solar em W/m²?',
-    a: ['LDR', 'Piranômetro', 'Termômetro'],
-    c: 1,
-    e: 'O piranômetro mede a irradiância solar.'
-  },
-
-  {
-    q: 'O que geralmente acontece com a resistência de um LDR quando a luz aumenta?',
-    a: ['Diminui', 'Aumenta', 'Não muda'],
-    c: 0,
-    e: 'Em geral, mais luz faz a resistência do LDR diminuir.'
-  },
-
-  {
-    q: 'Qual unidade aparece no gráfico de irradiância?',
-    a: ['W/m²', 'Quilômetros', 'Graus Celsius'],
-    c: 0,
-    e: 'A irradiância é expressa em watts por metro quadrado (W/m²).'
+  for (let hour = 6; hour <= 18; hour += 2) {
+    const x = left + ((hour - 6) / 12) * (right - left);
+    ctx.fillText(hour + "h", x - 10, height - 10);
   }
 
+  const selectedHour = Number(timeSlider.value);
+  const selectedValue = calculateRadiation(selectedHour, skySelect.value);
+
+  const selectedX = left + ((selectedHour - 6) / 12) * (right - left);
+  const selectedY = bottom - (selectedValue / 1000) * (bottom - top);
+
+  ctx.fillStyle = "#e99a00";
+  ctx.beginPath();
+  ctx.arc(selectedX, selectedY, 6, 0, Math.PI * 2);
+  ctx.fill();
+
+  document.getElementById("timeValue").textContent =
+    String(selectedHour).padStart(2, "0") + ":00";
+
+  document.getElementById("radiationResult").textContent =
+    "Radiação solar simulada: " + selectedValue +
+    " W/m². Este valor é apenas ilustrativo.";
+}
+
+timeSlider.addEventListener("input", drawChart);
+skySelect.addEventListener("change", drawChart);
+
+
+/* ==========================
+   MOVIMENTO APARENTE DO SOL
+========================== */
+
+const sunSlider = document.getElementById("sunSlider");
+const sun = document.getElementById("sun");
+
+function moveSun() {
+  const hour = Number(sunSlider.value);
+
+  const progress = (hour - 6) / 12;
+  const x = progress * 90 + 5;
+
+  const y = 75 - Math.sin(progress * Math.PI) * 55;
+
+  sun.style.left = x + "%";
+  sun.style.top = y + "%";
+
+  document.getElementById("sunTime").textContent =
+    String(hour).padStart(2, "0") + ":00";
+
+  let description;
+
+  if (hour < 9) {
+    description = "É manhã. O Sol está aparecendo no horizonte.";
+  } else if (hour < 12) {
+    description = "O Sol está subindo no céu.";
+  } else if (hour === 12) {
+    description = "É meio-dia. O Sol está próximo de sua maior altura aparente.";
+  } else if (hour < 16) {
+    description = "É tarde. O Sol está descendo no céu.";
+  } else {
+    description = "O Sol está próximo do horizonte no fim da tarde.";
+  }
+
+  document.getElementById("sunDescription").textContent = description;
+}
+
+sunSlider.addEventListener("input", moveSun);
+
+
+/* ==========================
+   SIMULADOR DE SENSOR LDR
+========================== */
+
+const lightSlider = document.getElementById("lightSlider");
+
+function updateLDR() {
+  const light = Number(lightSlider.value);
+
+  document.getElementById("lightValue").textContent = light + "%";
+
+  let description;
+
+  if (light < 30) {
+    description = "Pouca luz: o ambiente está escuro.";
+  } else if (light < 70) {
+    description = "Luz moderada: o ambiente está parcialmente iluminado.";
+  } else {
+    description = "Muita luz: o ambiente está bem iluminado.";
+  }
+
+  document.getElementById("ldrResult").textContent = description;
+
+  const resistance = 100 - light;
+
+  document.getElementById("ldrResistance").textContent =
+    "Resistência relativa simulada: " + resistance +
+    "%. Quanto maior a luminosidade, menor tende a ser a resistência do LDR.";
+}
+
+lightSlider.addEventListener("input", updateLDR);
+
+
+/* ==========================
+   APLICAÇÕES DOS SENSORES
+========================== */
+
+const applications = {
+  postes:
+    "Sensores de luz podem identificar quando escurece e ajudar a acionar automaticamente a iluminação pública.",
+
+  solar:
+    "A medição da radiação solar ajuda a avaliar a quantidade de energia que pode ser aproveitada por painéis solares.",
+
+  agricultura:
+    "A luminosidade pode ser acompanhada para estudar as condições de crescimento das plantas.",
+
+  ambiente:
+    "Sensores podem ajudar pesquisadores a acompanhar as condições de luminosidade em diferentes ambientes."
+};
+
+document.getElementById("applicationSelect").addEventListener("change", event => {
+  document.getElementById("applicationResult").textContent =
+    applications[event.target.value];
+});
+
+
+/* ==========================
+   QUIZ
+========================== */
+
+const questions = [
+  {
+    question: "1. O que um sensor LDR detecta?",
+    options: [
+      "Temperatura",
+      "Intensidade da luz",
+      "Velocidade do vento"
+    ],
+    answer: 1,
+    explanation: "O LDR muda sua resistência elétrica conforme a luminosidade."
+  },
+  {
+    question: "2. Qual instrumento mede a radiação solar?",
+    options: [
+      "Piranômetro",
+      "Termômetro",
+      "Barômetro"
+    ],
+    answer: 0,
+    explanation: "O piranômetro é utilizado para medir a radiação solar."
+  },
+  {
+    question: "3. O que acontece com a resistência de um LDR quando a luz aumenta?",
+    options: [
+      "Geralmente aumenta",
+      "Permanece sempre igual",
+      "Geralmente diminui"
+    ],
+    answer: 2,
+    explanation: "Em geral, a resistência de um LDR diminui quando recebe mais luz."
+  },
+  {
+    question: "4. Por que a posição aparente do Sol muda durante o dia?",
+    options: [
+      "Por causa da rotação da Terra",
+      "Porque o Sol gira ao redor da Terra diariamente",
+      "Por causa das nuvens"
+    ],
+    answer: 0,
+    explanation: "A rotação da Terra faz o Sol parecer se movimentar no céu."
+  },
+  {
+    question: "5. Onde sensores de luminosidade podem ser utilizados?",
+    options: [
+      "Somente em computadores",
+      "Em postes automáticos e sistemas solares",
+      "Somente em relógios"
+    ],
+    answer: 1,
+    explanation: "Sensores de luz possuem diversas aplicações tecnológicas."
+  }
 ];
 
-let qi = 0;
+let questionIndex = 0;
 let score = 0;
 let answered = false;
 
-function showQ() {
+function showQuestion() {
+  const question = questions[questionIndex];
+
+  document.getElementById("question").textContent = question.question;
+  document.getElementById("quizResult").textContent =
+    "Escolha uma alternativa.";
+
+  document.getElementById("options").innerHTML = "";
 
   answered = false;
 
-  $('question').textContent =
-    (qi + 1) + '. ' + questions[qi].q;
+  question.options.forEach((option, index) => {
+    const button = document.createElement("button");
 
-  $('answers').innerHTML = '';
+    button.className = "quiz-option";
+    button.textContent = option;
 
-  questions[qi].a.forEach((a, i) => {
+    button.addEventListener("click", () => {
+      if (answered) return;
 
-    let b = document.createElement('button');
+      answered = true;
 
-    b.textContent = a;
+      if (index === question.answer) {
+        score++;
+        document.getElementById("quizResult").textContent =
+          "Correto! " + question.explanation;
+      } else {
+        document.getElementById("quizResult").textContent =
+          "Não foi dessa vez. " + question.explanation;
+      }
 
-    b.addEventListener('click', () => answer(i));
+      document.getElementById("quizScore").textContent =
+        "Pontuação: " + score + " de " + questions.length;
+    });
 
-    $('answers').appendChild(b);
+    document.getElementById("options").appendChild(button);
   });
 
-  $('quizResult').textContent = '';
-
-  $('nextQuestion').hidden = true;
-
-  $('score').textContent =
-    'Pontuação: ' + score + '/' + questions.length;
+  document.getElementById("nextQuestion").textContent =
+    questionIndex === questions.length - 1
+      ? "Ver resultado"
+      : "Próxima pergunta";
 }
 
-function answer(i) {
-
-  if (answered) return;
-
-  answered = true;
-
-  let q = questions[qi];
-
-  if (i === q.c) {
-    score++;
+document.getElementById("nextQuestion").addEventListener("click", () => {
+  if (!answered) {
+    document.getElementById("quizResult").textContent =
+      "Escolha uma alternativa antes de continuar.";
+    return;
   }
 
-  $('quizResult').textContent =
-    (i === q.c ? 'Correto! ' : 'Não é essa. ') + q.e;
-
-  $('nextQuestion').hidden = false;
-
-  $('score').textContent =
-    'Pontuação: ' + score + '/' + questions.length;
-}
-
-$('nextQuestion').addEventListener('click', () => {
-
-  qi++;
-
-  if (qi < questions.length) {
-
-    showQ();
-
+  if (questionIndex < questions.length - 1) {
+    questionIndex++;
+    showQuestion();
   } else {
+    document.getElementById("question").textContent =
+      "Quiz concluído!";
 
-    $('question').textContent = 'Quiz concluído!';
+    document.getElementById("options").innerHTML = "";
 
-    $('answers').innerHTML = '';
+    document.getElementById("quizResult").textContent =
+      "Você acertou " + score + " de " + questions.length + " perguntas!";
 
-    $('quizResult').textContent =
-      'Você acertou ' + score + ' de ' +
-      questions.length + ' questões.';
+    document.getElementById("nextQuestion").textContent =
+      "Refazer quiz";
 
-    $('nextQuestion').textContent = 'Refazer quiz';
-
-    $('nextQuestion').hidden = false;
-
-    $('nextQuestion').onclick = () => {
-
-      qi = 0;
+    document.getElementById("nextQuestion").onclick = () => {
+      questionIndex = 0;
       score = 0;
 
-      $('nextQuestion').textContent = 'Próxima pergunta';
+      document.getElementById("quizScore").textContent = "Pontuação: 0";
 
-      $('nextQuestion').onclick = null;
-
-      showQ();
+      document.getElementById("nextQuestion").onclick = null;
+      showQuestion();
     };
   }
 });
 
+
+/* ==========================
+   INICIALIZAÇÃO
+========================== */
+
+function resizeChart() {
+  drawChart();
+}
+
+window.addEventListener("resize", resizeChart);
+
 drawChart();
-showQ();
+moveSun();
+updateLDR();
+showQuestion();
 
 </script>
 
 </body>
 </html>
+
