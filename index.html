@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -16,7 +17,6 @@
 }
 
 *{box-sizing:border-box}
-
 html{scroll-behavior:smooth}
 
 body{
@@ -45,10 +45,7 @@ nav{
   flex-wrap:wrap;
 }
 
-.logo{
-  font-weight:bold;
-  font-size:1.3rem;
-}
+.logo{font-weight:bold;font-size:1.3rem}
 
 nav div:last-child{
   display:flex;
@@ -76,10 +73,7 @@ nav a:hover{text-decoration:underline}
   max-width:800px;
 }
 
-.hero p{
-  max-width:750px;
-  font-size:1.1rem;
-}
+.hero p{max-width:750px;font-size:1.1rem}
 
 section{
   padding:48px 8%;
@@ -95,7 +89,6 @@ h2{
 }
 
 h3{color:var(--navy)}
-
 .intro{max-width:850px}
 
 .grid{
@@ -146,10 +139,7 @@ input[type=range]{
   color:var(--navy);
 }
 
-.small{
-  font-size:.88rem;
-  color:#5b7182;
-}
+.small{font-size:.88rem;color:#5b7182}
 
 .visual{
   background:#e8f5fc;
@@ -217,10 +207,7 @@ input[type=range]{
   border-radius:12px;
 }
 
-.chart text{
-  font-size:11px;
-  fill:#526579;
-}
+.chart text{font-size:11px;fill:#526579}
 
 .sensor-row{
   display:flex;
@@ -356,9 +343,7 @@ body.contrast .panel{
 }
 
 body.contrast h2,
-body.contrast h3{
-  color:#ffdc75;
-}
+body.contrast h3{color:#ffdc75}
 
 .accessibility-tools{
   position:fixed;
@@ -394,9 +379,7 @@ body.contrast .accessibility-tools{
   border-color:#fff;
 }
 
-body.contrast .accessibility-tools strong{
-  color:#fff;
-}
+body.contrast .accessibility-tools strong{color:#fff}
 
 .experiment-visual{
   min-height:150px;
@@ -470,12 +453,10 @@ body.contrast .accessibility-tools strong{
 <h3>☀️ Radiação solar</h3>
 <p>Energia emitida pelo Sol que chega à superfície terrestre.</p>
 </div>
-
 <div class="card">
 <h3>💡 Sensores de luz</h3>
 <p>Dispositivos que detectam a luz e respondem à sua intensidade.</p>
 </div>
-
 <div class="card">
 <h3>📊 Monitoramento</h3>
 <p>Registro e comparação das condições de luminosidade ao longo do tempo.</p>
@@ -539,7 +520,6 @@ body.contrast .accessibility-tools strong{
 <p>Explore as simulações para observar como cada componente responde à iluminação.</p>
 
 <div class="grid">
-
 <div class="card">
 <h3>💡 LDR</h3>
 <div class="sensor-row">
@@ -584,7 +564,6 @@ body.contrast .accessibility-tools strong{
 <p class="readout" id="pyrValue">650 W/m²</p>
 <div class="meter"><div id="pyrMeter"></div></div>
 </div>
-
 </div>
 </section>
 
@@ -604,12 +583,10 @@ body.contrast .accessibility-tools strong{
 <h3>🔵 Ultravioleta (UV)</h3>
 <p>Faixa de radiação invisível ao olho humano, com comprimentos de onda menores que a luz visível.</p>
 </div>
-
 <div class="card">
 <h3>🌈 Luz visível</h3>
 <p>Faixa do espectro eletromagnético que conseguimos enxergar.</p>
 </div>
-
 <div class="card">
 <h3>🔴 Infravermelho</h3>
 <p>Radiação invisível associada à transferência de energia térmica.</p>
@@ -640,12 +617,10 @@ body.contrast .accessibility-tools strong{
 <h3>1. Radiação solar</h3>
 <p>O Sol fornece energia que chega à superfície dos coletores.</p>
 </div>
-
 <div class="card">
 <h3>2. Coletores</h3>
 <p>Absorvem parte da energia solar e transferem calor para a água.</p>
 </div>
-
 <div class="card">
 <h3>3. Circulação</h3>
 <p>Uma bomba pode movimentar a água entre os coletores e a piscina.</p>
@@ -668,7 +643,6 @@ body.contrast .accessibility-tools strong{
 <p>Altere os controles e observe como a posição, as sombras e o comprimento de onda influenciam a luz recebida.</p>
 
 <div class="grid">
-
 <div class="card">
 <h3>📐 Inclinação do coletor</h3>
 <p>Observe como a inclinação muda o ângulo de incidência dos raios solares em um modelo simplificado.</p>
@@ -733,7 +707,6 @@ body.contrast .accessibility-tools strong{
 <p class="readout" id="waveResult">Luz visível — região verde</p>
 <p id="waveDescription">A luz visível é a faixa que pode ser percebida pelo olho humano.</p>
 </div>
-
 </div>
 </section>
 
@@ -742,7 +715,6 @@ body.contrast .accessibility-tools strong{
 <p>Responda às três perguntas e confira seu resultado.</p>
 
 <div class="panel" id="challenge">
-
 <p><b>1. Qual instrumento mede irradiância solar?</b></p>
 <label class="quiz-option"><input type="radio" name="q1" value="a"> LDR</label>
 <label class="quiz-option"><input type="radio" name="q1" value="b"> Piranômetro</label>
@@ -760,7 +732,6 @@ body.contrast .accessibility-tools strong{
 
 <button onclick="gradeChallenge()">Conferir respostas</button>
 <button onclick="resetChallenge()">Recomeçar</button>
-
 <p class="readout" id="challengeResult" aria-live="polite"></p>
 </div>
 </section>
@@ -773,12 +744,10 @@ body.contrast .accessibility-tools strong{
 <h3>☁️ Condições do céu</h3>
 <p>Nuvens e sombras podem alterar a quantidade de luz que chega ao sensor.</p>
 </div>
-
 <div class="card">
 <h3>📐 Posição</h3>
 <p>A orientação e a inclinação do sensor influenciam a leitura.</p>
 </div>
-
 <div class="card">
 <h3>🎯 Calibração</h3>
 <p>Para obter valores confiáveis, é importante usar instrumentos calibrados e comparar medições nas mesmas condições.</p>
@@ -788,7 +757,6 @@ body.contrast .accessibility-tools strong{
 
 <section>
 <h2>9. Teste seus conhecimentos</h2>
-
 <div class="panel">
 <p><b>Qual instrumento é utilizado para medir a irradiância solar em W/m²?</b></p>
 <button onclick="answer(false)">LDR</button>
@@ -837,6 +805,8 @@ Leitura pronta.
 </div>
 
 <script>
+/* MOVIMENTO APARENTE DO SOL */
+
 const hour=document.getElementById('hour');
 
 function setHour(v){
@@ -930,6 +900,7 @@ hour.addEventListener('input',updateSun);
 updateSun();
 
 /* SIMULADOR LDR */
+
 document.getElementById('ldr').addEventListener('input',e=>{
   let v=Number(e.target.value);
   let r=(10-v*.09).toFixed(1);
@@ -941,6 +912,7 @@ document.getElementById('ldr').addEventListener('input',e=>{
 });
 
 /* FOTODIODO */
+
 document.getElementById('photo').addEventListener('input',e=>{
   let v=Number(e.target.value);
 
@@ -951,6 +923,7 @@ document.getElementById('photo').addEventListener('input',e=>{
 });
 
 /* PIRANÔMETRO */
+
 document.getElementById('pyr').addEventListener('input',e=>{
   let v=Number(e.target.value);
 
@@ -959,6 +932,7 @@ document.getElementById('pyr').addEventListener('input',e=>{
 });
 
 /* PISCINA */
+
 document.getElementById('poolLight').addEventListener('input',e=>{
   let v=Number(e.target.value);
 
@@ -979,6 +953,7 @@ document.getElementById('poolLight').addEventListener('input',e=>{
 });
 
 /* QUIZ SIMPLES */
+
 function answer(ok){
   document.getElementById('quizResult').textContent=
     ok
@@ -987,6 +962,7 @@ function answer(ok){
 }
 
 /* TAMANHO DA FONTE */
+
 let fontSize=16;
 
 function changeFont(d){
@@ -995,6 +971,7 @@ function changeFont(d){
 }
 
 /* CONTRASTE */
+
 function toggleContrast(){
   document.body.classList.toggle('contrast');
 
@@ -1016,6 +993,7 @@ function resetAccessibility(){
 }
 
 /* EXPERIMENTO DE INCLINAÇÃO */
+
 function updateTiltExperiment(){
   const a=Number(document.getElementById('tiltControl').value);
 
@@ -1037,6 +1015,7 @@ document.getElementById('tiltControl')
 updateTiltExperiment();
 
 /* EXPERIMENTO DE SOMBRA */
+
 function updateShade(){
   const v=Number(document.getElementById('shadeControl').value);
 
@@ -1054,6 +1033,7 @@ document.getElementById('shadeControl')
 updateShade();
 
 /* COMPARAÇÃO DOS SENSORES */
+
 function updateComparison(){
   const v=Number(document.getElementById('compareLight').value);
   const ldrResistance=100-v;
@@ -1077,6 +1057,7 @@ document.getElementById('compareLight')
 updateComparison();
 
 /* EXPLORADOR DO ESPECTRO */
+
 function updateWavelength(){
   const v=Number(document.getElementById('wavelength').value);
   let label,desc;
@@ -1118,6 +1099,7 @@ document.getElementById('wavelength')
 updateWavelength();
 
 /* DESAFIO */
+
 function gradeChallenge(){
   const answers=['b','a','c'];
   let score=0;
@@ -1155,211 +1137,107 @@ function resetChallenge(){
 }
 
 /* ==================================================
-   LEITURA EM VOZ ALTA — VERSÃO CORRIGIDA
+   LEITURA EM VOZ ALTA — VERSÃO SIMPLIFICADA
    ================================================== */
 
 const speech = window.speechSynthesis;
 
-let speechParts = [];
-let speechIndex = 0;
-let speechActive = false;
-let speechSession = 0;
+const readButton = document.getElementById('readButton');
+const pauseButton = document.getElementById('pauseButton');
+const stopButton = document.getElementById('stopButton');
+const speechStatus = document.getElementById('speechStatus');
 
-const speechStatus=document.getElementById('speechStatus');
-const readButton=document.getElementById('readButton');
-const pauseButton=document.getElementById('pauseButton');
-const stopButton=document.getElementById('stopButton');
-
-/* Seleciona o conteúdo do site sem ler os botões */
-function getPageText(){
-  const sections=[
-    ...document.querySelectorAll('.hero, body > section')
-  ];
-
-  return sections.map(section=>{
-    const copy=section.cloneNode(true);
-
-    copy.querySelectorAll(
-      'button,input,select,textarea,script,style'
-    ).forEach(element=>element.remove());
-
-    return copy.innerText || copy.textContent || '';
-  }).join('. ')
-   .replace(/\s+/g,' ')
-   .trim();
-}
-
-/* Divide o texto em partes menores */
-function splitSpeechText(text){
-  const sentences=text.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [];
-  const parts=[];
-  let current='';
-
-  sentences.forEach(sentence=>{
-    sentence=sentence.trim();
-
-    if(!sentence)return;
-
-    if((current+' '+sentence).length>220){
-      if(current)parts.push(current);
-      current=sentence;
-    }else{
-      current+=(current?' ':'')+sentence;
-    }
-  });
-
-  if(current)parts.push(current);
-
-  return parts;
-}
-
-/* Procura uma voz em português */
-function getPortugueseVoice(){
-  const voices=speech.getVoices();
-
-  return voices.find(voice=>
-    voice.lang.toLowerCase()==='pt-br'
-  ) || voices.find(voice=>
-    voice.lang.toLowerCase().startsWith('pt')
-  ) || null;
-}
-
-/* Lê a próxima parte */
-function speakNext(session){
-  if(session!==speechSession)return;
-
-  if(!speechActive)return;
-
-  if(speech.paused)return;
-
-  if(speechIndex>=speechParts.length){
-    speechActive=false;
-    speechStatus.textContent='Leitura concluída!';
-    return;
-  }
-
-  const utterance=new SpeechSynthesisUtterance(
-    speechParts[speechIndex]
+/* Reúne o texto das seções sem incluir os controles */
+function getPageText() {
+  const sections = document.querySelectorAll(
+    '.hero, body > section'
   );
 
-  utterance.lang='pt-BR';
-  utterance.rate=1;
-  utterance.pitch=1;
+  let texto = '';
 
-  const voice=getPortugueseVoice();
+  sections.forEach(section => {
+    const copia = section.cloneNode(true);
 
-  if(voice){
-    utterance.voice=voice;
-  }
+    copia.querySelectorAll(
+      'button, input, script, style, textarea, select'
+    ).forEach(el => el.remove());
 
-  utterance.onend=()=>{
-    if(session!==speechSession)return;
-
-    speechIndex++;
-
-    if(speechActive && !speech.paused){
-      speakNext(session);
-    }
-  };
-
-  utterance.onerror=(event)=>{
-    if(session!==speechSession)return;
-
-    if(event.error==='interrupted' || event.error==='canceled'){
-      return;
-    }
-
-    speechStatus.textContent=
-      'O navegador encontrou um problema na leitura. Tente novamente.';
-
-    speechActive=false;
-  };
-
-  speech.speak(utterance);
-}
-
-/* BOTÃO LER */
-readButton.addEventListener('click',()=>{
-  if(!('speechSynthesis' in window)){
-    speechStatus.textContent=
-      'Seu navegador não oferece suporte à leitura em voz alta.';
-
-    alert('Seu navegador não oferece suporte à leitura em voz alta.');
-    return;
-  }
-
-  speech.cancel();
-
-  speechSession++;
-  const session=speechSession;
-
-  const text=getPageText();
-
-  if(!text){
-    speechStatus.textContent='Não encontrei texto para ler.';
-    return;
-  }
-
-  speechParts=splitSpeechText(text);
-  speechIndex=0;
-  speechActive=true;
-
-  speechStatus.textContent='Iniciando leitura em português...';
-
-  /* Pequeno intervalo para o navegador cancelar a fala anterior */
-  window.setTimeout(()=>{
-    if(session===speechSession && speechActive){
-      speechStatus.textContent='Lendo a página em português...';
-      speakNext(session);
-    }
-  },150);
-});
-
-/* BOTÃO PAUSAR / CONTINUAR */
-pauseButton.addEventListener('click',()=>{
-  if(!('speechSynthesis' in window))return;
-
-  if(speech.paused){
-    speech.resume();
-    speechStatus.textContent='Leitura continuando...';
-
-    if(speechActive && !speech.speaking){
-      speakNext(speechSession);
-    }
-
-  }else if(speech.speaking){
-    speech.pause();
-    speechStatus.textContent='Leitura pausada.';
-
-  }else if(speechActive){
-    speechStatus.textContent='Continuando leitura...';
-    speakNext(speechSession);
-
-  }else{
-    speechStatus.textContent='Clique em "Ler página em voz alta" para começar.';
-  }
-});
-
-/* BOTÃO PARAR */
-stopButton.addEventListener('click',()=>{
-  speechSession++;
-  speech.cancel();
-
-  speechParts=[];
-  speechIndex=0;
-  speechActive=false;
-
-  speechStatus.textContent='Leitura parada.';
-});
-
-/* Atualiza a lista de vozes quando o navegador disponibilizar */
-if('speechSynthesis' in window){
-  speech.getVoices();
-
-  speech.addEventListener('voiceschanged',()=>{
-    speech.getVoices();
+    texto += (copia.innerText || copia.textContent) + '. ';
   });
+
+  return texto.replace(/\s+/g, ' ').trim();
 }
+
+/* Inicia a leitura */
+readButton.addEventListener('click', function() {
+  if (!('speechSynthesis' in window)) {
+    speechStatus.textContent =
+      'Seu navegador não oferece suporte à leitura em voz alta.';
+    return;
+  }
+
+  speech.cancel();
+
+  const texto = getPageText();
+
+  if (!texto) {
+    speechStatus.textContent = 'Não encontrei texto para ler.';
+    return;
+  }
+
+  const fala = new SpeechSynthesisUtterance(texto);
+
+  fala.lang = 'pt-BR';
+  fala.rate = 0.9;
+  fala.pitch = 1;
+
+  const vozes = speech.getVoices();
+
+  const vozPortugues = vozes.find(v =>
+    v.lang.toLowerCase() === 'pt-br'
+  ) || vozes.find(v =>
+    v.lang.toLowerCase().startsWith('pt')
+  );
+
+  if (vozPortugues) {
+    fala.voice = vozPortugues;
+  }
+
+  fala.onstart = function() {
+    speechStatus.textContent = 'Lendo a página em português...';
+  };
+
+  fala.onend = function() {
+    speechStatus.textContent = 'Leitura concluída!';
+  };
+
+  fala.onerror = function(event) {
+    speechStatus.textContent =
+      'Erro na leitura: ' + event.error;
+  };
+
+  speech.speak(fala);
+});
+
+/* Pausar ou continuar */
+pauseButton.addEventListener('click', function() {
+  if (speech.speaking && !speech.paused) {
+    speech.pause();
+    speechStatus.textContent = 'Leitura pausada.';
+  } else if (speech.paused) {
+    speech.resume();
+    speechStatus.textContent = 'Leitura continuando...';
+  } else {
+    speechStatus.textContent =
+      'Inicie a leitura primeiro.';
+  }
+});
+
+/* Parar a leitura */
+stopButton.addEventListener('click', function() {
+  speech.cancel();
+  speechStatus.textContent = 'Leitura parada.';
+});
 
 </script>
 
