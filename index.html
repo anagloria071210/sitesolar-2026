@@ -4,911 +4,494 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Radiação Solar e Sensores de Luz</title>
-
+<title>SolarSense | Radiação Solar e Sensores</title>
 <style>
-* { box-sizing: border-box; scroll-behavior: smooth; }
-
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f2f7fb;
-  color: #263746;
-  line-height: 1.6;
+:root{
+  --blue:#123b65;
+  --cyan:#25a9c7;
+  --gold:#ffbd45;
+  --bg:#f2f8fc;
+  --text:#17334d;
 }
-
-header {
-  background: linear-gradient(130deg,#123d61,#2386b6);
-  color: white;
-  text-align: center;
-  padding: 42px 18px;
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
 }
-
-header h1 { font-size: clamp(27px,5vw,42px); }
-
-nav {
-  background: #103c5e;
-  padding: 12px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 7px;
-  position: sticky;
-  top: 0;
-  z-index: 10;
+header{
+  background:linear-gradient(120deg,#102f50,#176b91);
+  color:white;
+  padding:22px 7%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:15px;
 }
-
-nav a {
-  color: white;
-  text-decoration: none;
-  padding: 7px 10px;
-  border-radius: 7px;
-  font-size: 13px;
+.logo{font-size:25px;font-weight:bold}
+nav{display:flex;gap:15px;flex-wrap:wrap}
+nav a{color:white;text-decoration:none;font-size:14px}
+nav a:hover{text-decoration:underline}
+.hero{
+  padding:65px 8%;
+  color:white;
+  background:linear-gradient(130deg,#164c75,#2386a7);
 }
-
-nav a:hover { background: #287eaa; }
-
-main { max-width: 1100px; margin: auto; padding: 18px; }
-
-section {
-  background: white;
-  margin: 22px 0;
-  padding: 24px;
-  border-radius: 14px;
-  box-shadow: 0 3px 12px #0000000c;
-  scroll-margin-top: 85px;
+.hero h1{font-size:clamp(30px,5vw,52px);max-width:750px}
+.hero p{font-size:18px;max-width:700px;line-height:1.6}
+section{padding:55px 8%;scroll-margin-top:20px}
+section h2{font-size:30px;color:var(--blue)}
+.intro{max-width:800px;line-height:1.7}
+.panel{
+  background:white;
+  padding:25px;
+  border-radius:18px;
+  box-shadow:0 5px 22px #183b5712;
+  margin-top:22px;
 }
-
-h2 {
-  color: #164e78;
-  border-bottom: 3px solid #f3b629;
-  padding-bottom: 8px;
+button{
+  background:var(--blue);
+  color:white;
+  border:0;
+  padding:12px 17px;
+  border-radius:9px;
+  cursor:pointer;
+  font-size:14px;
 }
-
-h3 { color: #237eae; }
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
-  gap: 14px;
+button:hover{background:#247aa0}
+input[type=range]{width:100%;accent-color:#168db4}
+label{font-weight:bold;display:block;margin:15px 0 8px}
+.small{font-size:13px;color:#61788a;line-height:1.5}
+.visual{
+  position:relative;
+  height:330px;
+  border-radius:18px;
+  overflow:hidden;
+  background:linear-gradient(#68c3ec,#d9f3ff);
+  transition:background 1s;
 }
-
-.card {
-  background: #edf6fc;
-  border: 1px solid #d5e6f1;
-  border-radius: 11px;
-  padding: 16px;
+.sun{
+  position:absolute;
+  width:76px;height:76px;
+  background:#ffce4c;
+  border-radius:50%;
+  box-shadow:0 0 35px 15px #ffdf6c88;
+  left:50%;top:45%;
+  transform:translate(-50%,-50%);
+  transition:all .5s;
+  z-index:2;
 }
-
-button {
-  background: #164e78;
-  color: white;
-  border: 0;
-  border-radius: 8px;
-  padding: 10px 15px;
-  margin: 5px 3px;
-  cursor: pointer;
+.horizon{
+  position:absolute;bottom:0;width:100%;height:65px;
+  background:linear-gradient(#64b878,#348b5b);
 }
-
-button:hover { background: #237eae; }
-
-input[type=range] {
-  width: 100%;
-  accent-color: #237eae;
+.cloud{
+  position:absolute;
+  background:#fff;
+  width:85px;height:28px;border-radius:30px;
+  opacity:.9;
 }
-
-.resultado {
-  background: #e8f5e9;
-  border-left: 5px solid #31965a;
-  border-radius: 7px;
-  padding: 12px;
-  margin-top: 12px;
+.cloud:before,.cloud:after{
+  content:"";position:absolute;background:inherit;border-radius:50%;
 }
-
-.aviso {
-  background: #fff5dc;
-  border-left: 5px solid #e2a21b;
-  padding: 13px;
-  border-radius: 7px;
-  margin: 14px 0;
+.cloud:before{width:35px;height:35px;left:15px;top:-17px}
+.cloud:after{width:45px;height:45px;right:10px;top:-23px}
+.c1{top:65px;left:15%}
+.c2{top:115px;right:16%;transform:scale(.8)}
+.rays{
+  position:absolute;
+  width:180px;height:180px;
+  left:50%;top:45%;
+  transform:translate(-50%,-50%);
+  border:2px dashed #ffe28b;
+  border-radius:50%;
+  animation:rotate 18s linear infinite;
 }
-
-canvas {
-  width: 100%;
-  max-width: 100%;
-  border: 1px solid #dce6ed;
-  border-radius: 9px;
-  background: white;
+@keyframes rotate{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.sun-label{
+  position:absolute;bottom:80px;left:15px;
+  background:#ffffffdd;padding:8px 12px;border-radius:8px;
+  font-size:13px;
 }
-
-.valor {
-  font-size: 24px;
-  font-weight: bold;
-  color: #164e78;
+.controls{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+@media(max-width:650px){.controls{grid-template-columns:1fr}}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:17px;margin-top:20px}
+.card{
+  background:white;padding:22px;border-radius:15px;
+  box-shadow:0 4px 18px #17334d12;
 }
-
-.pequeno { font-size: 13px; color: #536777; }
-
-#ceu {
-  position: relative;
-  height: 300px;
-  overflow: hidden;
-  border-radius: 13px;
-  background: linear-gradient(#73c7f2 0%,#c8edff 75%,#7cbd69 75%,#7cbd69 100%);
-  margin: 15px 0;
+.card .emoji{font-size:38px}
+.card h3{color:var(--blue)}
+.sensor-visual{
+  background:#e8f6fc;border-radius:15px;padding:25px;
+  display:flex;align-items:center;justify-content:center;
+  min-height:170px;gap:20px;flex-wrap:wrap;
 }
-
-#sol {
-  position: absolute;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: #ffdc38;
-  box-shadow: 0 0 28px 12px #ffdc3870;
-  transform: translate(-50%,-50%);
-  left: 50%;
-  top: 30%;
-  transition: left .25s, top .25s;
+.sensor{
+  width:85px;height:85px;border-radius:15px;
+  background:#263b4c;color:white;
+  display:grid;place-items:center;font-size:30px;
+  box-shadow:inset 0 0 0 5px #526b7e;
 }
-
-#linhaHorizonte {
-  position: absolute;
-  top: 75%;
-  width: 100%;
-  border-top: 2px solid #548e4a;
+.beam{font-size:30px;color:#efa928;animation:pulse 1.2s infinite alternate}
+@keyframes pulse{to{opacity:.25;transform:translateY(8px)}}
+.meter{
+  height:18px;background:#dce8ee;border-radius:20px;overflow:hidden;
 }
-
-#horarioTexto {
-  text-align: center;
-  font-weight: bold;
-  font-size: 20px;
+.meter div{
+  height:100%;width:50%;background:linear-gradient(90deg,#f8d05b,#ed9633);
+  transition:width .3s;
 }
-
-.sol-area {
-  background: #fff7d9;
-  border-radius: 12px;
-  padding: 15px;
-  text-align: center;
+.chart{
+  width:100%;height:200px;background:#f7fbfd;border-radius:12px;
+  border-left:2px solid #9bb2c1;border-bottom:2px solid #9bb2c1;
+  position:relative;overflow:hidden;
 }
-
-.diagram {
-  background: #eaf6ff;
-  border-radius: 14px;
-  text-align: center;
-  padding: 20px 10px;
-  margin: 15px 0;
+.chart svg{width:100%;height:100%}
+.pool-scene{
+  background:linear-gradient(#b9e7f7 0 55%,#68b6d1 55%);
+  border-radius:17px;padding:20px;overflow:hidden;
 }
-
-.diagram .sol-icon { font-size: 48px; }
-
-.coletor {
-  background: #244e75;
-  color: white;
-  padding: 18px;
-  border-radius: 12px;
-  max-width: 340px;
-  margin: auto;
+.pool-sun{font-size:55px;text-align:center}
+.collectors{
+  display:flex;justify-content:center;gap:12px;margin:15px auto;
 }
-
-.bomba {
-  background: #dcecf7;
-  border-radius: 10px;
-  padding: 15px;
-  max-width: 300px;
-  margin: auto;
+.collector{
+  width:95px;height:55px;background:#164e79;
+  border:5px solid #8eb9ca;border-radius:5px;
+  transform:skew(-12deg);
+  position:relative;
 }
-
-.piscina {
-  background: #2196c8;
-  color: white;
-  padding: 20px;
-  border-radius: 12px 12px 35px 35px;
-  max-width: 350px;
-  margin: auto;
+.collector:after{
+  content:"";position:absolute;inset:8px;
+  background:repeating-linear-gradient(90deg,#54b6d6 0 8px,#174f7c 8px 12px);
 }
-
-.piscina h3 { color: white; }
-
-footer {
-  background: #103c5e;
-  color: white;
-  text-align: center;
-  padding: 22px;
+.pipe{
+  width:5px;height:30px;background:#e28a36;margin:auto;
 }
-
-body.grande { font-size: 20px; }
-
-body.contraste {
-  background: black;
-  color: white;
+.pool{
+  width:85%;height:75px;margin:auto;
+  background:repeating-linear-gradient(0deg,#43b6d4 0 12px,#8ce0e8 12px 17px);
+  border:8px solid #e4f4fa;border-radius:8px 8px 25px 25px;
+  animation:water 3s infinite alternate;
 }
-
-body.contraste section,
-body.contraste .card {
-  background: #111;
-  color: white;
-  border: 1px solid white;
+@keyframes water{to{background-position:0 15px}}
+.flow{font-size:25px;text-align:center;color:#fff}
+footer{
+  background:#102f50;color:white;text-align:center;padding:30px;
 }
-
-body.contraste h2,
-body.contraste h3 { color: #ffe681; }
-
-@media(max-width:600px) {
-  main { padding: 9px; }
-  section { padding: 16px; }
-  nav a { font-size: 11px; padding: 6px; }
-}
+footer p{font-size:13px;opacity:.8}
 </style>
 </head>
-
 <body>
 
 <header>
-  <h1>Sensores de Luz e Acompanhamento da Radiação Solar</h1>
-  <p>Uma experiência interativa para entender a luz, a radiação solar e suas aplicações.</p>
+  <div class="logo">☀️ SolarSense</div>
+  <nav>
+    <a href="#inicio">Início</a>
+    <a href="#sol">Movimento do Sol</a>
+    <a href="#sensores">Sensores</a>
+    <a href="#radiação">Radiação</a>
+    <a href="#piscina">Piscina do CEP</a>
+  </nav>
 </header>
 
-<nav>
-  <a href="#inicio">Início</a>
-  <a href="#sol">Movimento do Sol</a>
-  <a href="#luminosidade">Luminosidade</a>
-  <a href="#sensores">Sensores</a>
-  <a href="#radiacao">Radiação</a>
-  <a href="#dados">Dados solares</a>
-  <a href="#coletores">Coletores</a>
-  <a href="#piscinaCEP">Piscina do CEP</a>
-  <a href="#limitacoes">Limitações</a>
-  <a href="#quiz">Quiz</a>
-</nav>
+<div class="hero" id="inicio">
+  <h1>Entendendo a luz e a radiação solar</h1>
+  <p>Como a luz do Sol pode ser observada, medida e transformada em informações por meio dos sensores?</p>
+  <p>Explore representações interativas e descubra como a radiação solar varia ao longo do dia.</p>
+  <a href="#sol"><button>Explorar o projeto ↓</button></a>
+</div>
 
-<main>
+<section id="sol">
+  <h2>☀️ O movimento aparente do Sol</h2>
+  <p class="intro">Ao longo do dia, temos a impressão de que o Sol se movimenta pelo céu. Isso acontece principalmente por causa da rotação da Terra. Altere o horário e observe como a posição aparente do Sol e a iluminação mudam.</p>
 
-<section id="inicio">
-  <h2>1. Conhecendo a radiação solar</h2>
-  <p>
-    A radiação solar é a energia emitida pelo Sol e transmitida
-    pelo espaço por ondas eletromagnéticas. Ela chega à Terra
-    e pode ser aproveitada em diferentes aplicações.
-  </p>
-  <p>
-    Sensores de luz permitem acompanhar a iluminação e estudar
-    as mudanças da radiação solar ao longo do dia.
-  </p>
-
-  <div class="grid">
-    <div class="card"><h3>☀️ Sol</h3><p>Fonte natural de energia e radiação.</p></div>
-    <div class="card"><h3>🔎 Sensores</h3><p>Detectam a luz e permitem acompanhar suas variações.</p></div>
-    <div class="card"><h3>📊 Monitoramento</h3><p>Organiza os dados para observar padrões e mudanças.</p></div>
+  <div class="panel">
+    <div class="visual" id="sky">
+      <div class="cloud c1"></div>
+      <div class="cloud c2"></div>
+      <div class="rays" id="sunRays"></div>
+      <div class="sun" id="sun"></div>
+      <div class="horizon"></div>
+      <div class="sun-label" id="skyLabel">Meio da manhã</div>
+    </div>
+    <div class="controls">
+      <div>
+        <label for="hour">Horário: <span id="hourValue">12:00</span></label>
+        <input type="range" id="hour" min="6" max="18" step=".5" value="12">
+        <p class="small">Deslize para observar o Sol em diferentes horários.</p>
+      </div>
+      <div>
+        <label>Escolha um horário</label>
+        <button onclick="setHour(6)">Amanhecer</button>
+        <button onclick="setHour(12)">Meio-dia</button>
+        <button onclick="setHour(18)">Entardecer</button>
+      </div>
+    </div>
+    <p><strong>Intensidade luminosa simulada:</strong> <span id="sunIntensity">100%</span></p>
+    <div class="meter"><div id="sunMeter"></div></div>
   </div>
-</section>
-
-<section id="movimento">
-  <h2>2. Movimento aparente do Sol</h2>
-  <p>
-    Ao longo do dia, o Sol parece se movimentar no céu.
-    Esse movimento aparente está relacionado à rotação da Terra.
-    Mude o horário para observar a posição aproximada do Sol.
-  </p>
-
-  <div id="ceu">
-    <div id="sol"></div>
-    <div id="linhaHorizonte"></div>
-  </div>
-
-  <div id="horarioTexto">12:00</div>
-
-  <label for="hora">Escolha um horário:</label>
-  <input id="hora" type="range" min="6" max="18" step="0.25" value="12">
-
-  <div class="controles">
-    <button onclick="mudarHora(-1)">← Uma hora antes</button>
-    <button onclick="mudarHora(1)">Uma hora depois →</button>
-    <button onclick="definirHora(6)">Nascer do Sol</button>
-    <button onclick="definirHora(12)">Meio-dia</button>
-    <button onclick="definirHora(18)">Pôr do Sol</button>
-  </div>
-
-  <div class="resultado" id="infoSol">
-    O Sol está próximo de sua posição mais alta neste modelo.
-  </div>
-
-  <p class="pequeno">
-    Representação didática do movimento aparente. A posição real
-    depende da data e da localização geográfica.
-  </p>
-</section>
-
-<section id="luminosidade">
-  <h2>3. Variação da luminosidade durante o dia</h2>
-  <p>
-    A quantidade de luz recebida por uma superfície muda conforme
-    a posição aparente do Sol. Em geral, a iluminação aumenta
-    pela manhã, é maior próximo ao meio-dia solar e diminui à tarde.
-  </p>
-
-  <div class="sol-area">
-    <div class="valor" id="valorLuminosidade">100%</div>
-    <p>Intensidade relativa estimada de iluminação</p>
-    <p id="estadoLuminosidade">Maior iluminação neste modelo.</p>
-  </div>
-
-  <canvas id="graficoLuminosidade" width="900" height="300"></canvas>
-
-  <p class="pequeno">
-    Gráfico ilustrativo, não representa medições reais de um sensor.
-    A nebulosidade e as condições do céu podem alterar a luminosidade.
-  </p>
 </section>
 
 <section id="sensores">
-  <h2>4. Sensores de luz</h2>
+  <h2>💡 Como funcionam os sensores de luz?</h2>
+  <p class="intro">Sensores são componentes capazes de perceber alterações no ambiente e transformar essas informações em sinais que podem ser interpretados por circuitos e sistemas eletrônicos.</p>
 
-  <div class="grid">
+  <div class="cards">
     <div class="card">
+      <div class="emoji">🔆</div>
       <h3>LDR</h3>
-      <p>
-        Sua resistência elétrica geralmente diminui quando
-        a intensidade da luz aumenta.
-      </p>
+      <p>O LDR é um resistor sensível à luz. Quando recebe mais iluminação, sua resistência elétrica geralmente diminui.</p>
     </div>
     <div class="card">
+      <div class="emoji">📷</div>
       <h3>Fotodiodo</h3>
-      <p>
-        Detecta a luz e produz uma corrente elétrica relacionada
-        à iluminação recebida.
-      </p>
+      <p>Converte a luz recebida em uma corrente elétrica. Pode ser utilizado para detectar e acompanhar variações luminosas.</p>
     </div>
     <div class="card">
+      <div class="emoji">🌞</div>
       <h3>Piranômetro</h3>
-      <p>
-        Mede a irradiância solar recebida por uma superfície,
-        normalmente em W/m².
-      </p>
+      <p>É utilizado para medir a irradiância solar, ou seja, a potência da radiação solar que chega a uma determinada área.</p>
     </div>
   </div>
 
-  <h3>Experimente o sensor LDR</h3>
-  <label for="ldr">Intensidade da luz:</label>
-  <input type="range" id="ldr" min="0" max="100" value="50">
-
-  <p>Luminosidade: <strong id="ldrValor">50%</strong></p>
-  <p>Resistência simulada: <strong id="ldrResistencia">2,0 kΩ</strong></p>
-
-  <div class="resultado" id="ldrEstado"></div>
-
-  <h3>Experimente o fotodiodo</h3>
-  <label for="foto">Luz recebida:</label>
-  <input type="range" id="foto" min="0" max="100" value="50">
-
-  <p>Resposta relativa: <strong id="fotoValor">50%</strong></p>
-  <div class="resultado" id="fotoEstado"></div>
-</section>
-
-<section id="radiacao">
-  <h2>5. Radiação eletromagnética</h2>
-  <div class="grid">
-    <div class="card"><h3>Luz visível</h3><p>Parte do espectro que nossos olhos conseguem enxergar.</p></div>
-    <div class="card"><h3>Infravermelho</h3><p>Radiação relacionada à transferência de energia térmica.</p></div>
-    <div class="card"><h3>Ultravioleta</h3><p>Radiação invisível com frequência maior que a da luz visível.</p></div>
+  <div class="panel">
+    <h3>Simulador visual do LDR</h3>
+    <p>Altere a intensidade da luz e observe o comportamento aproximado da resistência do LDR.</p>
+    <div class="sensor-visual">
+      <div class="beam">☀️ →</div>
+      <div class="sensor" id="ldrIcon">◉</div>
+      <div>
+        <strong>Sensor LDR</strong>
+        <p id="ldrState">Iluminação moderada</p>
+      </div>
+    </div>
+    <label for="light">Intensidade da luz: <span id="lightValue">50%</span></label>
+    <input type="range" id="light" min="0" max="100" value="50">
+    <p>Resistência relativa simulada: <strong id="resistance">50%</strong></p>
+    <div class="meter"><div id="resistanceMeter"></div></div>
+    <p class="small">Representação didática: o valor é relativo e não corresponde a uma medição real em ohms.</p>
   </div>
 
-  <h3>Lux e W/m²</h3>
-  <p>
-    Lux mede a iluminância considerando a sensibilidade do olho
-    humano. W/m² mede a potência da radiação por unidade de área.
-  </p>
-  <div class="aviso">
-    Um LDR comum não mede diretamente a irradiância solar.
-    Para isso, é necessário um instrumento apropriado, como o piranômetro.
+  <div class="panel">
+    <h3>Simulação do fotodiodo</h3>
+    <div class="sensor-visual">
+      <div class="beam">☀️ →</div>
+      <div class="sensor" style="background:#176b91">◈</div>
+      <div>
+        <strong>Fotodiodo</strong>
+        <p id="photoState">Recebendo luz</p>
+      </div>
+    </div>
+    <label for="photo">Luz recebida</label>
+    <input type="range" id="photo" min="0" max="100" value="60">
+    <p>Resposta relativa do sensor: <strong id="photoValue">60%</strong></p>
+    <div class="meter"><div id="photoMeter"></div></div>
   </div>
 </section>
 
-<section id="dados">
-  <h2>6. Dados de radiação solar de Curitiba</h2>
-  <p>
-    A NASA POWER disponibiliza dados estimados de radiação solar
-    para diferentes regiões do planeta. O exemplo abaixo consulta
-    a região de Curitiba.
-  </p>
+<section id="radiação">
+  <h2>🌈 Radiação eletromagnética solar</h2>
+  <p class="intro">A energia emitida pelo Sol chega à Terra por meio de ondas eletromagnéticas. A luz visível é apenas uma parte desse conjunto de radiações.</p>
 
-  <button onclick="buscarNASA()">Atualizar dados</button>
-  <p id="statusNASA" aria-live="polite">Aguardando consulta...</p>
-  <p>Último valor disponível:</p>
-  <div class="valor" id="ultimoNASA">--</div>
-  <p id="dataNASA" class="pequeno"></p>
-
-  <canvas id="graficoNASA" width="900" height="300"></canvas>
-
-  <p class="pequeno">
-    Fonte: NASA POWER. ALLSKY_SFC_SW_DWN. Dados diários estimados
-    em kWh/m²/dia. Não são leituras em tempo real de um sensor escolar.
-  </p>
-</section>
-
-<section id="coletores">
-  <h2>7. Posicionamento dos coletores solares</h2>
-  <p>
-    A orientação e a inclinação dos coletores influenciam a
-    quantidade de radiação que recebem. Sombras e condições
-    climáticas também interferem no aproveitamento solar.
-  </p>
-
-  <label for="angulo">Ângulo entre a radiação e a normal da superfície:</label>
-  <input type="range" id="angulo" min="0" max="90" value="30">
-
-  <p>Ângulo escolhido: <strong id="anguloValor">30°</strong></p>
-  <p>Incidência relativa: <strong id="anguloResultado">87%</strong></p>
-
-  <div class="resultado" id="anguloTexto"></div>
-
-  <p class="pequeno">
-    Modelo simplificado baseado no cosseno do ângulo.
-    Não determina sozinho a melhor orientação real de um coletor.
-  </p>
-</section>
-
-<section id="piscinaCEP">
-  <h2>8. Aquecimento da piscina do Colégio Estadual do Paraná</h2>
-
-  <p>
-    O estudo da radiação solar também pode ser relacionado
-    ao aquecimento de piscinas. Uma possibilidade é utilizar
-    coletores solares para absorver a energia do Sol e transferir
-    calor para a água.
-  </p>
-
-  <h3>Como funcionaria o sistema?</h3>
-
-  <div class="diagram">
-    <div class="sol-icon">☀️</div>
-    <p><strong>1. Radiação solar</strong></p>
-    <p>↓</p>
-
-    <div class="coletor">
-      <div style="font-size:30px">▦ ▦ ▦ ▦</div>
-      <strong>2. Coletores solares</strong>
-      <p>Absorvem a energia solar e aquecem a água.</p>
-    </div>
-
-    <div style="margin:15px">↓ Água em circulação</div>
-
-    <div class="bomba">
-      ⚙️ <strong>3. Bomba de circulação</strong>
-      <p>Movimenta a água pelo sistema.</p>
-    </div>
-
-    <div style="margin:15px">↓ Água aquecida</div>
-
-    <div class="piscina">
-      <div style="font-size:35px">🏊</div>
-      <h3>PISCINA DO CEP</h3>
-      <p>Retorno da água aquecida</p>
-      <div style="font-size:25px">〰️ 〰️ 〰️</div>
-    </div>
-  </div>
-
-  <div class="grid">
+  <div class="cards">
     <div class="card">
-      <h3>💡 Sensor de luz</h3>
-      <p>Monitora a intensidade da radiação solar disponível.</p>
+      <div class="emoji">🟣</div>
+      <h3>Ultravioleta (UV)</h3>
+      <p>Não é visível aos olhos humanos. Está relacionada, por exemplo, aos efeitos da exposição solar sobre a pele.</p>
     </div>
     <div class="card">
-      <h3>🌡️ Sensor de temperatura</h3>
-      <p>Acompanha a temperatura da água da piscina.</p>
+      <div class="emoji">🌈</div>
+      <h3>Luz visível</h3>
+      <p>É a faixa do espectro eletromagnético que conseguimos enxergar, formada por diferentes cores.</p>
+    </div>
+    <div class="card">
+      <div class="emoji">🔴</div>
+      <h3>Infravermelho</h3>
+      <p>Está associado à transferência de energia térmica e tem aplicações em sensores e sistemas de aquecimento.</p>
     </div>
   </div>
 
-  <h3>Simule a intensidade da radiação solar</h3>
-  <label for="radPiscina">Radiação solar:</label>
-  <input type="range" id="radPiscina" min="0" max="1000" value="600">
+  <div class="panel">
+    <h3>Como a radiação varia durante o dia?</h3>
+    <p>Observe uma representação simplificada da intensidade da radiação solar ao longo do dia.</p>
+    <div class="chart">
+      <svg viewBox="0 0 600 200" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="area" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0%" stop-color="#f6b83e" stop-opacity=".65"/>
+            <stop offset="100%" stop-color="#f6b83e" stop-opacity=".05"/>
+          </linearGradient>
+        </defs>
+        <path d="M0 190 C80 185 100 140 180 75 S300 10 330 20 S450 120 600 190 L600 200 L0 200Z" fill="url(#area)"/>
+        <path d="M0 190 C80 185 100 140 180 75 S300 10 330 20 S450 120 600 190" fill="none" stroke="#e6a22c" stroke-width="4"/>
+        <line x1="0" y1="190" x2="600" y2="190" stroke="#789"/>
+        <text x="5" y="185" font-size="12" fill="#345">06h</text>
+        <text x="190" y="185" font-size="12" fill="#345">10h</text>
+        <text x="290" y="185" font-size="12" fill="#345">12h</text>
+        <text x="480" y="185" font-size="12" fill="#345">16h</text>
+        <text x="560" y="185" font-size="12" fill="#345">18h</text>
+      </svg>
+    </div>
+    <p class="small">Curva ilustrativa, não representa uma medição real. A radiação varia conforme horário, nuvens, estação do ano e localização.</p>
+  </div>
 
-  <p>Valor escolhido: <strong id="radPiscinaValor">600 W/m²</strong></p>
-  <div class="resultado" id="radPiscinaEstado"></div>
-
-  <canvas id="graficoPiscina" width="900" height="230"></canvas>
-
-  <p>
-    Ao comparar a radiação solar com a temperatura da água,
-    podemos estudar se os períodos de maior incidência solar
-    estão relacionados ao aumento da temperatura.
-  </p>
-
-  <div class="aviso">
-    Esta é uma proposta ilustrativa de aplicação da energia solar
-    na piscina do CEP. Não significa que a piscina atualmente
-    utilize esse sistema. A instalação real exigiria um projeto técnico.
+  <div class="panel">
+    <h3>Lux ou W/m²: qual é a diferença?</h3>
+    <p><strong>Lux (lx):</strong> mede a iluminância, considerando a sensibilidade do olho humano à luz.</p>
+    <p><strong>W/m²:</strong> mede a potência da radiação recebida por unidade de área.</p>
+    <p>Por isso, um sensor LDR comum não substitui um instrumento calibrado para medir a irradiância solar.</p>
   </div>
 </section>
 
-<section id="limitacoes">
-  <h2>9. Limitações das medições</h2>
-  <div class="grid">
-    <div class="card"><h3>Calibração</h3><p>Os sensores precisam ser calibrados para fornecer resultados confiáveis.</p></div>
-    <div class="card"><h3>Sombras</h3><p>Árvores, prédios e outros obstáculos podem alterar a leitura.</p></div>
-    <div class="card"><h3>Clima</h3><p>Nuvens e chuva podem modificar a radiação recebida.</p></div>
-    <div class="card"><h3>Precisão</h3><p>Um sensor simples não substitui instrumentos específicos de medição solar.</p></div>
+<section id="monitoramento">
+  <h2>📊 Acompanhamento da radiação solar</h2>
+  <p class="intro">O acompanhamento da radiação permite observar como a energia solar disponível muda ao longo do tempo. Sensores posicionados em locais diferentes também podem ajudar a comparar a iluminação.</p>
+  <div class="panel">
+    <h3>Comparação de posições</h3>
+    <label for="positionA">Posição A — área aberta</label>
+    <input id="positionA" type="range" min="0" max="100" value="85">
+    <p>Intensidade relativa: <strong id="positionAValue">85%</strong></p>
+    <label for="positionB">Posição B — área sombreada</label>
+    <input id="positionB" type="range" min="0" max="100" value="35">
+    <p>Intensidade relativa: <strong id="positionBValue">35%</strong></p>
+    <p class="small">Valores ajustáveis para demonstrar uma comparação hipotética. Para uma comparação real, as medições devem ser feitas com sensores adequados e condições controladas.</p>
   </div>
 </section>
 
-<section id="quiz">
-  <h2>10. Teste seus conhecimentos</h2>
-
-  <p><strong>1. Quando a luz aumenta, o que geralmente acontece com a resistência do LDR?</strong></p>
-  <label><input type="radio" name="q1" value="a"> Aumenta</label><br>
-  <label><input type="radio" name="q1" value="b"> Diminui</label><br>
-  <label><input type="radio" name="q1" value="c"> Não muda</label>
-
-  <p><strong>2. Qual instrumento mede a irradiância solar?</strong></p>
-  <label><input type="radio" name="q2" value="a"> Piranômetro</label><br>
-  <label><input type="radio" name="q2" value="b"> Termômetro</label><br>
-  <label><input type="radio" name="q2" value="c"> Bússola</label>
-
-  <p><strong>3. Qual unidade é usada para irradiância?</strong></p>
-  <label><input type="radio" name="q3" value="a"> Litro</label><br>
-  <label><input type="radio" name="q3" value="b"> W/m²</label><br>
-  <label><input type="radio" name="q3" value="c"> Quilograma</label>
-
-  <p><strong>4. Como os sensores podem ajudar no estudo do aquecimento da piscina?</strong></p>
-  <label><input type="radio" name="q4" value="a"> Monitorando radiação e temperatura</label><br>
-  <label><input type="radio" name="q4" value="b"> Produzindo água</label><br>
-  <label><input type="radio" name="q4" value="c"> Eliminando as nuvens</label>
-
-  <br>
-  <button onclick="corrigirQuiz()">Conferir respostas</button>
-  <div class="resultado" id="resultadoQuiz" aria-live="polite"></div>
+<section id="piscina">
+  <h2>🏊 Aplicação: aquecimento solar da piscina do CEP</h2>
+  <p class="intro">A energia solar também pode ser aproveitada para aquecer a água. Em um sistema solar térmico, coletores recebem a energia do Sol e transferem calor para a água que circula pelo sistema.</p>
+  <div class="panel">
+    <h3>Como funcionaria o sistema?</h3>
+    <div class="pool-scene">
+      <div class="pool-sun">☀️</div>
+      <p style="text-align:center;color:#174c70;font-weight:bold">Energia solar chegando aos coletores</p>
+      <div class="collectors">
+        <div class="collector"></div><div class="collector"></div><div class="collector"></div>
+      </div>
+      <div class="pipe"></div>
+      <div class="flow">♨️ ↓ água aquecida</div>
+      <div class="pool"></div>
+      <p style="text-align:center;color:#164b69;font-weight:bold">Representação da piscina</p>
+    </div>
+    <label for="poolRadiation">Intensidade da radiação solar simulada</label>
+    <input id="poolRadiation" type="range" min="0" max="100" value="70">
+    <p>Energia solar disponível na simulação: <strong id="poolValue">70%</strong></p>
+    <div class="meter"><div id="poolMeter"></div></div>
+    <p id="poolExplanation">Com maior incidência solar, os coletores podem receber mais energia.</p>
+    <p class="small">Esta é uma simulação educativa de uma possível aplicação. Não representa o sistema instalado nem a temperatura real da piscina do Colégio Estadual do Paraná.</p>
+  </div>
+  <div class="cards">
+    <div class="card"><div class="emoji">🌞</div><h3>Sensor de luz</h3><p>Acompanha a intensidade da iluminação e ajuda a observar a disponibilidade de radiação.</p></div>
+    <div class="card"><div class="emoji">🌡️</div><h3>Sensor de temperatura</h3><p>Permite acompanhar a temperatura da água e observar as mudanças ao longo do tempo.</p></div>
+    <div class="card"><div class="emoji">💧</div><h3>Circulação da água</h3><p>Uma bomba faz a água circular entre a piscina e os coletores térmicos.</p></div>
+  </div>
 </section>
 
-<section>
-  <h2>Acessibilidade</h2>
-  <button onclick="document.body.classList.toggle('grande')">Aumentar ou diminuir texto</button>
-  <button onclick="document.body.classList.toggle('contraste')">Alto contraste</button>
-  <button onclick="ouvirIntroducao()">Ouvir introdução</button>
-  <button onclick="speechSynthesis.cancel()">Parar áudio</button>
+<section id="conclusao">
+  <h2>🔎 Por que monitorar a radiação solar?</h2>
+  <div class="panel">
+    <p>O uso de sensores permite acompanhar mudanças na iluminação e na radiação solar, comparar diferentes ambientes e compreender melhor o aproveitamento da energia do Sol.</p>
+    <p>Essas informações podem contribuir para estudos sobre eficiência energética, posicionamento de coletores e aplicações de energia solar.</p>
+  </div>
 </section>
-
-</main>
 
 <footer>
-  <p>Projeto educativo — Sensores de Luz e Acompanhamento da Radiação Solar</p>
+  <h3>☀️ SolarSense</h3>
+  <p>Projeto educativo — Sensores de luz e acompanhamento da radiação solar.</p>
   <p>Colégio Estadual do Paraná</p>
 </footer>
 
-<div vw class="enabled">
-  <div vw-access-button class="active"></div>
-  <div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div>
-</div>
-<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-
 <script>
-new window.VLibras.Widget("https://vlibras.gov.br/app");
+const hour=document.getElementById("hour");
 
-
-// MOVIMENTO APARENTE DO SOL
-
-const hora = document.getElementById("hora");
-
-function atualizarSol() {
-  const h = Number(hora.value);
-  const progresso = (h - 6) / 12;
-
-  const x = 5 + progresso * 90;
-  const altura = Math.sin(progresso * Math.PI);
-  const y = 72 - altura * 62;
-
-  const sol = document.getElementById("sol");
-  sol.style.left = x + "%";
-  sol.style.top = y + "%";
-
-  const horas = Math.floor(h);
-  const minutos = Math.round((h - horas) * 60);
-  const horario =
-    String(horas).padStart(2,"0") + ":" +
-    String(minutos).padStart(2,"0");
-
-  document.getElementById("horarioTexto").textContent = horario;
-
-  let texto = "";
-
-  if (h < 8) texto = "O Sol está próximo ao horizonte, no período da manhã.";
-  else if (h < 11) texto = "O Sol está subindo no céu.";
-  else if (h < 14) texto = "O Sol está próximo de sua posição mais alta.";
-  else if (h < 17) texto = "O Sol está descendo no céu.";
-  else texto = "O Sol está próximo do horizonte, no período da tarde.";
-
-  document.getElementById("infoSol").textContent = texto;
-
-  atualizarLuminosidade();
+function setHour(value){
+  hour.value=value;
+  updateSun();
 }
 
-function mudarHora(direcao) {
-  hora.value = Math.max(6,Math.min(18,Number(hora.value) + direcao));
-  atualizarSol();
-}
+function updateSun(){
+  const h=Number(hour.value);
+  const progress=(h-6)/12;
+  const x=8+progress*84;
+  const y=70-Math.sin(progress*Math.PI)*48;
+  const intensity=Math.round(Math.sin(progress*Math.PI)*100);
+  const sun=document.getElementById("sun");
+  const sky=document.getElementById("sky");
 
-function definirHora(valor) {
-  hora.value = valor;
-  atualizarSol();
-}
+  sun.style.left=x+"%";
+  sun.style.top=y+"%";
+  document.getElementById("hourValue").textContent=
+    String(Math.floor(h)).padStart(2,"0")+":"+(h%1?"30":"00");
 
-hora.addEventListener("input",atualizarSol);
+  document.getElementById("sunIntensity").textContent=intensity+"%";
+  document.getElementById("sunMeter").style.width=intensity+"%";
 
+  let label="Durante o dia";
+  if(h<8) label="Amanhecer";
+  else if(h<11) label="Manhã";
+  else if(h<14) label="Sol próximo do ponto mais alto";
+  else if(h<17) label="Tarde";
+  else label="Entardecer";
 
-// LUMINOSIDADE AO LONGO DO DIA
+  document.getElementById("skyLabel").textContent=label;
 
-function luminosidade(h) {
-  if (h <= 6 || h >= 18) return 0;
-  return Math.max(0,Math.sin((h - 6) * Math.PI / 12)) * 100;
-}
-
-function atualizarLuminosidade() {
-  const h = Number(hora.value);
-  const valor = luminosidade(h);
-
-  document.getElementById("valorLuminosidade").textContent =
-    valor.toFixed(0) + "%";
-
-  let estado = valor < 25 ? "Baixa iluminação neste modelo." :
-    valor < 70 ? "Iluminação intermediária neste modelo." :
-    "Maior iluminação neste modelo.";
-
-  document.getElementById("estadoLuminosidade").textContent = estado;
-}
-
-function desenharLuminosidade() {
-  const canvas = document.getElementById("graficoLuminosidade");
-  const ctx = canvas.getContext("2d");
-  const w = canvas.width, h = canvas.height;
-
-  ctx.clearRect(0,0,w,h);
-  ctx.strokeStyle = "#dce6ed";
-  ctx.fillStyle = "#263746";
-  ctx.font = "14px Arial";
-
-  for(let i=0;i<=4;i++) {
-    const y = 30 + i*55;
-    ctx.beginPath();
-    ctx.moveTo(55,y);
-    ctx.lineTo(w-20,y);
-    ctx.stroke();
+  if(h<8 || h>16){
+    sky.style.background="linear-gradient(#e99b76,#f8d39a)";
+    sun.style.background="#ffad52";
+  }else{
+    sky.style.background="linear-gradient(#68c3ec,#d9f3ff)";
+    sun.style.background="#ffce4c";
   }
+  document.getElementById("sunRays").style.opacity=Math.max(.1,intensity/100);
+}
+hour.addEventListener("input",updateSun);
+updateSun();
 
-  ctx.strokeStyle = "#e4a51e";
-  ctx.lineWidth = 4;
-  ctx.beginPath();
+const light=document.getElementById("light");
+light.addEventListener("input",()=>{
+  const v=Number(light.value);
+  const resistance=100-v;
+  document.getElementById("lightValue").textContent=v+"%";
+  document.getElementById("resistance").textContent=resistance+"%";
+  document.getElementById("resistanceMeter").style.width=resistance+"%";
+  document.getElementById("ldrState").textContent=
+    v<25?"Pouca iluminação":v<70?"Iluminação moderada":"Iluminação intensa";
+  document.getElementById("ldrIcon").style.boxShadow=
+    "0 0 "+(5+v/2)+"px "+(v/2)+"px #ffe16b";
+});
 
-  for(let i=0;i<=120;i++) {
-    const hora = 6 + i/10;
-    const x = 55 + i*(w-80)/120;
-    const y = 250 - luminosidade(hora)*2.1;
+const photo=document.getElementById("photo");
+photo.addEventListener("input",()=>{
+  const v=Number(photo.value);
+  document.getElementById("photoValue").textContent=v+"%";
+  document.getElementById("photoMeter").style.width=v+"%";
+  document.getElementById("photoState").textContent=
+    v<20?"Recebendo pouca luz":v<70?"Recebendo luz moderada":"Recebendo luz intensa";
+});
 
-    if(i===0) ctx.moveTo(x,y);
-    else ctx.lineTo(x,y);
-  }
-
-  ctx.stroke();
-
-  [6,9,12,15,18].forEach((v,i)=>{
-    ctx.fillText(v+"h",50+i*205,280);
+["A","B"].forEach(id=>{
+  const input=document.getElementById("position"+id);
+  input.addEventListener("input",()=>{
+    document.getElementById("position"+id+"Value").textContent=input.value+"%";
   });
-
-  ctx.fillText("Luminosidade relativa",55,18);
-}
-
-
-// SENSOR LDR
-
-function atualizarLDR() {
-  const v = Number(document.getElementById("ldr").value);
-  const r = 100/(v+1);
-
-  document.getElementById("ldrValor").textContent = v+"%";
-  document.getElementById("ldrResistencia").textContent =
-    r.toFixed(1)+" kΩ";
-
-  document.getElementById("ldrEstado").textContent =
-    v < 25 ? "Pouca luz: resistência elevada." :
-    v < 70 ? "Luz intermediária." :
-    "Muita luz: resistência reduzida.";
-}
-
-document.getElementById("ldr").addEventListener("input",atualizarLDR);
-
-
-// FOTODIODO
-
-function atualizarFoto() {
-  const v = Number(document.getElementById("foto").value);
-  document.getElementById("fotoValor").textContent = v+"%";
-
-  document.getElementById("fotoEstado").textContent =
-    v < 25 ? "O fotodiodo recebe pouca luz." :
-    v < 70 ? "O fotodiodo recebe uma quantidade intermediária de luz." :
-    "O fotodiodo recebe bastante luz.";
-}
-
-document.getElementById("foto").addEventListener("input",atualizarFoto);
-
-
-// NASA POWER
-
-async function buscarNASA() {
-  const status = document.getElementById("statusNASA");
-  status.textContent = "Consultando dados...";
-
-  try {
-    const fim = new Date();
-    fim.setDate(fim.getDate()-5);
-    const inicio = new Date(fim);
-    inicio.setDate(inicio.getDate()-29);
-
-    const fmt = d => d.getFullYear()+
-      String(d.getMonth()+1).padStart(2,"0")+
-      String(d.getDate()).padStart(2,"0");
-
-    const url =
-      "https://power.larc.nasa.gov/api/temporal/daily/point" +
-      "?parameters=ALLSKY_SFC_SW_DWN&community=RE" +
-      "&longitude=-49.2733&latitude=-25.4284" +
-      "&start="+fmt(inicio)+"&end="+fmt(fim)+"&format=JSON";
-
-    const resposta = await fetch(url);
-    if(!resposta.ok) throw new Error("Erro na consulta");
-
-    const dados = await resposta.json();
-    const valores = dados.properties.parameter.ALLSKY_SFC_SW_DWN;
-
-    const registros = Object.entries(valores)
-      .filter(([d,v])=>v!==-999)
-      .sort((a,b)=>a[0].localeCompare(b[0]));
-
-    if(!registros.length) throw new Error("Sem dados");
-
-    const ultimo = registros[registros.length-1];
-    document.getElementById("ultimoNASA").textContent =
-      Number(ultimo[1]).toFixed(2)+" kWh/m²/dia";
-
-    document.getElementById("dataNASA").textContent =
-      "Data: "+ultimo[0].slice(6,8)+"/"+
-      ultimo[0].slice(4,6)+"/"+ultimo[0].slice(0,4);
-
-    desenharNASA(registros);
-    status.textContent = "Dados recebidos da NASA POWER.";
-
-  } catch(e) {
-    status.textContent = "Não foi possível consultar os dados. Tente novamente mais tarde.";
-    console.error(e);
-  }
-}
-
-function desenharNASA(registros) {
-  const c = document.getElementById("graficoNASA");
-  const ctx = c.getContext("2d");
-  const w = c.width, h = c.height;
-  ctx.clearRect(0,0,w,h);
-
-  const vals = registros.map(x=>Number(x[1]));
-  const max = Math.max(...vals,1)*1.15;
-
-  ctx.strokeStyle="#dce6ed";
-  ctx.fillStyle="#263746";
-  ctx.font="12px Arial";
-
-  for(let i=0;i<=4;i++) {
-    const y=25+i*55;
-    ctx.beginPath();ctx.moveTo(55,y);ctx.lineTo(w-15,y);ctx.stroke();
-    ctx.fillText((max*(1-i/4)).toFixed(1),8,y+4);
-  }
-
-  ctx.strokeStyle="#237eae";
-  ctx.lineWidth=3;
-  ctx.beginPath();
-
-  vals.forEach((v,i)=>{
-    const x=55+i*(w-75)/Math.max(vals.length-1,1);
-    const y=25+(h-80)*(1-v/max);
-    if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
-  });
-
-  ctx.stroke();
-}
-
-
-// ÂNGULO DOS COLETORES
-
-function atualizarAngulo() {
-  const a=Number(document.getElementById("angulo").value);
-  const valor=Math.cos(a*Math.PI/180)*100;
-
-  document.getElementById("anguloValor").textContent=a+"°";
-  document.getElementById("anguloResultado").textContent=
-    valor.toFixed(0)+"%";
-
-  document.getElementById("anguloTexto").textContent=
-    a<25 ? "A superfície recebe radiação próxima da perpendicular neste modelo." :
-    a<65 ? "A incidência diminui conforme o ângulo aumenta." :
-    "A incidência é reduzida neste modelo.";
-}
-
-document.getElementById("angulo").addEventListener("input",atualizarAngulo);
-
-
-// SIMULADOR DA PISCINA
-
-function atualizarPiscina() {
-  const v=Number(document.getElementById("radPiscina").value);
-
-  document.getElementById("radPiscinaValor").textContent=v+" W/m²";
-
-  document.getElementById("radPiscinaEstado").textContent=
-    v<250 ? "Baixa disponibilidade de radiação solar." :
-    v<650 ? "Disponibilidade intermediária de radiação solar." :
-    "Alta disponibilidade de radiação solar.";
-
-  const c=document.getElementById("graficoPiscina");
-  const ctx=c.getContext("2d");
-  ctx.clearRect(0,0,c.width,c.height);
-
-  ctx.fillStyle="#dce6ed";
-  ctx.fillRect(50,85,800,45);
-
-  ctx.fillStyle="#e3a522";
-  ctx.fillRect(50,85,800*v/1000,45);
-
-  ctx.fillStyle="#263746";
-  ctx.font="16px Arial";
-  ctx.fillText("Energia solar disponível (escala de 0 a 1000 W/m²)",50,55);
-  ctx.fillText("0",50,160);
-  ctx.fillText("1000 W/m²",790,160);
-}
-
-document.getElementById("radPiscina").addEventListener("input",atualizarPiscina);
-
-
-// QUIZ
-
-function corrigirQuiz() {
-  const corretas={q1:"b",q2:"a",q3:"b",q4:"a"};
-  let pontos=0;
-
-  for(const q in corretas) {
-    const marcada=document.querySelector('input[name="'+q+'"]:checked');
-    if(marcada && marcada.value===corretas[q]) pontos++;
-  }
-
-  document.getElementById("resultadoQuiz").textContent=
-    "Você acertou "+pontos+" de 4 questões!";
-}
-
-
-// ACESSIBILIDADE
-
-function ouvirIntroducao() {
-  if(!("speechSynthesis" in window)) {
-    alert("Seu navegador não oferece leitura de texto.");
-    return;
-  }
-
-  speechSynthesis.cancel();
-
-  const fala=new SpeechSynthesisUtterance(
-    "Bem-vindo ao projeto sobre sensores de luz e acompanhamento da radiação solar."
-  );
-
-  fala.lang="pt-BR";
-  speechSynthesis.speak(fala);
-}
-
-
-// INICIAR TODAS AS SIMULAÇÕES
-
-atualizarSol();
-desenharLuminosidade();
-atualizarLDR();
-atualizarFoto();
-atualizarAngulo();
-atualizarPiscina();
-buscarNASA();
-
+});
+
+const pool=document.getElementById("poolRadiation");
+pool.addEventListener("input",()=>{
+  const v=Number(pool.value);
+  document.getElementById("poolValue").textContent=v+"%";
+  document.getElementById("poolMeter").style.width=v+"%";
+  let message="Com maior incidência solar, os coletores podem receber mais energia.";
+  if(v<25) message="Com pouca radiação, a energia recebida pelos coletores tende a ser menor.";
+  else if(v>75) message="Com alta incidência solar, há maior disponibilidade de energia para o aquecimento.";
+  document.getElementById("poolExplanation").textContent=message;
+});
 </script>
 </body>
 </html>
