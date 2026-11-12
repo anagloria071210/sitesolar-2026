@@ -1,1070 +1,242 @@
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Projeto educativo sobre sensores de luz, radiação solar e aquecimento da piscina do Colégio Estadual do Paraná.">
-<title>SolarSense | Radiação Solar e Piscina do CEP</title>
-
-<style>
-:root {
-  --azul: #123b5d;
-  --azul2: #176b91;
-  --claro: #eaf5fa;
-  --amarelo: #ffc857;
-  --texto: #203040;
-  --branco: #ffffff;
-  --fundo: #f5f8fb;
-  --borda: #dce6ed;
-}
-
-* { box-sizing: border-box; scroll-behavior: smooth; }
-
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: var(--fundo);
-  color: var(--texto);
-  line-height: 1.6;
-}
-
-body.alto-contraste {
-  background: #000;
-  color: #fff;
-}
-
-body.alto-contraste .card,
-body.alto-contraste section,
-body.alto-contraste header,
-body.alto-contraste nav {
-  background: #111;
-  color: #fff;
-  border-color: #fff;
-}
-
-header {
-  background: linear-gradient(120deg, #123b5d, #176b91);
-  color: white;
-  padding: 18px 7%;
-}
-
-.topo {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 15px;
-  flex-wrap: wrap;
-}
-
-.logo {
-  font-size: 25px;
-  font-weight: bold;
-}
-
-nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  background: #123b5d;
-  padding: 12px 7%;
-}
-
-nav a {
-  color: white;
-  text-decoration: none;
-  font-size: 14px;
-}
-
-nav a:hover { text-decoration: underline; }
-
-.acessibilidade {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-top: 12px;
-}
-
-button, select, input {
-  font: inherit;
-}
-
-button {
-  border: none;
-  border-radius: 8px;
-  padding: 10px 15px;
-  cursor: pointer;
-  background: var(--azul2);
-  color: white;
-  font-weight: bold;
-}
-
-button:hover { opacity: .88; }
-
-.acessibilidade button {
-  background: white;
-  color: var(--azul);
-}
-
-.hero {
-  padding: 85px 8%;
-  color: white;
-  background:
-    linear-gradient(90deg, rgba(8,35,57,.92), rgba(8,35,57,.55)),
-    url("https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1600&q=80")
-    center/cover;
-}
-
-.hero h1 {
-  font-size: clamp(32px, 5vw, 55px);
-  max-width: 780px;
-  line-height: 1.12;
-}
-
-.hero p {
-  max-width: 650px;
-  font-size: 18px;
-}
-
-section {
-  padding: 55px 8%;
-  scroll-margin-top: 20px;
-}
-
-section h2 {
-  color: var(--azul);
-  font-size: 30px;
-  margin-top: 0;
-}
-
-.alto-contraste section h2 { color: #ffe082; }
-
-.subtitulo {
-  max-width: 850px;
-  color: #536575;
-}
-
-.alto-contraste .subtitulo { color: #ddd; }
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 18px;
-  margin-top: 25px;
-}
-
-.card {
-  background: white;
-  padding: 22px;
-  border-radius: 14px;
-  border: 1px solid var(--borda);
-  box-shadow: 0 5px 18px rgba(20,50,70,.05);
-}
-
-.card h3 { color: var(--azul2); }
-
-.destaque {
-  background: #e6f4fb;
-  border-left: 5px solid var(--azul2);
-  padding: 18px;
-  border-radius: 8px;
-  margin: 20px 0;
-}
-
-.alto-contraste .destaque { background: #222; }
-
-.controles {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 12px;
-  margin: 15px 0;
-}
-
-.controles label {
-  font-weight: bold;
-}
-
-input[type="range"] { accent-color: var(--azul2); }
-
-select, input[type="number"] {
-  padding: 9px;
-  border: 1px solid #aabac7;
-  border-radius: 7px;
-  max-width: 100%;
-}
-
-canvas {
-  width: 100%;
-  max-width: 900px;
-  height: 300px;
-  background: white;
-  border: 1px solid var(--borda);
-  border-radius: 12px;
-  display: block;
-  margin: 20px 0;
-}
-
-.status {
-  padding: 12px;
-  border-radius: 8px;
-  background: #eaf5fa;
-  margin: 12px 0;
-  font-size: 14px;
-}
-
-.alto-contraste .status { background: #222; }
-
-.numero {
-  font-size: 27px;
-  color: var(--azul2);
-  font-weight: bold;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: white;
-  margin-top: 18px;
-}
-
-th, td {
-  border: 1px solid var(--borda);
-  padding: 10px;
-  text-align: left;
-}
-
-th {
-  background: var(--azul);
-  color: white;
-}
-
-.alto-contraste table { background: #111; }
-
-.piscina {
-  background: linear-gradient(140deg, #dff4fa, #f4fbff);
-}
-
-.alto-contraste .piscina { background: #111; }
-
-.linha-tempo {
-  border-left: 4px solid var(--azul2);
-  padding-left: 20px;
-  margin: 25px 0;
-}
-
-.linha-tempo article { margin-bottom: 22px; }
-
-footer {
-  background: #123b5d;
-  color: white;
-  text-align: center;
-  padding: 30px 8%;
-}
-
-a { color: #0875a5; }
-
-footer a { color: #ffe082; }
-
-.pequeno {
-  font-size: 13px;
-  color: #627482;
-}
-
-.alto-contraste .pequeno { color: #ddd; }
-
-@media(max-width:600px) {
-  nav { gap: 10px; }
-  nav a { font-size: 12px; }
-  section { padding: 40px 6%; }
-  .hero { padding: 65px 6%; }
-}
-</style>
-</head>
-
-<body>
-
-<header>
-  <div class="topo">
-    <div class="logo">☀️ SolarSense</div>
-    <div>Ciência, tecnologia e energia solar</div>
-  </div>
-
-  <div class="acessibilidade">
-    <button onclick="alterarFonte(1)">A+ Fonte</button>
-    <button onclick="alterarFonte(-1)">A- Fonte</button>
-    <button onclick="contraste()">Alto contraste</button>
-    <button onclick="lerPagina()">🔊 Ler página</button>
-  </div>
-</header>
-
-<nav>
-  <a href="#inicio">Início</a>
-  <a href="#sensores">Sensores</a>
-  <a href="#radiacao">Radiação solar</a>
-  <a href="#dados">Dados reais</a>
-  <a href="#posicionamento">Posicionamento</a>
-  <a href="#piscina">Piscina do CEP</a>
-  <a href="#simulador">Simulador</a>
-  <a href="#limitacoes">Limitações</a>
-  <a href="#quiz">Quiz</a>
-</nav>
-
-<div class="hero" id="inicio">
-  <h1>Sensores de luz e acompanhamento da radiação solar</h1>
-  <p>
-    Descubra como a luz do Sol pode ser monitorada por sensores,
-    como os dados ajudam a compreender a energia solar e como
-    esse conhecimento pode ser relacionado ao aquecimento da
-    piscina do Colégio Estadual do Paraná.
-  </p>
-  <a href="#dados"><button>Explorar os dados solares</button></a>
-</div>
-
-<section id="sensores">
-  <h2>1. Como funcionam os sensores de luz?</h2>
-  <p class="subtitulo">
-    Sensores de luz transformam a presença de radiação luminosa
-    em uma resposta elétrica que pode ser interpretada por um circuito.
-  </p>
-
-  <div class="grid">
-    <div class="card">
-      <h3>💡 LDR</h3>
-      <p>
-        O LDR é um resistor sensível à luz. Quando recebe mais luz,
-        sua resistência elétrica geralmente diminui. Quando recebe
-        menos luz, sua resistência aumenta.
-      </p>
-      <p><b>Aplicação:</b> sistemas automáticos de iluminação.</p>
-    </div>
-
-    <div class="card">
-      <h3>📷 Fotodiodo</h3>
-      <p>
-        O fotodiodo transforma a luz recebida em uma corrente elétrica.
-        Sua resposta pode ser utilizada para detectar e comparar
-        a intensidade luminosa.
-      </p>
-      <p><b>Aplicação:</b> equipamentos ópticos e medição de luz.</p>
-    </div>
-
-    <div class="card">
-      <h3>🌞 Piranômetro</h3>
-      <p>
-        É um instrumento utilizado para medir a irradiância solar
-        recebida por uma superfície, normalmente em watts por
-        metro quadrado (W/m²).
-      </p>
-      <p><b>Aplicação:</b> estudos de energia solar e meteorologia.</p>
-    </div>
-  </div>
-
-  <div class="destaque">
-    <b>Diferença importante:</b> um LDR não fornece diretamente
-    uma medida calibrada de energia solar. Para medir a irradiância
-    solar, utiliza-se um instrumento apropriado, como o piranômetro.
-  </div>
-
-  <h3>Experimente: resposta simplificada do LDR</h3>
-  <div class="card">
-    <div class="controles">
-      <label for="luz">Quantidade de luz:</label>
-      <input id="luz" type="range" min="1" max="100" value="50">
-      <span id="valorLuz">50%</span>
-    </div>
-    <p>Resistência relativa estimada:</p>
-    <div class="numero" id="resistencia">50 unidades</div>
-    <p id="explicacaoLDR">
-      Aumente a luz para observar a diminuição da resistência.
-    </p>
-    <div class="status">
-      Este é um modelo didático, não uma medição de um LDR real.
-    </div>
-  </div>
-</section>
-
-<section id="radiacao">
-  <h2>2. Radiação eletromagnética e luz solar</h2>
-  <p>
-    A radiação solar é formada por diferentes faixas do espectro
-    eletromagnético. A luz visível é apenas uma parte desse espectro.
-  </p>
-
-  <div class="grid">
-    <div class="card">
-      <h3>🌈 Luz visível</h3>
-      <p>
-        É a faixa que nossos olhos conseguem enxergar.
-        Seus comprimentos de onda ficam aproximadamente entre
-        400 e 700 nanômetros.
-      </p>
-    </div>
-    <div class="card">
-      <h3>🔥 Infravermelho</h3>
-      <p>
-        Possui comprimentos de onda maiores que os da luz visível.
-        Está relacionado à transferência de energia térmica.
-      </p>
-    </div>
-    <div class="card">
-      <h3>☀️ Ultravioleta</h3>
-      <p>
-        Possui comprimentos de onda menores que os da luz visível.
-        É uma parte da radiação emitida pelo Sol.
-      </p>
-    </div>
-  </div>
-
-  <div class="destaque">
-    <b>Iluminância e irradiância não são a mesma coisa:</b>
-    iluminância, medida em lux, considera a sensibilidade do olho
-    humano à luz visível. Irradiância, medida em W/m², representa
-    a potência da radiação recebida por unidade de área.
-  </div>
-</section>
-
-<section id="dados">
-  <h2>3. Acompanhamento da radiação solar em Curitiba</h2>
-  <p class="subtitulo">
-    Nesta seção, o site consulta automaticamente a base pública
-    NASA POWER para buscar dados diários de radiação solar
-    relacionados às coordenadas de Curitiba.
-  </p>
-
-  <div class="card">
-    <div class="controles">
-      <button onclick="buscarDados()">↻ Atualizar dados</button>
-    </div>
-
-    <div id="statusDados" class="status">
-      Preparando consulta à NASA POWER...
-    </div>
-
-    <div class="grid">
-      <div class="card">
-        <p>Último valor disponível</p>
-        <div class="numero" id="ultimoValor">--</div>
-        <p>kWh/m²/dia</p>
-      </div>
-      <div class="card">
-        <p>Data do último registro</p>
-        <div class="numero" id="ultimaData">--</div>
-      </div>
-    </div>
-
-    <h3>Radiação solar diária</h3>
-    <canvas id="graficoSolar" width="900" height="300"></canvas>
-
-    <p class="pequeno">
-      Fonte: NASA POWER – parâmetro ALLSKY_SFC_SW_DWN.
-      Os dados podem apresentar atraso em relação ao dia atual.
-      A ausência de dados recentes não significa ausência de radiação solar.
-    </p>
-
-    <p>
-      <a href="https://power.larc.nasa.gov/" target="_blank" rel="noopener">
-        Acessar a plataforma oficial NASA POWER
-      </a>
-    </p>
-  </div>
-
-  <div class="destaque">
-    <b>Como interpretar:</b> valores maiores indicam maior quantidade
-    de energia solar recebida por área ao longo do dia.
-    Nuvens, horário, estação do ano e condições atmosféricas influenciam
-    os resultados.
-  </div>
-</section>
-
-<section id="posicionamento">
-  <h2>4. Qual é o melhor posicionamento de um coletor solar?</h2>
-  <p>
-    A orientação e a inclinação de um coletor influenciam a quantidade
-    de radiação que ele recebe. A posição ideal depende da localização,
-    da época do ano e do percurso aparente do Sol.
-  </p>
-
-  <div class="card">
-    <h3>Simulador de ângulo de incidência</h3>
-    <div class="controles">
-      <label for="angulo">Desvio em relação à incidência perpendicular:</label>
-      <input id="angulo" type="range" min="0" max="90" value="0">
-      <span id="valorAngulo">0°</span>
-    </div>
-
-    <div class="numero" id="captacao">100%</div>
-    <p id="textoAngulo">
-      Nesta representação simplificada, a incidência é perpendicular.
-    </p>
-    <div class="status">
-      Modelo ilustrativo baseado no cosseno do ângulo.
-      Não representa uma orientação geográfica calculada para o CEP.
-    </div>
-  </div>
-</section>
-
-<section class="piscina" id="piscina">
-  <h2>5. A piscina do Colégio Estadual do Paraná</h2>
+<!-- ESTUDO DE CASO: PISCINA DO CEP -->
+<section id="estudo-cep">
+  <h2>Estudo de caso: radiação solar e aquecimento da piscina do CEP</h2>
 
   <p>
-    A piscina do CEP é um espaço importante para as atividades
-    esportivas e educacionais dos estudantes. Ela também permite
-    relacionar os conteúdos de Física com uma situação real da escola.
+    A piscina do Colégio Estadual do Paraná é um exemplo de como
+    o monitoramento da radiação solar pode ser aplicado em uma
+    situação real. Por meio de sensores, podemos investigar a
+    relação entre a quantidade de energia solar recebida e a
+    variação da temperatura da água.
   </p>
-
-  <div class="grid">
-    <div class="card">
-      <h3>🏊 História</h3>
-      <p>
-        A área esportiva do Colégio Estadual do Paraná, que inclui
-        as piscinas, o ginásio, a pista e o campo, foi inaugurada
-        em outubro de 1951.
-      </p>
-      <a href="https://www.cep.pr.gov.br/timeline?page=2"
-         target="_blank" rel="noopener">Fonte: linha do tempo oficial do CEP</a>
-    </div>
-
-    <div class="card">
-      <h3>🏗️ Projeto de modernização</h3>
-      <p>
-        Em abril de 2025, o CEP divulgou uma indicação de emenda
-        parlamentar de R$ 850 mil destinada à cobertura e ao
-        sistema de aquecimento da piscina de aprendizagem.
-      </p>
-      <a href="https://www.cep.pr.gov.br/Noticia/CEP-tera-emenda-parlamentar-de-R-850-mil-para-cobertura-e-aquecimento-da-piscina-de"
-         target="_blank" rel="noopener">Fonte: notícia oficial do CEP</a>
-    </div>
-
-    <div class="card">
-      <h3>🌞 Relação com a energia solar</h3>
-      <p>
-        A radiação solar pode ser aproveitada em sistemas de
-        aquecimento de água. Coletores solares térmicos absorvem
-        energia do Sol e transferem calor para a água.
-      </p>
-      <p>
-        Essa é uma possibilidade de aplicação tecnológica,
-        não uma afirmação de que o sistema do CEP seja solar.
-      </p>
-    </div>
-  </div>
-
-  <h3>Linha do tempo</h3>
-  <div class="linha-tempo">
-    <article>
-      <b>1951 — Inauguração da área esportiva</b>
-      <p>As piscinas passam a integrar a estrutura esportiva do CEP.</p>
-    </article>
-    <article>
-      <b>2025 — Anúncio de investimento</b>
-      <p>
-        O colégio divulga a indicação de emenda para cobertura
-        e aquecimento da piscina de aprendizagem.
-      </p>
-    </article>
-    <article>
-      <b>Aplicação científica</b>
-      <p>
-        Sensores de luz e temperatura podem ajudar a estudar
-        a radiação recebida e as mudanças na temperatura da água.
-      </p>
-    </article>
-  </div>
 
   <div class="destaque">
-    <b>Como a Física aparece na piscina?</b>
-    <p>
-      A radiação solar pode ser absorvida por uma superfície coletora.
-      Essa energia é transferida em forma de calor para a água.
-      A temperatura final depende da energia recebida, do volume de
-      água, da eficiência do sistema e das perdas de calor para o ambiente.
-    </p>
-  </div>
-</section>
-
-<section id="simulador">
-  <h2>6. Simulador educativo de aquecimento da piscina</h2>
-  <p class="subtitulo">
-    Use o último dado diário de radiação solar disponível e ajuste
-    os parâmetros para observar uma estimativa simplificada
-    do aquecimento da água.
-  </p>
-
-  <div class="card">
-    <div class="status" id="statusPiscina">
-      Aguardando dados de radiação solar...
-    </div>
-
-    <div class="controles">
-      <label for="area">Área dos coletores (m²):</label>
-      <input type="number" id="area" min="1" max="500" value="20">
-    </div>
-
-    <div class="controles">
-      <label for="volume">Volume de água considerado (m³):</label>
-      <input type="number" id="volume" min="1" max="5000" value="100">
-    </div>
-
-    <div class="controles">
-      <label for="eficiencia">Eficiência estimada:</label>
-      <input type="range" id="eficiencia" min="10" max="80" value="50">
-      <span id="valorEficiencia">50%</span>
-    </div>
-
-    <div class="grid">
-      <div class="card">
-        <p>Energia solar incidente estimada</p>
-        <div class="numero" id="energia">--</div>
-        <p>kWh por dia</p>
-      </div>
-      <div class="card">
-        <p>Aumento teórico de temperatura</p>
-        <div class="numero" id="aumento">--</div>
-        <p>°C por dia</p>
-      </div>
-    </div>
-
-    <button onclick="calcularPiscina()">Calcular novamente</button>
-
-    <div class="destaque">
-      <b>Atenção:</b> este cálculo é uma estimativa didática.
-      Ele não considera perdas de calor, evaporação, vento,
-      temperatura inicial, circulação da água ou características
-      reais de um equipamento. Não representa a temperatura real
-      da piscina do CEP.
-    </div>
+    <b>Pergunta investigativa:</b>
+    Como a variação da radiação solar ao longo do dia pode
+    influenciar a temperatura da água da piscina do CEP?
   </div>
 
-  <h3>Como os sensores poderiam ajudar?</h3>
+  <h3>Quais sensores poderiam ser utilizados?</h3>
+
   <div class="grid">
     <div class="card">
-      <h3>Sensor de luz</h3>
+      <h3>Sensor LDR</h3>
       <p>
-        Registra mudanças na luminosidade e ajuda a acompanhar
-        a incidência de luz ao longo do dia.
+        Acompanha as variações da luminosidade durante o dia.
+        Pode indicar os horários em que o ambiente recebe mais luz.
       </p>
+      <p><b>O que observar:</b> variação da resistência elétrica
+      conforme a iluminação.</p>
     </div>
-    <div class="card">
-      <h3>Sensor de temperatura</h3>
-      <p>
-        Mede a temperatura da água em diferentes horários,
-        permitindo observar seu aquecimento e resfriamento.
-      </p>
-    </div>
-    <div class="card">
-      <h3>Comparação dos dados</h3>
-      <p>
-        Ao comparar radiação solar e temperatura da água,
-        é possível investigar como as condições solares
-        se relacionam com o aquecimento.
-      </p>
-    </div>
-  </div>
-</section>
 
-<section id="limitacoes">
-  <h2>7. Limitações dos sensores e dos dados</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>LDR</h3>
-      <p>
-        É sensível à luz, mas sua resposta depende do componente,
-        da temperatura e do circuito. Precisa de calibração
-        para comparações quantitativas.
-      </p>
-    </div>
     <div class="card">
       <h3>Fotodiodo</h3>
       <p>
-        Sua resposta depende do comprimento de onda, da área
-        sensível e do circuito de leitura. Também precisa
-        de calibração para medições precisas.
+        Detecta a luz e produz uma resposta elétrica que pode
+        ser analisada por um circuito.
+      </p>
+      <p><b>O que observar:</b> mudanças na resposta elétrica
+      conforme a luz recebida.</p>
+    </div>
+
+    <div class="card">
+      <h3>Piranômetro</h3>
+      <p>
+        Mede a irradiância solar recebida por uma superfície,
+        permitindo acompanhar a energia solar disponível.
+      </p>
+      <p><b>O que observar:</b> irradiância em W/m².</p>
+    </div>
+
+    <div class="card">
+      <h3>Sensor de temperatura</h3>
+      <p>
+        Mede a temperatura da água em diferentes horários.
+      </p>
+      <p><b>O que observar:</b> possíveis aumentos ou diminuições
+      da temperatura da piscina.</p>
+    </div>
+  </div>
+
+  <h3>Como seria realizado o monitoramento?</h3>
+
+  <div class="card">
+    <ol>
+      <li>Instalar ou posicionar o sensor de luz em um local adequado,
+      com exposição solar representativa.</li>
+      <li>Registrar a radiação solar em diferentes horários.</li>
+      <li>Medir a temperatura da água da piscina nos mesmos horários,
+      sempre no mesmo local e profundidade.</li>
+      <li>Repetir as observações durante vários dias.</li>
+      <li>Comparar os gráficos para investigar a relação entre
+      radiação solar e temperatura da água.</li>
+    </ol>
+  </div>
+
+  <h3>Gráfico interativo: radiação solar e temperatura da água</h3>
+
+  <p>
+    O gráfico abaixo permite visualizar como as duas grandezas
+    poderiam ser comparadas ao longo de um dia.
+  </p>
+
+  <div class="card">
+    <div class="status">
+      <b>Modo de visualização:</b>
+      exemplo didático. Os valores abaixo não são medições
+      da piscina do CEP.
+    </div>
+
+    <canvas id="graficoPiscina" width="900" height="330"></canvas>
+
+    <p class="pequeno">
+      A radiação solar e a temperatura utilizam escalas diferentes.
+      A temperatura da água pode demorar a responder ao aumento
+      da radiação devido à capacidade térmica da água.
+    </p>
+  </div>
+
+  <h3>Como os dados podem ajudar no aquecimento da piscina?</h3>
+
+  <p>
+    Se a piscina utilizar um sistema de aquecimento solar, o
+    monitoramento pode ajudar a avaliar a disponibilidade de
+    energia solar e acompanhar o resultado do aquecimento.
+  </p>
+
+  <div class="grid">
+    <div class="card">
+      <h3>☀️ Radiação solar</h3>
+      <p>
+        Permite identificar os períodos de maior disponibilidade
+        de energia solar para os coletores.
       </p>
     </div>
+
     <div class="card">
-      <h3>Dados de satélite e modelos</h3>
+      <h3>🌡️ Temperatura da água</h3>
       <p>
-        Bases como a NASA POWER fornecem estimativas e dados
-        de referência. Eles não substituem uma medição feita
-        por um sensor instalado exatamente no local.
+        Permite acompanhar se a temperatura da piscina está
+        aumentando ou diminuindo.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>📊 Análise dos resultados</h3>
+      <p>
+        A comparação dos dados ajuda a avaliar a relação entre
+        a radiação recebida e o aquecimento da água.
       </p>
     </div>
   </div>
 
   <div class="destaque">
-    Para comparar sensores em diferentes posições, o ideal é
-    utilizar sensores calibrados, medir no mesmo horário,
-    manter a mesma altura e registrar as condições do céu.
-    Um piranômetro é mais adequado para comparar irradiância solar.
+    <b>Conclusão:</b>
+    o uso de sensores de luz e temperatura permite acompanhar
+    fenômenos físicos presentes na piscina do CEP. Com essas
+    informações, é possível investigar como a energia solar
+    poderia contribuir para o aquecimento da água e para o
+    aproveitamento mais eficiente dessa fonte renovável.
   </div>
+
+  <p class="pequeno">
+    Importante: esta seção apresenta uma proposta de monitoramento.
+    Não afirma que a piscina do CEP utiliza aquecimento solar
+    nem apresenta medições reais de sua temperatura.
+  </p>
 </section>
 
-<section id="quiz">
-  <h2>8. Teste seus conhecimentos</h2>
-  <div class="card">
-    <p><b>1. O que acontece com a resistência de um LDR quando a luz aumenta?</b></p>
-    <select id="q1">
-      <option value="">Escolha uma resposta</option>
-      <option value="a">A resistência geralmente diminui</option>
-      <option value="b">A resistência sempre aumenta</option>
-      <option value="c">A resistência não muda</option>
-    </select>
-
-    <p><b>2. Qual instrumento mede a irradiância solar?</b></p>
-    <select id="q2">
-      <option value="">Escolha uma resposta</option>
-      <option value="a">Termômetro</option>
-      <option value="b">Piranômetro</option>
-      <option value="c">Balança</option>
-    </select>
-
-    <p><b>3. Qual unidade é utilizada para irradiância?</b></p>
-    <select id="q3">
-      <option value="">Escolha uma resposta</option>
-      <option value="a">W/m²</option>
-      <option value="b">Quilograma</option>
-      <option value="c">Metro</option>
-    </select>
-
-    <p><b>4. O que pode influenciar o aquecimento da água?</b></p>
-    <select id="q4">
-      <option value="">Escolha uma resposta</option>
-      <option value="a">Somente a cor da piscina</option>
-      <option value="b">Radiação, volume de água e perdas de calor</option>
-      <option value="c">Somente o horário</option>
-    </select>
-
-    <p><b>5. Os dados da NASA POWER são medições feitas por um sensor instalado no CEP?</b></p>
-    <select id="q5">
-      <option value="">Escolha uma resposta</option>
-      <option value="a">Sim</option>
-      <option value="b">Não, são dados de uma base científica</option>
-    </select>
-
-    <button onclick="corrigirQuiz()">Ver resultado</button>
-    <p id="resultadoQuiz"></p>
-  </div>
-</section>
-
-<footer>
-  <h3>SolarSense — Ciência aplicada à realidade do CEP</h3>
-  <p>
-    Projeto educativo sobre sensores de luz, radiação solar
-    e possibilidades de aplicação no aquecimento da água.
-  </p>
-  <p>
-    Fontes:
-    <a href="https://power.larc.nasa.gov/" target="_blank" rel="noopener">NASA POWER</a> |
-    <a href="https://www.cep.pr.gov.br/" target="_blank" rel="noopener">Colégio Estadual do Paraná</a>
-  </p>
-  <p>Projeto educativo — Colégio Estadual do Paraná</p>
-</footer>
-
-<!-- VLibras -->
-<div vw class="enabled">
-  <div vw-access-button class="active"></div>
-  <div vw-plugin-wrapper>
-    <div class="vw-plugin-top-wrapper"></div>
-  </div>
-</div>
-<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
 <script>
-new window.VLibras.Widget("https://vlibras.gov.br/app");
-</script>
+(function() {
+  const canvas = document.getElementById("graficoPiscina");
+  if (!canvas) return;
 
-<script>
-// Acessibilidade
-let tamanhoFonte = 16;
-
-function alterarFonte(valor) {
-  tamanhoFonte = Math.max(12, Math.min(24, tamanhoFonte + valor));
-  document.body.style.fontSize = tamanhoFonte + "px";
-}
-
-function contraste() {
-  document.body.classList.toggle("alto-contraste");
-}
-
-function lerPagina() {
-  if (!("speechSynthesis" in window)) {
-    alert("Seu navegador não oferece leitura de texto.");
-    return;
-  }
-  speechSynthesis.cancel();
-  const texto = document.querySelector("main")?.innerText ||
-                document.body.innerText;
-  const fala = new SpeechSynthesisUtterance(texto);
-  fala.lang = "pt-BR";
-  speechSynthesis.speak(fala);
-}
-
-// Simulador LDR
-const luz = document.getElementById("luz");
-
-luz.addEventListener("input", () => {
-  const valor = Number(luz.value);
-  const resistencia = Math.round(1000 / valor);
-
-  document.getElementById("valorLuz").textContent = valor + "%";
-  document.getElementById("resistencia").textContent =
-    resistencia + " unidades relativas";
-
-  document.getElementById("explicacaoLDR").textContent =
-    valor > 65
-    ? "Com mais luz, a resistência relativa diminui."
-    : valor < 30
-    ? "Com pouca luz, a resistência relativa aumenta."
-    : "A resposta varia conforme a quantidade de luz.";
-});
-
-// Simulador de ângulo
-const angulo = document.getElementById("angulo");
-
-angulo.addEventListener("input", atualizarAngulo);
-
-function atualizarAngulo() {
-  const a = Number(angulo.value);
-  const captacao = Math.cos(a * Math.PI / 180) * 100;
-
-  document.getElementById("valorAngulo").textContent = a + "°";
-  document.getElementById("captacao").textContent =
-    captacao.toFixed(1) + "%";
-
-  document.getElementById("textoAngulo").textContent =
-    a === 0
-    ? "Incidência perpendicular: maior captação neste modelo."
-    : "Neste modelo, quanto maior o desvio, menor a captação.";
-}
-
-// NASA POWER: radiação solar diária em Curitiba
-const latitude = -25.4284;
-const longitude = -49.2733;
-let ultimaRadiacao = null;
-let dadosSolar = [];
-
-function dataFormatada(data) {
-  return data.slice(6,8) + "/" + data.slice(4,6) + "/" + data.slice(0,4);
-}
-
-function desenharGrafico(dados) {
-  const canvas = document.getElementById("graficoSolar");
   const ctx = canvas.getContext("2d");
-
   const largura = canvas.width;
   const altura = canvas.height;
 
+  // Valores fictícios para demonstrar a comparação.
+  const horarios = ["8h", "9h", "10h", "11h", "12h",
+                    "13h", "14h", "15h", "16h", "17h"];
+
+  const radiacao = [120, 250, 420, 570, 680,
+                    720, 650, 490, 300, 140];
+
+  const temperatura = [22.0, 22.0, 22.1, 22.2, 22.3,
+                       22.5, 22.7, 22.9, 23.0, 23.0];
+
+  const margem = 65;
+  const areaW = largura - margem * 2;
+  const areaH = altura - 100;
+
   ctx.clearRect(0, 0, largura, altura);
 
-  if (!dados.length) {
-    ctx.font = "18px Arial";
-    ctx.fillStyle = "#333";
-    ctx.fillText("Não há dados disponíveis para exibir.", 30, 50);
-    return;
-  }
-
-  const margem = 55;
-  const valores = dados.map(d => d.valor);
-  const maximo = Math.max(...valores, 1) * 1.15;
-  const areaLargura = largura - margem * 2;
-  const areaAltura = altura - margem * 2;
-  const passo = areaLargura / dados.length;
-
-  ctx.strokeStyle = "#b9c8d2";
-  ctx.lineWidth = 1;
+  // Linhas horizontais
+  ctx.strokeStyle = "#dce6ed";
+  ctx.fillStyle = "#263b4b";
+  ctx.font = "13px Arial";
 
   for (let i = 0; i <= 4; i++) {
-    const y = margem + areaAltura - (i / 4) * areaAltura;
+    const y = 35 + i * areaH / 4;
     ctx.beginPath();
     ctx.moveTo(margem, y);
     ctx.lineTo(largura - margem, y);
     ctx.stroke();
 
-    ctx.fillStyle = "#334";
-    ctx.font = "12px Arial";
-    ctx.fillText((maximo * i / 4).toFixed(1), 8, y + 4);
+    ctx.fillText(String(800 - i * 200), 18, y + 4);
   }
 
-  dados.forEach((d, i) => {
-    const x = margem + i * passo + passo * 0.15;
-    const barraLargura = Math.max(2, passo * 0.7);
-    const barraAltura = (d.valor / maximo) * areaAltura;
-    const y = margem + areaAltura - barraAltura;
+  // Radiação solar
+  ctx.strokeStyle = "#e6a000";
+  ctx.lineWidth = 4;
+  ctx.beginPath();
 
-    ctx.fillStyle = "#f4b942";
-    ctx.fillRect(x, y, barraLargura, barraAltura);
+  radiacao.forEach((valor, i) => {
+    const x = margem + i * areaW / (horarios.length - 1);
+    const y = 35 + areaH - (valor / 800) * areaH;
+
+    if (i === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  });
+
+  ctx.stroke();
+
+  // Temperatura da água
+  ctx.strokeStyle = "#1687b5";
+  ctx.lineWidth = 4;
+  ctx.beginPath();
+
+  temperatura.forEach((valor, i) => {
+    const x = margem + i * areaW / (horarios.length - 1);
+    const y = 35 + areaH -
+      ((valor - 20) / 5) * areaH;
+
+    if (i === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  });
+
+  ctx.stroke();
+
+  // Legenda
+  ctx.fillStyle = "#e6a000";
+  ctx.fillRect(80, altura - 35, 18, 5);
+  ctx.fillStyle = "#263b4b";
+  ctx.fillText("Radiação solar (W/m²)", 105, altura - 28);
+
+  ctx.fillStyle = "#1687b5";
+  ctx.fillRect(350, altura - 35, 18, 5);
+  ctx.fillStyle = "#263b4b";
+  ctx.fillText("Temperatura da água (°C)", 375, altura - 28);
+
+  // Horários
+  horarios.forEach((h, i) => {
+    const x = margem + i * areaW / (horarios.length - 1);
+    ctx.fillStyle = "#263b4b";
+    ctx.fillText(h, x - 10, altura - 52);
   });
 
   ctx.fillStyle = "#263b4b";
-  ctx.font = "12px Arial";
-  ctx.fillText("Radiação diária (kWh/m²/dia)", margem, 22);
-  ctx.fillText(dataFormatada(dados[0].data), margem, altura - 15);
-  ctx.fillText(
-    dataFormatada(dados[dados.length - 1].data),
-    largura - margem - 75,
-    altura - 15
-  );
-}
-
-async function buscarDados() {
-  const status = document.getElementById("statusDados");
-  status.textContent = "Consultando a NASA POWER...";
-
-  try {
-    const hoje = new Date();
-    const fim = new Date(hoje);
-    fim.setUTCDate(fim.getUTCDate() - 2);
-
-    const inicio = new Date(fim);
-    inicio.setUTCDate(inicio.getUTCDate() - 29);
-
-    const formatarAPI = d =>
-      d.getUTCFullYear().toString() +
-      String(d.getUTCMonth() + 1).padStart(2, "0") +
-      String(d.getUTCDate()).padStart(2, "0");
-
-    const url =
-      "https://power.larc.nasa.gov/api/temporal/daily/point" +
-      "?parameters=ALLSKY_SFC_SW_DWN" +
-      "&community=RE" +
-      "&longitude=" + longitude +
-      "&latitude=" + latitude +
-      "&start=" + formatarAPI(inicio) +
-      "&end=" + formatarAPI(fim) +
-      "&format=JSON";
-
-    const resposta = await fetch(url);
-
-    if (!resposta.ok) {
-      throw new Error("A fonte de dados não respondeu.");
-    }
-
-    const json = await resposta.json();
-    const serie = json.properties.parameter.ALLSKY_SFC_SW_DWN;
-
-    dadosSolar = Object.entries(serie)
-      .filter(([data, valor]) =>
-        Number.isFinite(Number(valor)) &&
-        Number(valor) >= 0
-      )
-      .map(([data, valor]) => ({
-        data,
-        valor: Number(valor)
-      }))
-      .sort((a,b) => a.data.localeCompare(b.data));
-
-    if (!dadosSolar.length) {
-      throw new Error("A fonte não retornou valores válidos.");
-    }
-
-    const ultimo = dadosSolar[dadosSolar.length - 1];
-    ultimaRadiacao = ultimo.valor;
-
-    document.getElementById("ultimoValor").textContent =
-      ultimo.valor.toFixed(2);
-
-    document.getElementById("ultimaData").textContent =
-      dataFormatada(ultimo.data);
-
-    status.textContent =
-      "Dados recebidos com sucesso. " +
-      dadosSolar.length +
-      " registros disponíveis para Curitiba.";
-
-    desenharGrafico(dadosSolar);
-    calcularPiscina();
-
-  } catch (erro) {
-    status.textContent =
-      "Não foi possível carregar os dados agora. " +
-      "Verifique sua conexão e tente novamente. " +
-      "Detalhe: " + erro.message;
-
-    desenharGrafico([]);
-  }
-}
-
-// Simulador da piscina
-function calcularPiscina() {
-  const area = Number(document.getElementById("area").value);
-  const volume = Number(document.getElementById("volume").value);
-  const eficiencia =
-    Number(document.getElementById("eficiencia").value) / 100;
-
-  document.getElementById("valorEficiencia").textContent =
-    Math.round(eficiencia * 100) + "%";
-
-  if (
-    !Number.isFinite(area) || area <= 0 ||
-    !Number.isFinite(volume) || volume <= 0
-  ) {
-    document.getElementById("energia").textContent = "--";
-    document.getElementById("aumento").textContent = "--";
-    document.getElementById("statusPiscina").textContent =
-      "Informe valores positivos para área e volume.";
-    return;
-  }
-
-  if (ultimaRadiacao === null) {
-    document.getElementById("energia").textContent = "--";
-    document.getElementById("aumento").textContent = "--";
-    document.getElementById("statusPiscina").textContent =
-      "Aguardando dados reais de radiação solar.";
-    return;
-  }
-
-  // Energia incidente diária = radiação diária x área
-  const energiaIncidente = ultimaRadiacao * area;
-
-  // Energia útil estimada após aplicar a eficiência
-  const energiaUtil = energiaIncidente * eficiencia;
-
-  // Aproximadamente 1,163 kWh aquece 1 m³ de água em 1°C
-  const aumentoTemperatura = energiaUtil / (volume * 1.163);
-
-  document.getElementById("energia").textContent =
-    energiaIncidente.toFixed(2);
-
-  document.getElementById("aumento").textContent =
-    aumentoTemperatura.toFixed(3);
-
-  document.getElementById("statusPiscina").textContent =
-    "Estimativa calculada com a radiação diária de " +
-    ultimaRadiacao.toFixed(2) +
-    " kWh/m²/dia, registrada em " +
-    dataFormatada(dadosSolar[dadosSolar.length - 1].data) +
-    ".";
-}
-
-["area", "volume", "eficiencia"].forEach(id => {
-  document.getElementById(id).addEventListener("input", calcularPiscina);
-});
-
-// Quiz
-function corrigirQuiz() {
-  const respostas = {
-    q1: "a",
-    q2: "b",
-    q3: "a",
-    q4: "b",
-    q5: "b"
-  };
-
-  let pontos = 0;
-
-  Object.entries(respostas).forEach(([id, correta]) => {
-    if (document.getElementById(id).value === correta) {
-      pontos++;
-    }
-  });
-
-  document.getElementById("resultadoQuiz").textContent =
-    "Você acertou " + pontos + " de 5 questões.";
-}
-
-// Iniciar dados automaticamente ao abrir o site
-buscarDados();
+  ctx.fillText("Radiação (W/m²)", 65, 18);
+})();
 </script>
-
-</body>
-</html>
