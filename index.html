@@ -1,155 +1,474 @@
 
-const speech = window.speechSynthesis;
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#17445f">
+<title>Solar 2026 | Física e Energia Solar</title>
 
-const readButton = document.getElementById('readButton');
-const pauseButton = document.getElementById('pauseButton');
-const stopButton = document.getElementById('stopButton');
-const speechStatus = document.getElementById('speechStatus');
-
-let chunks = [];
-let currentChunk = 0;
-let isReading = false;
-let session = 0;
-
-function getPageText() {
-  const areas = document.querySelectorAll(
-    'main, .hero, body > section, footer'
-  );
-
-  const texts = [];
-
-  areas.forEach(area => {
-    const copy = area.cloneNode(true);
-
-    copy.querySelectorAll(
-      'button, input, select, textarea, script, style, svg, .accessibility-tools'
-    ).forEach(el => el.remove());
-
-    const text = copy.innerText || copy.textContent;
-
-    if (text.trim()) texts.push(text.trim());
-  });
-
-  return [...new Set(texts)].join('. ').replace(/\s+/g, ' ');
+<style>
+:root {
+  --azul: #245f87;
+  --azul-escuro: #17445f;
+  --dourado: #f2bd45;
+  --fundo: #f3f7fa;
+  --texto: #20303b;
 }
 
-function splitText(text, limit = 220) {
-  const sentences = text.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [];
-  const result = [];
-  let current = '';
+* {
+  box-sizing: border-box;
+}
 
-  sentences.forEach(sentence => {
-    sentence = sentence.trim();
-    if (!sentence) return;
+html {
+  scroll-behavior: smooth;
+}
 
-    if ((current + ' ' + sentence).trim().length > limit) {
-      if (current) result.push(current);
-      current = sentence;
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: var(--texto);
+  background: var(--fundo);
+  line-height: 1.6;
+}
+
+.hero {
+  background: linear-gradient(135deg, #17445f, #2879a5);
+  color: white;
+  text-align: center;
+  padding: 55px 20px;
+}
+
+.hero h1 {
+  font-size: clamp(32px, 6vw, 52px);
+  margin: 15px 0;
+}
+
+.hero p {
+  max-width: 750px;
+  margin: auto;
+  font-size: 17px;
+}
+
+.hero a {
+  display: inline-block;
+  margin-top: 22px;
+  padding: 11px 20px;
+  background: var(--dourado);
+  color: #17384d;
+  text-decoration: none;
+  border-radius: 9px;
+  font-weight: bold;
+}
+
+main {
+  max-width: 1100px;
+  margin: auto;
+  padding: 30px 18px 120px;
+}
+
+.intro, .topic {
+  background: white;
+  border-radius: 15px;
+  padding: 23px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 18px rgba(0,0,0,.06);
+}
+
+.intro h2, .topic h2 {
+  color: var(--azul);
+}
+
+.topic {
+  border-top: 4px solid var(--dourado);
+}
+
+.topic h2 {
+  font-size: 20px;
+  line-height: 1.4;
+}
+
+.topic h3 {
+  font-size: 16px;
+  color: var(--azul-escuro);
+}
+
+.focus {
+  color: #52616b;
+}
+
+ul {
+  padding-left: 22px;
+}
+
+li {
+  margin: 9px 0;
+}
+
+.topic-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+@media(max-width: 700px) {
+  .topic-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="hero">
+  <h1>☀️ Projeto Solar 2026</h1>
+  <p>
+    Física, robótica e energia solar:
+    explorando como a ciência e a tecnologia
+    podem ajudar a aquecer uma piscina
+    de maneira mais eficiente.
+  </p>
+  <a href="#conteudos">Conheça os conteúdos</a>
+</header>
+
+<main id="conteudos">
+
+<section class="intro">
+  <h2>Conteúdos de estudo</h2>
+  <p>
+    Neste espaço você encontrará os principais
+    temas de Física relacionados ao projeto,
+    suas explicações e questões orientadoras.
+  </p>
+</section>
+
+<div class="topic-grid">
+<section class="topic">
+<h2>3. Efeito fotoelétrico e conversão da luz em eletricidade</h2>
+<p class="focus"><strong>Foco:</strong> Física quântica e energia solar fotovoltaica.</p>
+<h3>Questões orientadoras</h3>
+<ul>
+<li>O que são fótons e como sua energia depende da frequência?</li>
+<li>O que significa frequência de corte?</li>
+<li>Como uma célula fotovoltaica transforma energia luminosa em elétrica?</li>
+<li>Qual é a diferença entre aquecimento solar térmico e aquecimento com eletricidade fotovoltaica?</li>
+</ul>
+</section>
+
+<section class="topic">
+<h2>4. Absorção, reflexão e transmissão da radiação solar</h2>
+<p class="focus"><strong>Foco:</strong> Óptica e interação da radiação com materiais.</p>
+<h3>Questões orientadoras</h3>
+<ul>
+<li>Por que superfícies escuras tendem a absorver mais luz visível?</li>
+<li>Qual é a diferença entre absorver e refletir radiação?</li>
+<li>Uma cobertura transparente pode ajudar a aquecer a piscina?</li>
+</ul>
+</section>
+
+<section class="topic">
+<h2>5. Radiação infravermelha e perda de energia da piscina</h2>
+<p class="focus"><strong>Foco:</strong> Emissão e absorção de radiação térmica.</p>
+<h3>Questões orientadoras</h3>
+<ul>
+<li>Por que objetos aquecidos emitem radiação infravermelha?</li>
+<li>Como a temperatura influencia a emissão?</li>
+<li>Por que a piscina pode perder calor mesmo quando o ar está relativamente parado?</li>
+<li>Como uma cobertura pode reduzir as perdas de energia?</li>
+</ul>
+</section>
+
+<section class="topic">
+<h2>6. Sensores de temperatura: como medir o aquecimento da água?</h2>
+<p class="focus"><strong>Foco:</strong> Física das medidas e Robótica.</p>
+<h3>Questões orientadoras</h3>
+<ul>
+<li>Como um sensor transforma uma grandeza física em um sinal elétrico?</li>
+<li>Como medir a temperatura em diferentes pontos?</li>
+<li>Qual é a diferença entre precisão, resolução e tempo de resposta?</li>
+<li>Como os dados podem indicar se o sistema está aquecendo a piscina?</li>
+</ul>
+</section>
+
+<section class="topic">
+<h2>7. Sensores de luz e o acompanhamento da radiação solar</h2>
+<p class="focus"><strong>Foco:</strong> Radiação eletromagnética e sensores.</p>
+<h3>Questões orientadoras</h3>
+<ul>
+<li>Como um LDR ou fotodiodo responde à luz?</li>
+<li>Como comparar a intensidade luminosa em diferentes posições?</li>
+<li>É possível identificar o melhor posicionamento de um coletor solar?</li>
+<li>Quais são as limitações desses sensores para medir a energia solar?</li>
+</ul>
+</section>
+
+<section class="topic">
+<h2>8. Placas fotovoltaicas: como transformar a radiação solar em energia elétrica?</h2>
+<p class="focus"><strong>Foco:</strong> Física moderna, efeito fotoelétrico e conversão de energia.</p>
+<h3>Questões orientadoras</h3>
+<ul>
+<li>Como é a estrutura de uma célula fotovoltaica e quais materiais são utilizados?</li>
+<li>Como a energia dos fótons pode gerar corrente elétrica em um semicondutor?</li>
+<li>Qual é a relação entre intensidade da radiação, potência gerada e eficiência?</li>
+<li>Por que a produção varia ao longo do dia e em dias nublados?</li>
+<li>Como a eletricidade produzida poderia ser utilizada para aquecer a piscina?</li>
+</ul>
+</section>
+
+<section class="topic">
+<h2>9. É possível aquecer a piscina da escola com energia solar?</h2>
+<p class="focus"><strong>Foco:</strong> Integração da Física e avaliação tecnológica.</p>
+<h3>Questões orientadoras</h3>
+<ul>
+<li>Qual é a diferença entre aquecimento solar térmico e fotovoltaico?</li>
+<li>Quais são as vantagens e limitações de cada sistema?</li>
+<li>Que dados seriam necessários para estimar a energia para aquecer a piscina?</li>
+<li>Como a maquete pode representar uma solução possível para a escola?</li>
+</ul>
+</section>
+</div>
+</main>
+<aside class="accessibility" id="acessibilidade">
+<style>
+.accessibility {
+  position: fixed;
+  right: 15px;
+  bottom: 15px;
+  z-index: 9999;
+  width: min(260px, calc(100vw - 30px));
+  padding: 13px;
+  background: white;
+  border: 2px solid #f2bd45;
+  border-radius: 14px;
+  box-shadow: 0 5px 20px rgba(0,0,0,.18);
+}
+
+.accessibility h3 {
+  margin: 0 0 9px;
+  color: #17445f;
+  font-size: 15px;
+}
+
+.accessibility button {
+  width: 100%;
+  padding: 10px;
+  margin: 3px 0;
+  border: 0;
+  border-radius: 8px;
+  background: #17445f;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.accessibility button:first-of-type {
+  background: #176b4b;
+}
+
+.accessibility button:focus-visible {
+  outline: 3px solid #f2bd45;
+  outline-offset: 3px;
+}
+
+#speechStatus {
+  font-size: 12px;
+  margin: 7px 0 0;
+  color: #444;
+}
+</style>
+
+<h3>🔊 Acessibilidade</h3>
+
+<button id="readButton" type="button">
+▶ Ler página em voz alta
+</button>
+
+<button id="pauseButton" type="button">
+⏸ Pausar / Continuar
+</button>
+
+<button id="stopButton" type="button">
+⏹ Parar leitura
+</button>
+
+<p id="speechStatus" role="status" aria-live="polite">
+Leitura disponível.
+</p>
+</aside>
+
+<footer style="text-align:center;padding:25px 15px 120px;color:#52616b">
+<p>☀️ Projeto Solar 2026</p>
+<p>Física • Robótica • Energia Solar</p>
+</footer>
+
+<script>
+(() => {
+  if (!('speechSynthesis' in window)) {
+    document.getElementById('speechStatus').textContent =
+      'Seu navegador não oferece suporte à leitura em voz alta.';
+    return;
+  }
+
+  const synth = window.speechSynthesis;
+  const read = document.getElementById('readButton');
+  const pause = document.getElementById('pauseButton');
+  const stop = document.getElementById('stopButton');
+  const status = document.getElementById('speechStatus');
+
+  let parts = [];
+  let index = 0;
+  let active = false;
+  let session = 0;
+
+  function getText() {
+    const main = document.querySelector('main');
+    const copy = main.cloneNode(true);
+
+    copy.querySelectorAll(
+      'button, script, style, .accessibility'
+    ).forEach(el => el.remove());
+
+    return (copy.innerText || copy.textContent)
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  function divideText(text) {
+    const sentences =
+      text.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [];
+
+    const result = [];
+    let current = '';
+
+    sentences.forEach(sentence => {
+      sentence = sentence.trim();
+
+      if ((current + ' ' + sentence).trim().length > 200 && current) {
+        result.push(current);
+        current = sentence;
+      } else {
+        current = (current + ' ' + sentence).trim();
+      }
+    });
+
+    if (current) result.push(current);
+
+    return result;
+  }
+
+  function getVoice() {
+    const voices = synth.getVoices();
+
+    return voices.find(v =>
+      v.lang.toLowerCase() === 'pt-br'
+    ) || voices.find(v =>
+      v.lang.toLowerCase().startsWith('pt')
+    ) || null;
+  }
+
+  function speakNext(id) {
+    if (!active || id !== session) return;
+
+    if (index >= parts.length) {
+      active = false;
+      status.textContent = 'Leitura concluída!';
+      read.textContent = '▶ Ler novamente';
+      return;
+    }
+
+    const utterance =
+      new SpeechSynthesisUtterance(parts[index]);
+
+    utterance.lang = 'pt-BR';
+    utterance.rate = 0.95;
+    utterance.pitch = 1;
+
+    const voice = getVoice();
+    if (voice) utterance.voice = voice;
+
+    utterance.onend = () => {
+      if (!active || id !== session) return;
+
+      index++;
+      status.textContent =
+        `Lendo parte ${index} de ${parts.length}...`;
+
+      speakNext(id);
+    };
+
+    utterance.onerror = event => {
+      if (id !== session ||
+          ['canceled', 'interrupted'].includes(event.error)) return;
+
+      active = false;
+      status.textContent = 'Erro durante a leitura.';
+    };
+
+    synth.speak(utterance);
+  }
+
+  read.addEventListener('click', () => {
+    synth.cancel();
+    session++;
+
+    const id = session;
+    index = 0;
+    parts = divideText(getText());
+
+    if (!parts.length) {
+      status.textContent = 'Nenhum texto encontrado.';
+      return;
+    }
+
+    active = true;
+    read.textContent = '▶ Reiniciar leitura';
+    status.textContent = 'Iniciando leitura...';
+
+    speakNext(id);
+  });
+
+  pause.addEventListener('click', () => {
+    if (synth.speaking && !synth.paused) {
+      synth.pause();
+      pause.textContent = '▶ Continuar';
+      status.textContent = 'Leitura pausada.';
+    } else if (synth.paused) {
+      synth.resume();
+      pause.textContent = '⏸ Pausar / Continuar';
+      status.textContent = 'Continuando leitura...';
     } else {
-      current = (current + ' ' + sentence).trim();
+      status.textContent = 'Inicie a leitura primeiro.';
     }
   });
 
-  if (current) result.push(current);
-  return result;
-}
+  stop.addEventListener('click', () => {
+    session++;
+    active = false;
+    index = 0;
+    synth.cancel();
 
-function getVoice() {
-  const voices = speech.getVoices();
+    read.textContent = '▶ Ler página em voz alta';
+    pause.textContent = '⏸ Pausar / Continuar';
+    status.textContent = 'Leitura parada.';
+  });
+})();
+</script>
 
-  return voices.find(v => v.lang.toLowerCase() === 'pt-br') ||
-         voices.find(v => v.lang.toLowerCase().startsWith('pt')) ||
-         null;
-}
+<div vw class="enabled">
+  <div vw-access-button class="active"></div>
+  <div vw-plugin-wrapper>
+    <div class="vw-plugin-top-wrapper"></div>
+  </div>
+</div>
 
-function speakNext(id) {
-  if (!isReading || id !== session) return;
-
-  if (currentChunk >= chunks.length) {
-    isReading = false;
-    speechStatus.textContent = 'Leitura concluída!';
-    return;
-  }
-
-  const utterance = new SpeechSynthesisUtterance(
-    chunks[currentChunk]
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+<script>
+  new window.VLibras.Widget(
+    'https://vlibras.gov.br/app'
   );
+</script>
 
-  utterance.lang = 'pt-BR';
-  utterance.rate = 0.95;
-  utterance.pitch = 1;
-
-  const voice = getVoice();
-  if (voice) utterance.voice = voice;
-
-  utterance.onend = () => {
-    if (id !== session || !isReading) return;
-
-    currentChunk++;
-
-    speechStatus.textContent =
-      `Lendo parte ${currentChunk + 1} de ${chunks.length}...`;
-
-    speakNext(id);
-  };
-
-  utterance.onerror = (event) => {
-    if (id !== session) return;
-    if (event.error === 'canceled' ||
-        event.error === 'interrupted') return;
-
-    isReading = false;
-    speechStatus.textContent = 'Erro na leitura. Tente novamente.';
-  };
-
-  speech.speak(utterance);
-}
-
-readButton.addEventListener('click', () => {
-  if (!('speechSynthesis' in window)) {
-    speechStatus.textContent = 'Navegador sem suporte à leitura.';
-    return;
-  }
-
-  speech.cancel();
-  session++;
-
-  const id = session;
-  currentChunk = 0;
-  isReading = true;
-
-  const text = getPageText();
-
-  if (!text) {
-    isReading = false;
-    speechStatus.textContent = 'Nenhum texto encontrado.';
-    return;
-  }
-
-  chunks = splitText(text);
-
-  speechStatus.textContent = 'Iniciando leitura...';
-  speakNext(id);
-});
-
-pauseButton.addEventListener('click', () => {
-  if (speech.speaking && !speech.paused) {
-    speech.pause();
-    speechStatus.textContent = 'Leitura pausada.';
-  } else if (speech.paused) {
-    speech.resume();
-    speechStatus.textContent = 'Continuando leitura...';
-  } else {
-    speechStatus.textContent =
-      'Inicie a leitura primeiro.';
-  }
-});
-
-stopButton.addEventListener('click', () => {
-  session++;
-  isReading = false;
-  currentChunk = 0;
-  speech.cancel();
-
-  speechStatus.textContent = 'Leitura parada.';
-});
+</body>
+</html>
