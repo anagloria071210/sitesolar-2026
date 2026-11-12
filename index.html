@@ -4,383 +4,533 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#092b55">
-<title>Projeto Solar 2026 | Ciência que aquece ideias</title>
+<title>Projeto Solar 2026 | Energia para o Futuro</title>
+<meta name="description" content="Site educativo sobre energia solar, tecnologias, funcionamento e sustentabilidade.">
+
 <style>
-:root{--navy:#082b55;--blue:#1265a8;--sky:#eaf5ff;--gold:#f5bd35;--ink:#17324d;--muted:#5d7186;--white:#fff;--line:#d9e6f1;--green:#18845b;--shadow:0 14px 38px rgba(8,43,85,.10)}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);background:#f7fbff;line-height:1.6}
-a{color:inherit}
-button,input,select{font:inherit}
-.topbar{position:sticky;top:0;z-index:20;background:rgba(8,43,85,.97);color:white;box-shadow:0 4px 18px #082b5522}
-.nav{max-width:1160px;margin:auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-.brand{display:flex;align-items:center;gap:10px;font-weight:850;letter-spacing:.2px}
-.sunmark{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:var(--navy);font-size:23px}
-.navlinks{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}
-.navlinks a{font-size:.9rem;text-decoration:none;padding:8px 10px;border-radius:10px;color:#eaf5ff}
-.navlinks a:hover,.navlinks a:focus{background:#ffffff20;outline:2px solid #f5bd35}
-.hero{background:radial-gradient(circle at 85% 20%,#237cba 0,transparent 28%),linear-gradient(125deg,#082b55,#0e5792);color:white;overflow:hidden}
-.hero-inner{max-width:1160px;margin:auto;padding:76px 20px 70px;display:grid;grid-template-columns:1.2fr .8fr;gap:35px;align-items:center}
-.eyebrow{color:#ffd66b;text-transform:uppercase;letter-spacing:2px;font-weight:800;font-size:.78rem}
-.hero h1{font-size:clamp(2.3rem,5vw,4.5rem);line-height:1.04;margin:12px 0 18px}
-.hero p{max-width:650px;color:#e0efff;font-size:1.1rem}
-.hero-art{min-height:260px;display:grid;place-items:center;position:relative}
-.sun-disc{width:190px;height:190px;border-radius:50%;background:linear-gradient(145deg,#ffe78d,#f5a900);box-shadow:0 0 0 24px #ffffff10,0 0 90px #ffcc55aa;display:grid;place-items:center;font-size:6rem}
-.orbit{position:absolute;width:290px;height:130px;border:2px solid #ffffff55;border-radius:50%;transform:rotate(-22deg)}
-.orbit:after{content:"";position:absolute;width:15px;height:15px;border-radius:50%;background:#fff;top:14px;left:35px}
-.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:25px}
-.btn{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:12px;padding:11px 17px;font-weight:800;text-decoration:none;cursor:pointer;transition:.2s}
-.btn:hover{transform:translateY(-2px)}
-.btn-gold{background:var(--gold);color:var(--navy)}
-.btn-light{background:#fff;color:var(--navy)}
-.btn-blue{background:var(--blue);color:#fff}
-.btn-outline{border:1px solid var(--line);background:white;color:var(--navy)}
-main{max-width:1160px;margin:auto;padding:25px 20px 70px}
-.section{padding:54px 0;scroll-margin-top:80px}
-.section-head{max-width:760px;margin-bottom:25px}
-.kicker{color:var(--blue);font-weight:850;text-transform:uppercase;letter-spacing:1.5px;font-size:.75rem}
-.section h2{font-size:clamp(1.8rem,3vw,2.7rem);line-height:1.15;color:var(--navy);margin:7px 0 12px}
-.lead{color:var(--muted);font-size:1.05rem}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}
-.card{background:white;border:1px solid var(--line);border-radius:18px;padding:21px;box-shadow:var(--shadow)}
-.card h3{margin:5px 0 8px;color:var(--navy)}
-.icon{font-size:2rem}
-.card p{color:var(--muted);margin:0}
-.fact{background:var(--sky);border-left:4px solid var(--gold);padding:15px 18px;border-radius:0 12px 12px 0;margin:18px 0}
-.topic-list{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}
-.topic{background:white;border:1px solid var(--line);border-radius:15px;overflow:hidden}
-.topic summary{list-style:none;cursor:pointer;padding:17px 19px;font-weight:800;color:var(--navy);display:flex;gap:12px;align-items:center}
-.topic summary::-webkit-details-marker{display:none}
-.topic summary:after{content:"＋";margin-left:auto;color:var(--blue);font-size:1.2rem}
-.topic[open] summary:after{content:"−"}
-.topic-content{padding:0 19px 19px;color:var(--muted)}
-.topic-content strong{color:var(--ink)}
-.pool{background:linear-gradient(135deg,#e9f6ff,#fff8df);border:1px solid #cfe4f5;border-radius:24px;padding:clamp(20px,4vw,38px)}
-.pool-grid{display:grid;grid-template-columns:1fr 1fr;gap:25px;align-items:start}
-.pool h3{color:var(--navy)}
-.pool-visual{background:linear-gradient(160deg,#1265a8,#69c8e8);border-radius:18px;min-height:210px;display:grid;place-items:center;color:white;position:relative;overflow:hidden}
-.pool-visual .water{font-size:5rem;filter:drop-shadow(0 7px 8px #06416b55)}
-.pool-visual:before{content:"☀️";font-size:3.2rem;position:absolute;top:16px;right:25px}
-.pool-visual:after{content:"";position:absolute;bottom:35px;left:-10%;width:120%;height:45px;border-top:3px solid #ffffff80;border-radius:50%}
-.steps{counter-reset:step;display:grid;gap:12px}
-.step{display:flex;gap:12px;align-items:flex-start}
-.step:before{counter-increment:step;content:counter(step);flex:0 0 30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--gold);font-weight:900;color:var(--navy)}
-.simulator{background:white;border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:var(--shadow)}
-.fields{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-.field label{display:block;font-weight:750;color:var(--navy);font-size:.92rem;margin-bottom:5px}
-.field input{width:100%;border:1px solid #c6d7e6;border-radius:10px;padding:11px;background:#fbfdff}
-.field small{color:var(--muted)}
-.result{background:var(--navy);color:white;border-radius:15px;padding:19px;margin-top:17px}
-.result strong{color:#ffda70}
-.result-number{font-size:2rem;font-weight:900;line-height:1.2;margin:5px 0}
-.note{font-size:.87rem;color:var(--muted)}
-.result .note{color:#d5e6f6}
-.quizbox{background:white;border:1px solid var(--line);border-radius:20px;padding:23px;box-shadow:var(--shadow)}
-.quiz-q{font-size:1.15rem;font-weight:850;color:var(--navy);margin:0 0 15px}
-.answers{display:grid;gap:9px}
-.answer{border:1px solid var(--line);background:#fbfdff;border-radius:11px;padding:12px;text-align:left;cursor:pointer;color:var(--ink)}
-.answer:hover{border-color:var(--blue)}
-.answer.correct{background:#e7f7ef;border-color:#65bd91}
-.answer.wrong{background:#fff0ed;border-color:#e49a8d}
-.feedback{min-height:28px;font-weight:750;margin:12px 0}
-.progress{height:8px;background:#e6eef5;border-radius:99px;overflow:hidden;margin:14px 0}
-.progress span{display:block;height:100%;width:0;background:var(--gold);transition:.3s}
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.footer{background:#082b55;color:#d9eaff;padding:30px 20px;text-align:center}
-.footer strong{color:#ffda70}
-.small{font-size:.9rem;color:var(--muted)}
-.pill{display:inline-block;background:#fff2c8;color:#755000;padding:4px 9px;border-radius:30px;font-size:.78rem;font-weight:800}
-.toplink{position:fixed;right:17px;bottom:18px;width:44px;height:44px;border-radius:50%;background:var(--gold);color:var(--navy);display:grid;place-items:center;text-decoration:none;font-size:1.4rem;box-shadow:var(--shadow);z-index:10}
-@media(max-width:800px){.hero-inner{grid-template-columns:1fr;padding-top:52px}.hero-art{min-height:190px}.sun-disc{width:140px;height:140px;font-size:4.5rem}.orbit{width:230px;height:100px}.grid{grid-template-columns:1fr 1fr}.pool-grid,.two-col{grid-template-columns:1fr}.topic-list{grid-template-columns:1fr}.nav{align-items:flex-start;flex-direction:column}.navlinks{justify-content:flex-start}.navlinks a{font-size:.82rem;padding:6px 8px}}
-@media(max-width:520px){.grid{grid-template-columns:1fr}.fields{grid-template-columns:1fr}.hero-inner{padding-bottom:42px}.section{padding:38px 0}.navlinks{gap:2px}.brand{font-size:.95rem}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+:root{
+  --azul:#082b50;
+  --azul2:#10558a;
+  --claro:#eaf4fc;
+  --amarelo:#ffc928;
+  --texto:#26384a;
+  --fundo:#f5f8fc;
+}
+*{box-sizing:border-box;scroll-behavior:smooth}
+body{margin:0;font-family:Arial,sans-serif;background:var(--fundo);color:var(--texto);line-height:1.7}
+header{background:var(--azul);color:white;padding:15px 4%;position:sticky;top:0;z-index:10}
+nav{max-width:1150px;margin:auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.logo{font-size:20px;font-weight:bold;color:var(--amarelo)}
+nav a{color:white;text-decoration:none;font-size:13px;margin:5px}
+nav a:hover{color:var(--amarelo)}
+.hero{background:linear-gradient(120deg,#082b50,#12649a);color:white;padding:85px 7%;text-align:center}
+.hero h1{font-size:clamp(36px,6vw,65px);margin:10px}
+.hero p{max-width:760px;margin:15px auto;font-size:18px}
+.sun{font-size:65px}
+.btn{border:0;border-radius:9px;padding:12px 20px;font-weight:bold;cursor:pointer;display:inline-block;text-decoration:none;margin:5px}
+.btn-yellow{background:var(--amarelo);color:var(--azul)}
+.btn-blue{background:var(--azul2);color:white}
+.btn-outline{background:white;color:var(--azul);border:1px solid #aac4dc}
+main{max-width:1100px;margin:auto;padding:20px}
+section{padding:48px 0;scroll-margin-top:90px}
+.section-title{text-align:center;margin-bottom:30px}
+.section-title small{color:#a87500;font-weight:bold;letter-spacing:2px}
+h2{color:var(--azul);font-size:clamp(27px,4vw,36px);line-height:1.2}
+h3{color:var(--azul2)}
+.lead{max-width:800px;margin:10px auto;color:#52677b}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+.card{background:white;padding:23px;border-radius:15px;box-shadow:0 5px 20px #1231;border:1px solid #e2ebf3}
+.emoji{font-size:35px}
+.highlight{background:var(--claro);border-left:5px solid var(--amarelo);padding:18px;border-radius:9px;margin:20px 0}
+.tag{display:inline-block;background:#fff1c2;color:#674900;padding:4px 10px;border-radius:30px;font-size:12px;font-weight:bold}
+.step,.topic{background:white;border-radius:12px;padding:18px;margin:12px 0}
+.topic summary{cursor:pointer;font-weight:bold;color:var(--azul);font-size:17px}
+.topic p{margin-bottom:0}
+table{border-collapse:collapse;width:100%;background:white}
+td,th{padding:12px;border:1px solid #dbe5ee;text-align:left}
+th{background:var(--azul);color:white}
+input{padding:11px;border:1px solid #b7c9d8;border-radius:8px;width:100%;margin:6px 0 14px;font-size:16px}
+label{font-weight:bold;color:var(--azul)}
+.result{background:#eaf5e9;padding:18px;border-radius:10px;margin-top:15px}
+.quizbox{background:white;padding:25px;border-radius:15px;box-shadow:0 5px 20px #1231;max-width:750px;margin:auto}
+.progress{height:9px;background:#e4eaf0;border-radius:10px;overflow:hidden;margin:15px 0}
+.progress span{display:block;width:0;height:100%;background:var(--amarelo)}
+.answer{display:block;width:100%;padding:13px;text-align:left;background:#f1f6fa;border:1px solid #d5e2ed;border-radius:9px;margin:9px 0;cursor:pointer;font-size:15px}
+.answer.correct{background:#d9f3df;border-color:#3b9c56}
+.answer.wrong{background:#ffe0e0;border-color:#d45b5b}
+.feedback{min-height:45px;font-weight:bold;margin:12px 0}
+#leitura{background:#eaf4fc;padding:22px;border-radius:14px;text-align:center;margin:30px auto}
+#speechStatus{font-size:14px}
+footer{background:var(--azul);color:white;text-align:center;padding:35px 15px}
+footer strong{color:var(--amarelo)}
+.small{font-size:13px;color:#61758a}
+.top{position:fixed;bottom:18px;right:18px;background:var(--amarelo);color:var(--azul);padding:12px 17px;border-radius:50%;text-decoration:none;font-size:22px;font-weight:bold}
+@media(max-width:650px){
+ header{position:relative}
+ nav{justify-content:center}
+ nav div:last-child{text-align:center}
+ .hero{padding:60px 20px}
+ main{padding:15px}
+ section{padding:35px 0}
+ td,th{padding:8px;font-size:13px}
+}
 </style>
 </head>
+
 <body>
-<header class="topbar">
-  <nav class="nav" aria-label="Menu principal">
-    <div class="brand"><span class="sunmark">☀</span><span>PROJETO SOLAR 2026</span></div>
-    <div class="navlinks">
-      <a href="#inicio">Início</a><a href="#energia">Energia solar</a><a href="#conteudos">Conteúdos</a><a href="#piscina">Nossa piscina</a><a href="#simulador">Simulador</a><a href="#quiz">Quiz</a>
-    </div>
-  </nav>
+<header>
+<nav>
+  <div class="logo">☀ PROJETO SOLAR 2026</div>
+  <div>
+    <a href="#inicio">Início</a>
+    <a href="#conceito">O que é</a>
+    <a href="#sol">O Sol</a>
+    <a href="#tecnologias">Tecnologias</a>
+    <a href="#funcionamento">Funcionamento</a>
+    <a href="#aplicacoes">Aplicações</a>
+    <a href="#sustentabilidade">Sustentabilidade</a>
+    <a href="#piscina">Projeto escolar</a>
+    <a href="#quiz">Quiz</a>
+  </div>
+</nav>
 </header>
 
-<section class="hero" id="inicio">
-  <div class="hero-inner">
-    <div>
-      <div class="eyebrow">Ciência • Sustentabilidade • Inovação</div>
-      <h1>O Sol pode transformar a nossa escola.</h1>
-      <p>Explore como a radiação solar pode virar eletricidade, aquecer a água e ajudar a criar soluções mais sustentáveis — inclusive para a piscina do nosso colégio.</p>
-      <div class="actions"><a class="btn btn-gold" href="#energia">Começar a explorar ↓</a><a class="btn btn-light" href="#piscina">Conhecer o projeto da piscina</a></div>
-    </div>
-    <div class="hero-art" aria-hidden="true"><div class="orbit"></div><div class="sun-disc">☀️</div></div>
-  </div>
-</section>
+<div class="hero" id="inicio">
+  <div class="sun">☀️</div>
+  <span class="tag">CIÊNCIA • TECNOLOGIA • SUSTENTABILIDADE</span>
+  <h1>Energia Solar</h1>
+  <p>Uma fonte de energia renovável que transforma a luz e o calor do Sol em possibilidades para um futuro mais sustentável.</p>
+  <a href="#conceito" class="btn btn-yellow">Começar a explorar</a>
+  <a href="#quiz" class="btn btn-outline">Testar conhecimentos</a>
+</div>
+
 <main>
-<section class="section" id="energia">
-  <div class="section-head">
-    <div class="kicker">01 • Entenda o assunto</div>
-    <h2>O que é energia solar?</h2>
-    <p class="lead">É a energia que vem da radiação emitida pelo Sol. Ela pode ser aproveitada de diferentes maneiras: para produzir eletricidade ou para gerar calor.</p>
-  </div>
-  <div class="grid">
-    <article class="card">
-      <div class="icon">⚡</div>
-      <h3>Energia fotovoltaica</h3>
-      <p>As células fotovoltaicas transformam parte da luz solar diretamente em energia elétrica. Essa eletricidade pode alimentar equipamentos e sistemas da escola.</p>
-    </article>
-    <article class="card">
-      <div class="icon">🌡️</div>
-      <h3>Aquecimento solar</h3>
-      <p>Nos coletores solares térmicos, a energia do Sol aquece um fluido ou a própria água. É uma opção especialmente interessante para aquecer piscinas.</p>
-    </article>
-    <article class="card">
-      <div class="icon">🌱</div>
-      <h3>Por que usar?</h3>
-      <p>É uma fonte renovável que pode reduzir o consumo de energia convencional e as emissões associadas, quando o sistema é bem dimensionado e instalado.</p>
-    </article>
-  </div>
-  <div class="fact">
-    <strong>Você sabia?</strong> Placa fotovoltaica e coletor solar térmico não são a mesma coisa. A primeira produz eletricidade; o segundo aproveita o calor do Sol. Para aquecer diretamente a piscina, coletores térmicos costumam ser a solução mais direta.
-  </div>
+
+<section id="conceito">
+<div class="section-title">
+<small>01 • CONHECENDO O TEMA</small>
+<h2>O que é energia solar?</h2>
+<p class="lead">A energia solar é a energia proveniente da radiação emitida pelo Sol. Ela pode ser aproveitada de diferentes maneiras para produzir eletricidade, aquecer água e contribuir com diversas atividades humanas.</p>
+</div>
+<div class="grid">
+<div class="card">
+<div class="emoji">☀️</div>
+<h3>Uma fonte natural</h3>
+<p>O Sol libera energia na forma de luz e calor. Essa energia chega à Terra e pode ser captada por tecnologias desenvolvidas para aproveitá-la.</p>
+</div>
+<div class="card">
+<div class="emoji">♻️</div>
+<h3>Renovável</h3>
+<p>É considerada renovável porque utiliza uma fonte natural disponível em escala humana, ao contrário dos combustíveis fósseis.</p>
+</div>
+<div class="card">
+<div class="emoji">⚡</div>
+<h3>Versátil</h3>
+<p>Pode gerar eletricidade, aquecer água, auxiliar na iluminação e atender a diferentes necessidades de casas, empresas e espaços públicos.</p>
+</div>
+</div>
+<div class="highlight"><strong>Você sabia?</strong> A energia solar ajuda a diversificar a matriz energética e pode reduzir a dependência de fontes que emitem gases de efeito estufa durante sua utilização.</div>
 </section>
 
-<section class="section" id="conteudos">
-  <div class="section-head">
-    <div class="kicker">02 • Explore os conceitos</div>
-    <h2>Da luz do Sol à energia</h2>
-    <p class="lead">Abra cada tema para descobrir como os fenômenos acontecem e como eles se relacionam com o nosso projeto.</p>
-  </div>
-
-  <div class="topic-list">
-    <details class="topic">
-      <summary>3. Efeito fotoelétrico e conversão da luz em eletricidade</summary>
-      <div class="topic-content">
-        <p>Em uma célula fotovoltaica, a luz é formada por partículas de energia chamadas fótons. Quando a luz é absorvida pelo material semicondutor, ela pode liberar e movimentar cargas elétricas. A estrutura da célula direciona essas cargas, criando corrente elétrica.</p>
-        <p><strong>Ligação com o projeto:</strong> a eletricidade gerada por painéis fotovoltaicos pode alimentar bombas de circulação ou outros equipamentos, se o sistema for projetado para isso.</p>
-      </div>
-    </details>
-
-    <details class="topic">
-      <summary>4. Absorção, reflexão e transmissão da radiação solar</summary>
-      <div class="topic-content">
-        <p><strong>Absorção:</strong> uma superfície recebe a radiação e transforma parte dela em energia interna, aquecendo-se. <strong>Reflexão:</strong> parte da radiação retorna ao ambiente. <strong>Transmissão:</strong> parte atravessa o material.</p>
-        <p><strong>Ligação com o projeto:</strong> a cor, o material e a cobertura dos coletores influenciam quanto da energia solar é aproveitada.</p>
-      </div>
-    </details>
-
-    <details class="topic">
-      <summary>5. Infravermelho e perda de energia da piscina</summary>
-      <div class="topic-content">
-        <p>Superfícies aquecidas emitem radiação infravermelha. A piscina também perde calor por evaporação, convecção para o ar e condução para as estruturas ao redor. O vento e o ar mais frio podem aumentar essas perdas.</p>
-        <p><strong>Ligação com o projeto:</strong> uma capa térmica quando a piscina não estiver em uso pode diminuir bastante a perda de calor por evaporação.</p>
-      </div>
-    </details>
-
-    <details class="topic">
-      <summary>6. Sensores de temperatura: medindo a água</summary>
-      <div class="topic-content">
-        <p>Sensores como termistores e sensores digitais medem a temperatura e transformam essa informação em um sinal que pode ser lido por um controlador.</p>
-        <p><strong>Ligação com o projeto:</strong> medir a temperatura em horários diferentes ajuda a descobrir quanto a água aquece durante o dia e quanto esfria à noite.</p>
-      </div>
-    </details>
-
-    <details class="topic">
-      <summary>7. Sensores de luz e acompanhamento do Sol</summary>
-      <div class="topic-content">
-        <p>Um sensor de luz mede a intensidade luminosa que chega até ele. Equipamentos mais específicos, chamados piranômetros, medem a irradiância solar em uma faixa mais ampla da radiação.</p>
-        <p><strong>Ligação com o projeto:</strong> comparar a incidência solar com a variação da temperatura ajuda a avaliar o potencial de aquecimento do local.</p>
-      </div>
-    </details>
-
-    <details class="topic">
-      <summary>8. Placas fotovoltaicas: da radiação à eletricidade</summary>
-      <div class="topic-content">
-        <p>Os módulos fotovoltaicos são formados por várias células conectadas. A corrente produzida pode ser usada por equipamentos compatíveis, armazenada em baterias ou convertida por um inversor para uso na instalação elétrica.</p>
-        <p><strong>Ligação com o projeto:</strong> podem fornecer energia elétrica para a bomba, mas isso é diferente de aquecer diretamente a água com coletores térmicos.</p>
-      </div>
-    </details>
-
-    <details class="topic">
-      <summary>9. É possível aquecer a piscina da escola com energia solar?</summary>
-      <div class="topic-content">
-        <p>Em princípio, sim. Coletores solares térmicos podem captar calor e transferi-lo para a água que circula pelo sistema. A viabilidade depende do volume da piscina, temperatura desejada, área disponível para coletores, insolação, clima, perdas de calor, custo e segurança da instalação.</p>
-        <p><strong>Próximo passo:</strong> medir a piscina e registrar temperaturas e condições do local antes de propor um sistema real.</p>
-      </div>
-    </details>
-  </div>
+<section id="sol">
+<div class="section-title">
+<small>02 • NOSSA FONTE DE ENERGIA</small>
+<h2>De onde vem a energia do Sol?</h2>
+</div>
+<div class="card">
+<p>O Sol é uma estrela composta principalmente por hidrogênio e hélio. Em seu interior ocorre a <strong>fusão nuclear</strong>, processo no qual núcleos de hidrogênio se unem e formam hélio, liberando uma enorme quantidade de energia.</p>
+<p>Essa energia atravessa o espaço na forma de radiação eletromagnética. Uma parte chega à Terra como luz visível, radiação infravermelha e ultravioleta.</p>
+<p>Quando essa radiação atinge materiais e superfícies, pode ser refletida, absorvida ou transformada em outras formas de energia.</p>
+</div>
+<div class="grid" style="margin-top:18px">
+<div class="card"><h3>🌞 Luz visível</h3><p>É a parte da radiação solar que nossos olhos conseguem enxergar.</p></div>
+<div class="card"><h3>🔥 Infravermelho</h3><p>Está relacionado à transferência de energia térmica, que percebemos como calor.</p></div>
+<div class="card"><h3>🧪 Ultravioleta</h3><p>É uma radiação invisível que também chega à superfície terrestre, sendo parcialmente filtrada pela atmosfera.</p></div>
+</div>
 </section>
-<section class="section" id="piscina">
-  <div class="section-head">
-    <div class="kicker">03 • Aplicação na nossa escola</div>
-    <h2>Como a energia solar poderia aquecer a piscina do colégio?</h2>
-    <p class="lead">A proposta é estudar a instalação de um sistema de aquecimento solar térmico para aproveitar o calor do Sol e deixar a água mais confortável para as atividades escolares.</p>
-  </div>
+<section id="tecnologias">
+<div class="section-title">
+<small>03 • PRINCIPAIS TECNOLOGIAS</small>
+<h2>Como podemos aproveitar a energia solar?</h2>
+<p class="lead">Existem diferentes tecnologias para transformar a energia recebida do Sol em algo útil. Duas das mais conhecidas são a fotovoltaica e a solar térmica.</p>
+</div>
 
-  <div class="pool">
-    <div class="pool-grid">
-      <div>
-        <span class="pill">IDEIA DO PROJETO</span>
-        <h3>Uma solução que aproveita o calor do Sol</h3>
-        <p>Em um sistema típico, a água da piscina é bombeada até coletores solares instalados em um local ensolarado. A água passa pelos coletores, recebe calor e retorna à piscina. O ciclo se repete enquanto houver condições adequadas.</p>
+<div class="grid">
+<div class="card">
+<div class="emoji">🔋</div>
+<h3>Energia solar fotovoltaica</h3>
+<p>Utiliza painéis formados por células fotovoltaicas, geralmente feitas de materiais semicondutores, como o silício. Essas células convertem a luz solar diretamente em energia elétrica.</p>
+<p><strong>Exemplo:</strong> produzir eletricidade para uma residência, escola ou empresa.</p>
+</div>
+<div class="card">
+<div class="emoji">🚿</div>
+<h3>Energia solar térmica</h3>
+<p>Utiliza coletores solares para captar o calor do Sol e transferi-lo para um fluido, como a água. É muito utilizada em sistemas de aquecimento.</p>
+<p><strong>Exemplo:</strong> aquecer a água de chuveiros e piscinas.</p>
+</div>
+<div class="card">
+<div class="emoji">🏭</div>
+<h3>Energia solar concentrada</h3>
+<p>Utiliza espelhos ou lentes para concentrar a radiação solar em uma região. O calor produzido pode gerar vapor e movimentar turbinas para produzir eletricidade.</p>
+<p><strong>Exemplo:</strong> usinas solares de concentração.</p>
+</div>
+</div>
 
-        <div class="steps">
-          <div class="step"><div><strong>Captação:</strong> os coletores recebem a radiação solar e se aquecem.</div></div>
-          <div class="step"><div><strong>Circulação:</strong> uma bomba conduz a água da piscina pelos coletores.</div></div>
-          <div class="step"><div><strong>Transferência de calor:</strong> a água recebe energia térmica ao passar pelo sistema.</div></div>
-          <div class="step"><div><strong>Retorno:</strong> a água aquecida volta à piscina, elevando gradualmente a temperatura.</div></div>
-        </div>
-      </div>
-
-      <div>
-        <div class="pool-visual" role="img" aria-label="Ilustração de uma piscina recebendo energia do Sol">
-          <div class="water">🏊</div>
-        </div>
-        <h3>O que precisamos investigar?</h3>
-        <ul>
-          <li>Comprimento, largura e profundidade média da piscina;</li>
-          <li>Temperatura atual e temperatura desejada;</li>
-          <li>Área ensolarada disponível para os coletores;</li>
-          <li>Sombras, vento e condições climáticas;</li>
-          <li>Possibilidade de usar uma capa térmica;</li>
-          <li>Custos, manutenção e segurança com orientação técnica.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="two-col" style="margin-top:18px">
-    <article class="card">
-      <div class="icon">♨️</div>
-      <h3>Por que coletores térmicos?</h3>
-      <p>Porque transferem o calor solar para a água de forma direta. São a tecnologia mais relacionada ao objetivo de aquecer a piscina.</p>
-    </article>
-    <article class="card">
-      <div class="icon">🔌</div>
-      <h3>E os painéis fotovoltaicos?</h3>
-      <p>Podem gerar eletricidade para a bomba de circulação ou outros equipamentos. Também podem fazer parte da solução, mas não aquecem a água diretamente como um coletor térmico.</p>
-    </article>
-  </div>
-
-  <div class="fact">
-    <strong>Importante:</strong> esta página apresenta uma proposta educativa, não um projeto de engenharia pronto. Antes de qualquer instalação, a escola precisaria de medições reais, orçamento e avaliação de profissionais qualificados. Não usamos dimensões ou dados reais da piscina porque ainda precisam ser levantados.
-  </div>
+<h3>Fotovoltaica x Térmica: qual é a diferença?</h3>
+<table>
+<tr><th>Característica</th><th>Fotovoltaica</th><th>Térmica</th></tr>
+<tr><td>Principal resultado</td><td>Eletricidade</td><td>Calor</td></tr>
+<tr><td>Equipamento</td><td>Painéis fotovoltaicos</td><td>Coletores solares</td></tr>
+<tr><td>Aplicação</td><td>Alimentar aparelhos elétricos</td><td>Aquecer água</td></tr>
+<tr><td>Transformação</td><td>Luz em eletricidade</td><td>Radiação em energia térmica</td></tr>
+</table>
+<div class="highlight">Importante: um painel fotovoltaico não aquece a água diretamente. Ele produz eletricidade. Já o coletor solar térmico é desenvolvido para captar calor e aquecer água.</div>
 </section>
 
-<section class="section" id="simulador">
-  <div class="section-head">
-    <div class="kicker">04 • Faça uma estimativa</div>
-    <h2>Simulador de energia para aquecer a piscina</h2>
-    <p class="lead">Altere os valores para entender como o volume de água e a diferença de temperatura mudam a energia necessária.</p>
-  </div>
+<section id="funcionamento">
+<div class="section-title">
+<small>04 • CIÊNCIA NA PRÁTICA</small>
+<h2>Como funciona um sistema solar?</h2>
+<p class="lead">Vamos acompanhar as etapas que permitem aproveitar a energia do Sol.</p>
+</div>
 
-  <div class="simulator">
-    <div class="fields">
-      <div class="field">
-        <label for="volume">Volume da piscina (m³)</label>
-        <input id="volume" type="number" min="1" max="5000" value="100">
-        <small>1 m³ equivale a 1.000 litros. Use um valor hipotético se ainda não souber o volume.</small>
-      </div>
-      <div class="field">
-        <label for="atual">Temperatura atual (°C)</label>
-        <input id="atual" type="number" min="0" max="50" step=".5" value="22">
-      </div>
-      <div class="field">
-        <label for="desejada">Temperatura desejada (°C)</label>
-        <input id="desejada" type="number" min="1" max="50" step=".5" value="28">
-      </div>
-      <div class="field">
-        <label for="area">Área de coletores (m²) — opcional</label>
-        <input id="area" type="number" min="0" max="10000" value="30">
-        <small>Valor ilustrativo para comparar cenários.</small>
-      </div>
-    </div>
+<div class="step">
+<h3>1. Captação da radiação</h3>
+<p>Os painéis ou coletores ficam posicionados para receber a radiação solar.</p>
+</div>
+<div class="step">
+<h3>2. Conversão ou transferência de energia</h3>
+<p>No sistema fotovoltaico, as células convertem a luz em eletricidade. No sistema térmico, o coletor absorve energia e transfere calor para um fluido.</p>
+</div>
+<div class="step">
+<h3>3. Distribuição ou armazenamento</h3>
+<p>A eletricidade pode ser utilizada, enviada à rede ou armazenada em baterias. No aquecimento solar, a água aquecida pode ficar em um reservatório térmico.</p>
+</div>
+<div class="step">
+<h3>4. Utilização</h3>
+<p>A energia aproveitada atende às necessidades de residências, escolas, indústrias e outros locais.</p>
+</div>
 
-    <div class="result" aria-live="polite">
-      <div>Energia térmica teórica para elevar a água à temperatura desejada:</div>
-      <div class="result-number" id="energia">697,8 kWh</div>
-      <div id="estimativa">Com 30 m² de coletores, a estimativa ilustrativa é de aproximadamente 10,3 dias de captação.</div>
-      <p class="note">Estimativa simplificada: considera 1,163 kWh para aquecer 1 m³ de água em 1 °C. Para a simulação diária, assume 4,5 kWh/m²/dia de energia solar e eficiência média de 50%. Não considera perdas noturnas, evaporação, vento, tubulações, sombras ou variações do clima. Por isso, não é previsão de desempenho nem dimensionamento de sistema real.</p>
-    </div>
-  </div>
+<div class="card">
+<h3>O que acontece em dias nublados?</h3>
+<p>Os sistemas fotovoltaicos continuam podendo gerar eletricidade, pois parte da radiação solar atravessa as nuvens. Porém, a produção geralmente diminui. À noite, os painéis não recebem luz solar direta e não geram energia.</p>
+</div>
+
+<div class="card" style="margin-top:18px">
+<h3>O que é um inversor solar?</h3>
+<p>Em sistemas fotovoltaicos, os painéis produzem corrente contínua. O inversor transforma essa energia em corrente alternada, que é utilizada pela maioria dos equipamentos elétricos das casas e escolas.</p>
+</div>
 </section>
 
-<section class="section" id="experimentos">
-  <div class="section-head">
-    <div class="kicker">05 • Investigue</div>
-    <h2>Experimentos e observações</h2>
-    <p class="lead">Pequenas atividades podem ajudar a entender os conceitos antes de pensar em uma instalação na escola.</p>
-  </div>
+<section id="aplicacoes">
+<div class="section-title">
+<small>05 • NO NOSSO DIA A DIA</small>
+<h2>Onde encontramos a energia solar?</h2>
+<p class="lead">A energia solar está presente em diferentes tecnologias e pode ajudar a atender necessidades de pessoas, comunidades e empresas.</p>
+</div>
 
-  <div class="grid">
-    <article class="card">
-      <div class="icon">🌡️</div>
-      <h3>Temperatura ao longo do dia</h3>
-      <p>Com supervisão, registre a temperatura da água em horários fixos. Compare manhã, meio-dia e fim da tarde, usando sempre o mesmo método.</p>
-    </article>
-    <article class="card">
-      <div class="icon">☀️</div>
-      <h3>Sol e sombra</h3>
-      <p>Compare a temperatura de recipientes iguais com água, um ao Sol e outro à sombra. Não use recipientes fechados ou materiais perigosos.</p>
-    </article>
-    <article class="card">
-      <div class="icon">🎨</div>
-      <h3>Absorção de radiação</h3>
-      <p>Compare superfícies claras e escuras sob a mesma iluminação, com cuidado para não tocar em objetos muito quentes. Observe qual aquece mais.</p>
-    </article>
-  </div>
-</section>
-<section class="section" id="quiz">
-  <div class="section-head">
-    <div class="kicker">06 • Teste seus conhecimentos</div>
-    <h2>Quiz Solar</h2>
-    <p class="lead">Responda às perguntas e veja quantas você consegue acertar.</p>
-  </div>
+<div class="grid">
+<div class="card">
+<div class="emoji">🏠</div>
+<h3>Residências</h3>
+<p>Painéis fotovoltaicos podem gerar eletricidade para iluminação, geladeiras, televisores e outros aparelhos. Coletores térmicos podem aquecer a água do banho.</p>
+</div>
+<div class="card">
+<div class="emoji">🏫</div>
+<h3>Escolas</h3>
+<p>Sistemas solares podem contribuir com a eletricidade usada em salas, computadores, laboratórios e áreas comuns.</p>
+</div>
+<div class="card">
+<div class="emoji">🌾</div>
+<h3>Agricultura</h3>
+<p>A energia solar pode alimentar bombas de irrigação, sistemas de monitoramento e equipamentos utilizados no campo.</p>
+</div>
+<div class="card">
+<div class="emoji">🚦</div>
+<h3>Espaços públicos</h3>
+<p>Placas solares podem alimentar iluminação, sinalização e equipamentos instalados em locais afastados da rede elétrica.</p>
+</div>
+<div class="card">
+<div class="emoji">🏢</div>
+<h3>Empresas</h3>
+<p>Indústrias e comércios podem utilizar sistemas solares para gerar parte da eletricidade consumida em suas atividades.</p>
+</div>
+<div class="card">
+<div class="emoji">🛰️</div>
+<h3>Satélites e tecnologia</h3>
+<p>Painéis solares são utilizados em satélites e sondas espaciais para fornecer eletricidade aos equipamentos.</p>
+</div>
+</div>
 
-  <div class="quizbox">
-    <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
-      <strong id="qcount">Pergunta 1 de 5</strong>
-      <strong id="score">Acertos: 0</strong>
-    </div>
-    <div class="progress"><span id="progress"></span></div>
-    <p class="quiz-q" id="question">Qual é a principal função de um coletor solar térmico?</p>
-    <div class="answers" id="answers"></div>
-    <div class="feedback" id="feedback" aria-live="polite"></div>
-    <button class="btn btn-blue" id="next" type="button" disabled>Próxima pergunta</button>
-    <button class="btn btn-outline" id="restart" type="button" hidden>Refazer quiz</button>
-  </div>
+<div class="highlight">
+<strong>Uma aplicação interessante:</strong> calculadoras solares, postes de iluminação e carregadores solares portáteis mostram como a energia do Sol pode ser aproveitada em objetos e equipamentos do cotidiano.
+</div>
 </section>
 
-<section class="section" id="conclusao">
-  <div class="section-head">
-    <div class="kicker">07 • Nosso objetivo</div>
-    <h2>Da pesquisa à solução</h2>
-    <p class="lead">O Projeto Solar 2026 busca compreender a ciência por trás da energia solar e investigar como ela poderia ser aplicada na realidade do nosso colégio.</p>
-  </div>
-  <div class="card">
-    <h3>Uma pergunta para continuar pesquisando</h3>
-    <p>Quais dados precisamos coletar para saber se o aquecimento solar da piscina é viável na nossa escola?</p>
-    <p class="small">A resposta começa com medições, pesquisa, cálculos e planejamento em equipe.</p>
-  </div>
+<section id="painel">
+<div class="section-title">
+<small>06 • CONHECENDO OS EQUIPAMENTOS</small>
+<h2>O que existe em um painel solar?</h2>
+</div>
+<div class="card">
+<p>Um painel fotovoltaico é formado por várias células solares conectadas entre si. Quando a luz atinge essas células, ocorre o efeito fotovoltaico, que permite gerar corrente elétrica.</p>
+<p>Além das células, os painéis possuem materiais de proteção, estruturas de suporte e conexões elétricas. Um conjunto de painéis forma um sistema fotovoltaico.</p>
+</div>
+<div class="grid" style="margin-top:18px">
+<div class="card"><h3>🔬 Células solares</h3><p>São responsáveis por converter a luz em energia elétrica.</p></div>
+<div class="card"><h3>🔌 Cabos e conexões</h3><p>Conduzem a energia gerada até os equipamentos do sistema.</p></div>
+<div class="card"><h3>⚙️ Inversor</h3><p>Adapta a energia elétrica para utilização em corrente alternada.</p></div>
+</div>
 </section>
+<section id="sustentabilidade">
+<div class="section-title">
+<small>07 • ENERGIA E MEIO AMBIENTE</small>
+<h2>Vantagens e desafios da energia solar</h2>
+<p class="lead">A energia solar oferece benefícios importantes, mas também apresenta desafios que precisam ser considerados.</p>
+</div>
+
+<div class="grid">
+<div class="card">
+<div class="emoji">🌱</div>
+<h3>Fonte renovável</h3>
+<p>Utiliza a radiação do Sol, uma fonte natural que está disponível diariamente em diferentes regiões do planeta.</p>
+</div>
+<div class="card">
+<div class="emoji">🌍</div>
+<h3>Menores emissões durante a operação</h3>
+<p>A geração solar não exige a queima de combustíveis para produzir eletricidade, evitando emissões diretas de gases de efeito estufa durante a operação.</p>
+</div>
+<div class="card">
+<div class="emoji">💡</div>
+<h3>Economia na conta de luz</h3>
+<p>Um sistema bem dimensionado pode reduzir a quantidade de eletricidade comprada da rede, dependendo das condições e tarifas.</p>
+</div>
+<div class="card">
+<div class="emoji">🔋</div>
+<h3>Independência energética</h3>
+<p>Pode ampliar as opções de fornecimento de energia e, quando combinada com baterias, oferecer armazenamento.</p>
+</div>
+<div class="card">
+<div class="emoji">💰</div>
+<h3>Investimento inicial</h3>
+<p>A instalação dos equipamentos pode exigir um custo inicial elevado, embora possa gerar economia ao longo do tempo.</p>
+</div>
+<div class="card">
+<div class="emoji">🌧️</div>
+<h3>Dependência das condições solares</h3>
+<p>A geração varia conforme o horário, as condições climáticas, a estação do ano e a localização.</p>
+</div>
+<div class="card">
+<div class="emoji">♻️</div>
+<h3>Descarte dos equipamentos</h3>
+<p>Painéis e baterias precisam de destinação adequada e processos de reciclagem ao final da vida útil.</p>
+</div>
+<div class="card">
+<div class="emoji">🏞️</div>
+<h3>Uso do espaço</h3>
+<p>Grandes usinas podem ocupar áreas extensas e precisam de planejamento para reduzir impactos ambientais.</p>
+</div>
+</div>
+
+<div class="highlight">
+<strong>Uma reflexão:</strong> uma tecnologia ser renovável não significa que não cause nenhum impacto ambiental. A fabricação, o transporte, a instalação e o descarte dos equipamentos também precisam ser considerados.
+</div>
+</section>
+
+<section id="brasil">
+<div class="section-title">
+<small>08 • ENERGIA SOLAR NO MUNDO</small>
+<h2>O Brasil e o potencial solar</h2>
+</div>
+<div class="card">
+<p>O Brasil possui grande potencial para aproveitar a energia solar devido à quantidade de radiação recebida em boa parte do território. A tecnologia fotovoltaica está presente em telhados, propriedades rurais, empresas e grandes usinas.</p>
+<p>O aproveitamento solar pode complementar outras fontes da matriz elétrica brasileira, como a hidrelétrica, e contribuir para diversificar a produção de energia.</p>
+<p>O potencial de geração varia conforme a localização, a inclinação dos painéis, a orientação, as sombras e as condições climáticas.</p>
+</div>
+<div class="grid" style="margin-top:18px">
+<div class="card"><h3>🏡 Geração distribuída</h3><p>São sistemas instalados próximos aos locais de consumo, como telhados de casas, comércios e escolas.</p></div>
+<div class="card"><h3>🌞 Grandes usinas</h3><p>São instalações com muitos painéis solares que geram eletricidade em grande escala.</p></div>
+<div class="card"><h3>🌎 Transição energética</h3><p>A expansão das fontes renováveis faz parte das estratégias para transformar os sistemas de produção e consumo de energia.</p></div>
+</div>
+</section>
+
+<section id="curiosidades">
+<div class="section-title">
+<small>09 • VOCÊ SABIA?</small>
+<h2>Curiosidades sobre a energia solar</h2>
+</div>
+<div class="grid">
+<div class="card">
+<h3>☀️ O Sol é enorme!</h3>
+<p>Seu diâmetro é aproximadamente 109 vezes maior que o da Terra.</p>
+</div>
+<div class="card">
+<h3>⏱️ A luz viaja rapidamente</h3>
+<p>A luz do Sol leva cerca de 8 minutos e 20 segundos para chegar à Terra.</p>
+</div>
+<div class="card">
+<h3>🔬 Efeito fotovoltaico</h3>
+<p>Esse fenômeno físico permite que determinados materiais convertam luz em eletricidade.</p>
+</div>
+<div class="card">
+<h3>🌙 E à noite?</h3>
+<p>Os painéis fotovoltaicos não geram energia solar à noite. Sistemas com baterias podem utilizar energia armazenada durante o dia.</p>
+</div>
+<div class="card">
+<h3>🌡️ Calor e eletricidade</h3>
+<p>A energia solar pode ser aproveitada tanto para aquecer água quanto para produzir eletricidade.</p>
+</div>
+<div class="card">
+<h3>🧭 A posição importa</h3>
+<p>A orientação, a inclinação e a ausência de sombras influenciam o desempenho dos painéis.</p>
+</div>
+</div>
+</section>
+
+<section id="experimentos">
+<div class="section-title">
+<small>10 • APRENDENDO NA PRÁTICA</small>
+<h2>Experiências para explorar a energia solar</h2>
+<p class="lead">Pequenas atividades ajudam a observar como a radiação solar pode ser aproveitada.</p>
+</div>
+
+<div class="card">
+<h3>🧪 Experimento 1 — Aquecimento pela luz do Sol</h3>
+<p><strong>Materiais:</strong> dois recipientes iguais, água, termômetro e papel preto.</p>
+<p><strong>Como fazer:</strong> coloque a mesma quantidade de água nos recipientes. Cubra um deles com papel preto e deixe ambos em um local ensolarado, com supervisão. Meça a temperatura no início e após intervalos iguais.</p>
+<p><strong>O que observar:</strong> compare as temperaturas e discuta como a cor e a absorção de radiação podem influenciar o aquecimento.</p>
+</div>
+
+<div class="card" style="margin-top:15px">
+<h3>🔎 Experimento 2 — Investigando sombras</h3>
+<p><strong>Materiais:</strong> uma pequena placa solar educativa, multímetro apropriado e objetos para produzir sombra.</p>
+<p><strong>Como fazer:</strong> observe a saída elétrica da placa sob iluminação e depois cubra parte dela, sem danificar o equipamento. Compare as medições.</p>
+<p><strong>O que observar:</strong> perceba como o sombreamento pode diminuir a geração de eletricidade.</p>
+</div>
+
+<div class="card" style="margin-top:15px">
+<h3>📊 Experimento 3 — Comparando superfícies</h3>
+<p><strong>Materiais:</strong> superfícies de cores diferentes, termômetro e local ensolarado.</p>
+<p><strong>Como fazer:</strong> exponha as superfícies à luz solar pelo mesmo período e compare suas temperaturas.</p>
+<p><strong>O que observar:</strong> diferentes materiais e cores absorvem e refletem a radiação de maneiras distintas.</p>
+</div>
+
+<div class="highlight">Atenção: não olhe diretamente para o Sol, não utilize lentes para concentrar a luz solar e faça as experiências com acompanhamento de um professor ou adulto.</div>
+</section>
+
+<section id="piscina">
+<div class="section-title">
+<small>11 • APLICAÇÃO NA NOSSA ESCOLA</small>
+<h2>Energia solar para aquecer a piscina escolar</h2>
+<p class="lead">Depois de conhecer as tecnologias solares, podemos investigar uma aplicação prática: aproveitar o calor do Sol para aquecer a água da piscina do colégio.</p>
+</div>
+
+<div class="card">
+<h3>Como essa ideia funcionaria?</h3>
+<p>Um sistema de aquecimento solar térmico poderia utilizar coletores instalados em uma área adequada e conectados ao circuito de circulação da piscina. A água passaria pelos coletores, receberia calor e retornaria à piscina.</p>
+<p>Uma capa térmica também poderia ajudar a diminuir a perda de calor, principalmente pela evaporação.</p>
+<h3>O que precisaríamos estudar?</h3>
+<ul>
+<li>Volume e profundidade da piscina.</li>
+<li>Temperatura inicial e temperatura desejada.</li>
+<li>Área disponível para os coletores.</li>
+<li>Insolação e condições climáticas locais.</li>
+<li>Perdas de calor, circulação da água e custos de instalação.</li>
+</ul>
+<p><strong>Objetivo:</strong> avaliar, com dados reais e orientação técnica, se o aquecimento solar seria uma solução viável para nossa escola.</p>
+</div>
+</section>
+<section id="simulador">
+<div class="section-title">
+<small>12 • INTERATIVIDADE</small>
+<h2>Simulador de aquecimento solar</h2>
+<p class="lead">Faça uma simulação educativa para entender quanta energia térmica seria necessária para aquecer a água de uma piscina.</p>
+</div>
+
+<div class="card">
+<label for="volume">Volume de água (em m³)</label>
+<input id="volume" type="number" min="1" value="100">
+
+<label for="atual">Temperatura atual (°C)</label>
+<input id="atual" type="number" min="0" max="50" value="22">
+
+<label for="desejada">Temperatura desejada (°C)</label>
+<input id="desejada" type="number" min="0" max="50" value="28">
+
+<label for="area">Área de coletores solares (m²)</label>
+<input id="area" type="number" min="0" value="20">
+
+<button class="btn btn-blue" id="calcular" type="button">Calcular estimativa</button>
+
+<div class="result">
+<p>Energia térmica necessária:</p>
+<h2 id="energia">—</h2>
+<p id="estimativa">Preencha os valores e faça o cálculo.</p>
+</div>
+<p class="small">Estimativa simplificada: considera 1,163 kWh para aquecer 1 m³ de água em 1 °C. Para estimar a captação diária, considera 4,5 kWh/m²/dia de radiação e eficiência ilustrativa de 50%. Não considera perdas de calor, clima real, sombras, eficiência específica dos equipamentos ou características da piscina. Não substitui um projeto técnico.</p>
+</div>
+</section>
+
+<section id="quiz">
+<div class="section-title">
+<small>13 • TESTE SEUS CONHECIMENTOS</small>
+<h2>Quiz Solar</h2>
+<p class="lead">Responda às perguntas e descubra o que aprendeu sobre energia solar!</p>
+</div>
+
+<div class="quizbox">
+<div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
+<strong id="qcount">Pergunta 1 de 8</strong>
+<strong id="score">Acertos: 0</strong>
+</div>
+<div class="progress"><span id="progress"></span></div>
+<h3 id="question">Carregando pergunta...</h3>
+<div id="answers"></div>
+<div class="feedback" id="feedback" aria-live="polite"></div>
+<button class="btn btn-blue" id="next" type="button" disabled>Próxima pergunta</button>
+<button class="btn btn-outline" id="restart" type="button" hidden>Refazer quiz</button>
+</div>
+</section>
+
+<section id="leitura">
+<h2>🔊 Ouça o conteúdo do site</h2>
+<p>Use a leitura em voz alta para acompanhar os textos. O navegador utilizará uma voz disponível em português.</p>
+<button class="btn btn-blue" id="readButton" type="button">▶ Ler em voz alta</button>
+<button class="btn btn-outline" id="pauseButton" type="button">⏸ Pausar / continuar</button>
+<button class="btn btn-outline" id="stopButton" type="button">■ Parar</button>
+<p id="speechStatus" role="status" aria-live="polite">Leitura pronta.</p>
+</section>
+
+<section id="conclusao">
+<div class="section-title">
+<small>14 • CONCLUSÃO</small>
+<h2>O Sol como fonte de possibilidades</h2>
+</div>
+<div class="card">
+<p>A energia solar é uma tecnologia importante para o presente e para o futuro. Ela permite gerar eletricidade, aquecer água e desenvolver soluções para diferentes necessidades da sociedade.</p>
+<p>Ao estudar seu funcionamento, suas vantagens e seus desafios, percebemos que a ciência e a tecnologia podem contribuir para um mundo mais sustentável.</p>
+<p>O conhecimento adquirido também pode nos ajudar a pensar em soluções para nossa própria escola, como a possibilidade de utilizar aquecimento solar na piscina.</p>
+<h3>Uma pergunta para refletir:</h3>
+<p>Como podemos aproveitar melhor a energia do Sol no nosso cotidiano?</p>
+</div>
+</section>
+
 </main>
 
-<footer class="footer">
-  <strong>PROJETO SOLAR 2026</strong><br>
-  Aprender hoje para construir soluções mais sustentáveis amanhã.<br>
-  <span class="small" style="color:#c8dbee">Conteúdo educativo • Energia solar e aquecimento da piscina escolar</span>
+<footer>
+<strong>☀ PROJETO SOLAR 2026</strong>
+<p>Aprender hoje para construir soluções mais sustentáveis amanhã.</p>
+<p class="small" style="color:#c8dbee">Ciência • Tecnologia • Educação • Sustentabilidade</p>
 </footer>
 
-<a class="toplink" href="#inicio" aria-label="Voltar ao início">↑</a>
+<a class="top" href="#inicio" aria-label="Voltar ao início">↑</a>
 
-<!-- VLibras -->
+<!-- Acessibilidade VLibras -->
 <div vw class="enabled">
-  <div vw-access-button class="active"></div>
-  <div vw-plugin-wrapper>
-    <div class="vw-plugin-top-wrapper"></div>
-  </div>
+<div vw-access-button class="active"></div>
+<div vw-plugin-wrapper>
+<div class="vw-plugin-top-wrapper"></div>
+</div>
 </div>
 <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
 <script>
@@ -388,122 +538,265 @@ new window.VLibras.Widget('https://vlibras.gov.br/app');
 </script>
 
 <script>
-const $ = id => document.getElementById(id);
-
+/* SIMULADOR */
 function calcular(){
-  const v = Math.max(0, Number($('volume').value)||0);
-  const t1 = Number($('atual').value)||0;
-  const t2 = Number($('desejada').value)||0;
-  const a = Math.max(0, Number($('area').value)||0);
+  const volume = Number(document.getElementById('volume').value);
+  const atual = Number(document.getElementById('atual').value);
+  const desejada = Number(document.getElementById('desejada').value);
+  const area = Number(document.getElementById('area').value);
 
-  if(v<=0 || t1<0 || t2<0 || t1>50 || t2>50){
-    $('energia').textContent='Confira os valores';
-    $('estimativa').textContent='Informe volume maior que zero e temperaturas entre 0 °C e 50 °C.';
+  const energia = document.getElementById('energia');
+  const estimativa = document.getElementById('estimativa');
+
+  if(!Number.isFinite(volume) || !Number.isFinite(atual) ||
+     !Number.isFinite(desejada) || !Number.isFinite(area) ||
+     volume<=0 || area<0 || atual<0 || desejada<0 ||
+     atual>50 || desejada>50){
+    energia.textContent='Valores inválidos';
+    estimativa.textContent='Confira os valores. O volume deve ser maior que zero e as temperaturas devem estar entre 0 e 50 °C.';
     return;
   }
 
-  const delta=Math.max(0,t2-t1);
-  const kwh=v*1.163*delta;
+  const diferenca = Math.max(0,desejada-atual);
+  const kwh = volume*1.163*diferenca;
 
-  $('energia').textContent=kwh.toLocaleString('pt-BR',{maximumFractionDigits:1})+' kWh';
+  energia.textContent=kwh.toLocaleString('pt-BR',{maximumFractionDigits:1})+' kWh';
 
-  if(delta===0){
-    $('estimativa').textContent='A água já está na temperatura desejada ou acima dela.';
-  }else if(a===0){
-    $('estimativa').textContent='Informe uma área de coletores maior que zero para ver uma estimativa ilustrativa de dias.';
+  if(diferenca===0){
+    estimativa.textContent='A água já está na temperatura desejada ou acima dela.';
+  }else if(area===0){
+    estimativa.textContent='Informe uma área de coletores maior que zero para estimar os dias de captação.';
   }else{
-    const diaria=a*4.5*.5;
-    const dias=kwh/diaria;
-    $('estimativa').textContent='Com '+a.toLocaleString('pt-BR')+' m² de coletores, a estimativa ilustrativa é de aproximadamente '+dias.toLocaleString('pt-BR',{maximumFractionDigits:1})+' dias de captação.';
+    const energiaDiaria=area*4.5*0.5;
+    const dias=kwh/energiaDiaria;
+    estimativa.textContent='Estimativa ilustrativa: aproximadamente '+dias.toLocaleString('pt-BR',{maximumFractionDigits:1})+' dias de captação solar, sem considerar as perdas de calor.';
   }
 }
 
+document.getElementById('calcular').addEventListener('click',calcular);
 ['volume','atual','desejada','area'].forEach(id=>{
-  $(id).addEventListener('input',calcular);
+  document.getElementById(id).addEventListener('input',calcular);
 });
 calcular();
 
+/* QUIZ */
 const perguntas=[
- {q:'Qual é a principal função de um coletor solar térmico?',a:['Transformar luz em som','Transferir calor do Sol para a água','Armazenar vento'],c:1,e:'Isso mesmo! O coletor térmico capta energia solar e transfere calor para a água.'},
- {q:'O que uma placa fotovoltaica produz?',a:['Energia elétrica','Água quente diretamente','Gás natural'],c:0,e:'Correto! A célula fotovoltaica converte parte da luz solar em eletricidade.'},
- {q:'Qual processo pode causar grande perda de calor em uma piscina?',a:['Evaporação da água','Reflexão do som','Magnetismo'],c:0,e:'Muito bem! A evaporação retira energia da água. Uma capa térmica pode ajudar a reduzir essa perda.'},
- {q:'Para que serve um sensor de temperatura?',a:['Medir a velocidade do vento','Medir o aquecimento ou resfriamento','Produzir radiação solar'],c:1,e:'Isso! As medições permitem acompanhar a variação da temperatura da piscina.'},
- {q:'O que precisamos saber antes de dimensionar um sistema para a piscina da escola?',a:['Somente a cor da piscina','Volume, temperaturas, insolação e perdas de calor','Apenas o número de janelas'],c:1,e:'Perfeito! São necessários dados reais e avaliação técnica para saber se a solução é viável.'}
+{
+ q:'Qual é a principal fonte da energia solar?',
+ a:['O vento','O Sol','O petróleo'],
+ c:1,
+ e:'Correto! A energia solar vem da radiação emitida pelo Sol.'
+},
+{
+ q:'O que acontece no interior do Sol?',
+ a:['Fusão nuclear','Combustão de carvão','Produção de eletricidade por painéis'],
+ c:0,
+ e:'Isso! A fusão nuclear libera a energia produzida no interior do Sol.'
+},
+{
+ q:'O que os painéis fotovoltaicos produzem?',
+ a:['Água quente diretamente','Energia elétrica','Combustível'],
+ c:1,
+ e:'Muito bem! As células fotovoltaicas convertem luz em eletricidade.'
+},
+{
+ q:'Qual equipamento é utilizado para aquecer água com energia solar?',
+ a:['Coletor solar térmico','Ventilador','Motor a gasolina'],
+ c:0,
+ e:'Correto! O coletor solar térmico absorve energia e transfere calor para a água.'
+},
+{
+ q:'A energia solar é considerada renovável porque:',
+ a:['Nunca muda de intensidade','Utiliza uma fonte natural disponível em escala humana','Não precisa de equipamentos'],
+ c:1,
+ e:'Exatamente! O Sol é uma fonte natural de energia renovável.'
+},
+{
+ q:'O que pode diminuir a produção de um painel fotovoltaico?',
+ a:['Sombreamento','Luz solar','Boa orientação'],
+ c:0,
+ e:'Isso! Sombras podem reduzir a geração elétrica do painel.'
+},
+{
+ q:'O que acontece com a geração fotovoltaica durante a noite?',
+ a:['Aumenta automaticamente','Continua igual','Não há geração de luz solar pelos painéis'],
+ c:2,
+ e:'Correto! À noite os painéis não recebem luz solar. Baterias podem fornecer energia armazenada.'
+},
+{
+ q:'Qual é uma aplicação da energia solar térmica?',
+ a:['Aquecer água','Produzir vento','Fabricar petróleo'],
+ c:0,
+ e:'Muito bem! Coletores solares térmicos podem aquecer água.'
+}
 ];
 
-let qi=0;
+let indice=0;
 let acertos=0;
-let respondida=false;
+let respondeu=false;
 
 function mostrarPergunta(){
-  const p=perguntas[qi];
-  respondida=false;
+  const p=perguntas[indice];
+  respondeu=false;
 
-  $('qcount').textContent='Pergunta '+(qi+1)+' de '+perguntas.length;
-  $('score').textContent='Acertos: '+acertos;
-  $('progress').style.width=(qi/perguntas.length*100)+'%';
-  $('question').textContent=p.q;
-  $('feedback').textContent='';
-  $('next').disabled=true;
-  $('next').hidden=false;
-  $('restart').hidden=true;
-  $('answers').innerHTML='';
+  document.getElementById('qcount').textContent='Pergunta '+(indice+1)+' de '+perguntas.length;
+  document.getElementById('score').textContent='Acertos: '+acertos;
+  document.getElementById('progress').style.width=(indice/perguntas.length*100)+'%';
+  document.getElementById('question').textContent=p.q;
+  document.getElementById('feedback').textContent='';
+  document.getElementById('next').disabled=true;
+  document.getElementById('next').hidden=false;
+  document.getElementById('restart').hidden=true;
 
-  p.a.forEach((op,i)=>{
-    const b=document.createElement('button');
-    b.className='answer';
-    b.type='button';
-    b.textContent=op;
-    b.addEventListener('click',()=>responder(i,b));
-    $('answers').appendChild(b);
+  const respostas=document.getElementById('answers');
+  respostas.innerHTML='';
+
+  p.a.forEach((opcao,i)=>{
+    const botao=document.createElement('button');
+    botao.className='answer';
+    botao.type='button';
+    botao.textContent=opcao;
+    botao.addEventListener('click',()=>responder(i,botao));
+    respostas.appendChild(botao);
   });
 }
 
-function responder(i,botao){
-  if(respondida)return;
-  respondida=true;
-  const p=perguntas[qi];
+function responder(escolha,botao){
+  if(respondeu)return;
+  respondeu=true;
 
-  [...$('answers').children].forEach((b,j)=>{
+  const p=perguntas[indice];
+  const botoes=document.querySelectorAll('#answers .answer');
+
+  botoes.forEach((b,i)=>{
     b.disabled=true;
-    if(j===p.c)b.classList.add('correct');
+    if(i===p.c)b.classList.add('correct');
   });
 
-  if(i===p.c){
+  if(escolha===p.c){
     acertos++;
-    $('feedback').textContent='✓ '+p.e;
+    document.getElementById('feedback').textContent='✓ '+p.e;
   }else{
     botao.classList.add('wrong');
-    $('feedback').textContent='Não foi dessa vez. '+p.e;
+    document.getElementById('feedback').textContent='Não foi dessa vez. '+p.e;
   }
 
-  $('score').textContent='Acertos: '+acertos;
-  $('next').disabled=false;
+  document.getElementById('score').textContent='Acertos: '+acertos;
+  document.getElementById('next').disabled=false;
 }
 
-$('next').addEventListener('click',()=>{
-  qi++;
+document.getElementById('next').addEventListener('click',()=>{
+  indice++;
 
-  if(qi<perguntas.length){
+  if(indice<perguntas.length){
     mostrarPergunta();
   }else{
-    $('question').textContent='Você concluiu o Quiz Solar!';
-    $('answers').innerHTML='';
-    $('feedback').textContent='Resultado: '+acertos+' de '+perguntas.length+' acertos. Continue explorando o site!';
-    $('qcount').textContent='Quiz concluído';
-    $('progress').style.width='100%';
-    $('next').hidden=true;
-    $('restart').hidden=false;
+    document.getElementById('question').textContent='Você concluiu o Quiz Solar!';
+    document.getElementById('answers').innerHTML='';
+    document.getElementById('feedback').textContent='Resultado: '+acertos+' de '+perguntas.length+' acertos. Continue aprendendo!';
+    document.getElementById('qcount').textContent='Quiz concluído';
+    document.getElementById('progress').style.width='100%';
+    document.getElementById('next').hidden=true;
+    document.getElementById('restart').hidden=false;
   }
 });
 
-$('restart').addEventListener('click',()=>{
-  qi=0;
+document.getElementById('restart').addEventListener('click',()=>{
+  indice=0;
   acertos=0;
   mostrarPergunta();
 });
 
 mostrarPergunta();
+
+/* LEITURA EM VOZ ALTA */
+(function(){
+  const ler=document.getElementById('readButton');
+  const pausar=document.getElementById('pauseButton');
+  const parar=document.getElementById('stopButton');
+  const status=document.getElementById('speechStatus');
+
+  if(!('speechSynthesis' in window)){
+    status.textContent='Seu navegador não oferece leitura em voz alta.';
+    ler.disabled=true;
+    pausar.disabled=true;
+    parar.disabled=true;
+    return;
+  }
+
+  let frases=[];
+  let posicao=0;
+  let pausado=false;
+
+  function prepararTexto(){
+    const copia=document.querySelector('main').cloneNode(true);
+
+    copia.querySelectorAll('button,input,script,style').forEach(el=>el.remove());
+
+    return copia.innerText
+      .split(/(?<=[.!?])\s+|\n+/)
+      .map(t=>t.trim())
+      .filter(t=>t.length>2);
+  }
+
+  function falarProxima(){
+    if(posicao>=frases.length){
+      status.textContent='Leitura concluída.';
+      return;
+    }
+
+    const fala=new SpeechSynthesisUtterance(frases[posicao]);
+    fala.lang='pt-BR';
+    fala.rate=1;
+    fala.pitch=1;
+
+    fala.onend=function(){
+      posicao++;
+      if(!pausado)falarProxima();
+    };
+
+    fala.onerror=function(){
+      status.textContent='Não foi possível continuar a leitura.';
+    };
+
+    speechSynthesis.speak(fala);
+  }
+
+  ler.addEventListener('click',()=>{
+    speechSynthesis.cancel();
+    frases=prepararTexto();
+    posicao=0;
+    pausado=false;
+
+    if(!frases.length){
+      status.textContent='Não encontrei conteúdo para ler.';
+      return;
+    }
+
+    status.textContent='Lendo o conteúdo em português...';
+    falarProxima();
+  });
+
+  pausar.addEventListener('click',()=>{
+    if(speechSynthesis.speaking && !speechSynthesis.paused){
+      speechSynthesis.pause();
+      pausado=true;
+      status.textContent='Leitura pausada.';
+    }else if(speechSynthesis.paused){
+      speechSynthesis.resume();
+      pausado=false;
+      status.textContent='Continuando a leitura.';
+    }
+  });
+
+  parar.addEventListener('click',()=>{
+    speechSynthesis.cancel();
+    posicao=0;
+    pausado=false;
+    status.textContent='Leitura parada.';
+  });
+})();
 </script>
+
 </body>
 </html>
