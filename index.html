@@ -1,801 +1,440 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Projeto Solar 2026 | Energia para o Futuro</title>
-<meta name="description" content="Site educativo sobre energia solar, tecnologias, funcionamento e sustentabilidade.">
-
+<title>Sensores de Luz e Radiação Solar</title>
 <style>
-:root{
-  --azul:#082b50;
-  --azul2:#10558a;
-  --claro:#eaf4fc;
-  --amarelo:#ffc928;
-  --texto:#26384a;
-  --fundo:#f5f8fc;
+:root {
+  --blue:#123d68;
+  --blue2:#1769aa;
+  --cyan:#39b8d5;
+  --yellow:#ffc94a;
+  --light:#f1f7fc;
+  --dark:#172b40;
 }
-*{box-sizing:border-box;scroll-behavior:smooth}
-body{margin:0;font-family:Arial,sans-serif;background:var(--fundo);color:var(--texto);line-height:1.7}
-header{background:var(--azul);color:white;padding:15px 4%;position:sticky;top:0;z-index:10}
-nav{max-width:1150px;margin:auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
-.logo{font-size:20px;font-weight:bold;color:var(--amarelo)}
-nav a{color:white;text-decoration:none;font-size:13px;margin:5px}
-nav a:hover{color:var(--amarelo)}
-.hero{background:linear-gradient(120deg,#082b50,#12649a);color:white;padding:85px 7%;text-align:center}
-.hero h1{font-size:clamp(36px,6vw,65px);margin:10px}
-.hero p{max-width:760px;margin:15px auto;font-size:18px}
-.sun{font-size:65px}
-.btn{border:0;border-radius:9px;padding:12px 20px;font-weight:bold;cursor:pointer;display:inline-block;text-decoration:none;margin:5px}
-.btn-yellow{background:var(--amarelo);color:var(--azul)}
-.btn-blue{background:var(--azul2);color:white}
-.btn-outline{background:white;color:var(--azul);border:1px solid #aac4dc}
-main{max-width:1100px;margin:auto;padding:20px}
-section{padding:48px 0;scroll-margin-top:90px}
-.section-title{text-align:center;margin-bottom:30px}
-.section-title small{color:#a87500;font-weight:bold;letter-spacing:2px}
-h2{color:var(--azul);font-size:clamp(27px,4vw,36px);line-height:1.2}
-h3{color:var(--azul2)}
-.lead{max-width:800px;margin:10px auto;color:#52677b}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
-.card{background:white;padding:23px;border-radius:15px;box-shadow:0 5px 20px #1231;border:1px solid #e2ebf3}
-.emoji{font-size:35px}
-.highlight{background:var(--claro);border-left:5px solid var(--amarelo);padding:18px;border-radius:9px;margin:20px 0}
-.tag{display:inline-block;background:#fff1c2;color:#674900;padding:4px 10px;border-radius:30px;font-size:12px;font-weight:bold}
-.step,.topic{background:white;border-radius:12px;padding:18px;margin:12px 0}
-.topic summary{cursor:pointer;font-weight:bold;color:var(--azul);font-size:17px}
-.topic p{margin-bottom:0}
-table{border-collapse:collapse;width:100%;background:white}
-td,th{padding:12px;border:1px solid #dbe5ee;text-align:left}
-th{background:var(--azul);color:white}
-input{padding:11px;border:1px solid #b7c9d8;border-radius:8px;width:100%;margin:6px 0 14px;font-size:16px}
-label{font-weight:bold;color:var(--azul)}
-.result{background:#eaf5e9;padding:18px;border-radius:10px;margin-top:15px}
-.quizbox{background:white;padding:25px;border-radius:15px;box-shadow:0 5px 20px #1231;max-width:750px;margin:auto}
-.progress{height:9px;background:#e4eaf0;border-radius:10px;overflow:hidden;margin:15px 0}
-.progress span{display:block;width:0;height:100%;background:var(--amarelo)}
-.answer{display:block;width:100%;padding:13px;text-align:left;background:#f1f6fa;border:1px solid #d5e2ed;border-radius:9px;margin:9px 0;cursor:pointer;font-size:15px}
-.answer.correct{background:#d9f3df;border-color:#3b9c56}
-.answer.wrong{background:#ffe0e0;border-color:#d45b5b}
-.feedback{min-height:45px;font-weight:bold;margin:12px 0}
-#leitura{background:#eaf4fc;padding:22px;border-radius:14px;text-align:center;margin:30px auto}
-#speechStatus{font-size:14px}
-footer{background:var(--azul);color:white;text-align:center;padding:35px 15px}
-footer strong{color:var(--amarelo)}
-.small{font-size:13px;color:#61758a}
-.top{position:fixed;bottom:18px;right:18px;background:var(--amarelo);color:var(--azul);padding:12px 17px;border-radius:50%;text-decoration:none;font-size:22px;font-weight:bold}
-@media(max-width:650px){
- header{position:relative}
- nav{justify-content:center}
- nav div:last-child{text-align:center}
- .hero{padding:60px 20px}
- main{padding:15px}
- section{padding:35px 0}
- td,th{padding:8px;font-size:13px}
+* {box-sizing:border-box;scroll-behavior:smooth}
+body {
+  margin:0;
+  font-family:Arial,sans-serif;
+  color:var(--dark);
+  background:var(--light);
+  line-height:1.65;
+}
+header {
+  background:var(--blue);
+  color:white;
+  padding:16px 6%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:12px;
+}
+header strong {font-size:19px}
+nav {display:flex;gap:14px;flex-wrap:wrap}
+nav a {color:white;text-decoration:none;font-size:14px}
+nav a:hover {color:var(--yellow)}
+.hero {
+  background:linear-gradient(130deg,#0c3155,#147eae);
+  color:white;
+  padding:85px 8%;
+  text-align:center;
+}
+.hero h1 {font-size:clamp(32px,5vw,55px);line-height:1.15}
+.hero p {max-width:750px;margin:20px auto;font-size:18px}
+.hero .sun {font-size:65px}
+button {
+  border:0;border-radius:9px;padding:12px 18px;
+  background:var(--blue2);color:white;font-weight:bold;
+  cursor:pointer;margin:4px;
+}
+button:hover {filter:brightness(1.12)}
+button.secondary {background:#e4edf5;color:var(--blue)}
+section {padding:55px 8%;max-width:1200px;margin:auto}
+section h2 {color:var(--blue);font-size:30px}
+section h3 {color:var(--blue2)}
+.intro {font-size:18px;max-width:850px}
+.grid {
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:18px;margin-top:25px
+}
+.card {
+  background:white;padding:22px;border-radius:15px;
+  box-shadow:0 4px 16px #183b5912;
+}
+.card h3 {margin-top:0}
+.icon {font-size:35px}
+.highlight {
+  background:#e1f2fb;border-left:5px solid var(--cyan);
+  padding:18px;border-radius:8px;margin:20px 0
+}
+.dark-section {background:#e4eef7;max-width:none}
+.dark-section > * {max-width:1050px;margin-left:auto;margin-right:auto}
+.sensor-demo,.simulator,.quizbox {
+  background:white;border-radius:16px;padding:25px;
+  box-shadow:0 4px 18px #183b5918;margin-top:25px
+}
+input[type=range] {width:100%;accent-color:var(--blue2)}
+.big-number {font-size:34px;color:var(--blue2);font-weight:bold}
+.bar {
+  height:24px;background:#e8edf2;border-radius:20px;overflow:hidden;
+}
+.bar span {display:block;height:100%;width:0%;background:linear-gradient(90deg,#f7c747,#f28a27);transition:.3s}
+label {font-weight:bold}
+table {width:100%;border-collapse:collapse;background:white;margin:20px 0}
+th,td {padding:12px;border:1px solid #d5e0e9;text-align:left}
+th {background:#dcecf7;color:var(--blue)}
+footer {background:var(--blue);color:white;text-align:center;padding:30px}
+.read-controls {display:flex;gap:8px;flex-wrap:wrap}
+.question {padding:15px 0;border-bottom:1px solid #ddd}
+.answer {display:block;width:100%;text-align:left;background:#edf4fa;color:var(--dark);margin:7px 0}
+.answer.correct {background:#d4f5dc;color:#155724}
+.answer.wrong {background:#ffe0df;color:#9d2424}
+.small {font-size:14px;color:#52677b}
+@media(max-width:600px) {
+ header {justify-content:center}
+ nav {justify-content:center}
+ section {padding:40px 6%}
+ .hero {padding:60px 6%}
 }
 </style>
 </head>
-
 <body>
+
 <header>
+<strong>☀️ Ciência da Luz</strong>
 <nav>
-  <div class="logo">☀ PROJETO SOLAR 2026</div>
-  <div>
-    <a href="#inicio">Início</a>
-    <a href="#conceito">O que é</a>
-    <a href="#sol">O Sol</a>
-    <a href="#tecnologias">Tecnologias</a>
-    <a href="#funcionamento">Funcionamento</a>
-    <a href="#aplicacoes">Aplicações</a>
-    <a href="#sustentabilidade">Sustentabilidade</a>
-    <a href="#piscina">Projeto escolar</a>
-    <a href="#quiz">Quiz</a>
-  </div>
+<a href="#inicio">Início</a>
+<a href="#radiacao">Radiação</a>
+<a href="#sensores">Sensores</a>
+<a href="#medicao">Medição</a>
+<a href="#experimento">Experimentos</a>
+<a href="#aplicacao">Aplicações</a>
 </nav>
 </header>
 
 <div class="hero" id="inicio">
-  <div class="sun">☀️</div>
-  <span class="tag">CIÊNCIA • TECNOLOGIA • SUSTENTABILIDADE</span>
-  <h1>Energia Solar</h1>
-  <p>Uma fonte de energia renovável que transforma a luz e o calor do Sol em possibilidades para um futuro mais sustentável.</p>
-  <a href="#conceito" class="btn btn-yellow">Começar a explorar</a>
-  <a href="#quiz" class="btn btn-outline">Testar conhecimentos</a>
+<div class="sun">☀️</div>
+<h1>Sensores de Luz e o Acompanhamento da Radiação Solar</h1>
+<p>Como podemos detectar, medir e acompanhar a luz do Sol usando a tecnologia? Descubra como sensores transformam a luz em informações que ajudam a entender o ambiente e aproveitar melhor a radiação solar.</p>
+<a href="#radiacao"><button style="background:var(--yellow);color:#17344d">Começar a explorar</button></a>
 </div>
 
-<main>
-
-<section id="conceito">
-<div class="section-title">
-<small>01 • CONHECENDO O TEMA</small>
-<h2>O que é energia solar?</h2>
-<p class="lead">A energia solar é a energia proveniente da radiação emitida pelo Sol. Ela pode ser aproveitada de diferentes maneiras para produzir eletricidade, aquecer água e contribuir com diversas atividades humanas.</p>
-</div>
+<section id="radiacao">
+<h2>1. O que é radiação eletromagnética?</h2>
+<p class="intro">A radiação eletromagnética é uma forma de energia que se propaga pelo espaço por meio de ondas eletromagnéticas. A luz solar é um exemplo muito importante desse fenômeno.</p>
 <div class="grid">
 <div class="card">
-<div class="emoji">☀️</div>
-<h3>Uma fonte natural</h3>
-<p>O Sol libera energia na forma de luz e calor. Essa energia chega à Terra e pode ser captada por tecnologias desenvolvidas para aproveitá-la.</p>
+<div class="icon">🌈</div>
+<h3>Luz visível</h3>
+<p>É a parte da radiação que nossos olhos conseguem enxergar. Ela apresenta diferentes cores, que juntas formam a luz branca.</p>
 </div>
 <div class="card">
-<div class="emoji">♻️</div>
-<h3>Renovável</h3>
-<p>É considerada renovável porque utiliza uma fonte natural disponível em escala humana, ao contrário dos combustíveis fósseis.</p>
+<div class="icon">🔥</div>
+<h3>Infravermelho</h3>
+<p>Está relacionado à transferência de energia térmica. É uma parte importante da radiação emitida pelo Sol.</p>
 </div>
 <div class="card">
-<div class="emoji">⚡</div>
-<h3>Versátil</h3>
-<p>Pode gerar eletricidade, aquecer água, auxiliar na iluminação e atender a diferentes necessidades de casas, empresas e espaços públicos.</p>
+<div class="icon">🧴</div>
+<h3>Ultravioleta</h3>
+<p>Não é visível aos nossos olhos. Em excesso, pode causar danos à pele e aos olhos.</p>
 </div>
 </div>
-<div class="highlight"><strong>Você sabia?</strong> A energia solar ajuda a diversificar a matriz energética e pode reduzir a dependência de fontes que emitem gases de efeito estufa durante sua utilização.</div>
-</section>
-
-<section id="sol">
-<div class="section-title">
-<small>02 • NOSSA FONTE DE ENERGIA</small>
-<h2>De onde vem a energia do Sol?</h2>
-</div>
-<div class="card">
-<p>O Sol é uma estrela composta principalmente por hidrogênio e hélio. Em seu interior ocorre a <strong>fusão nuclear</strong>, processo no qual núcleos de hidrogênio se unem e formam hélio, liberando uma enorme quantidade de energia.</p>
-<p>Essa energia atravessa o espaço na forma de radiação eletromagnética. Uma parte chega à Terra como luz visível, radiação infravermelha e ultravioleta.</p>
-<p>Quando essa radiação atinge materiais e superfícies, pode ser refletida, absorvida ou transformada em outras formas de energia.</p>
-</div>
-<div class="grid" style="margin-top:18px">
-<div class="card"><h3>🌞 Luz visível</h3><p>É a parte da radiação solar que nossos olhos conseguem enxergar.</p></div>
-<div class="card"><h3>🔥 Infravermelho</h3><p>Está relacionado à transferência de energia térmica, que percebemos como calor.</p></div>
-<div class="card"><h3>🧪 Ultravioleta</h3><p>É uma radiação invisível que também chega à superfície terrestre, sendo parcialmente filtrada pela atmosfera.</p></div>
-</div>
-</section>
-<section id="tecnologias">
-<div class="section-title">
-<small>03 • PRINCIPAIS TECNOLOGIAS</small>
-<h2>Como podemos aproveitar a energia solar?</h2>
-<p class="lead">Existem diferentes tecnologias para transformar a energia recebida do Sol em algo útil. Duas das mais conhecidas são a fotovoltaica e a solar térmica.</p>
-</div>
-
-<div class="grid">
-<div class="card">
-<div class="emoji">🔋</div>
-<h3>Energia solar fotovoltaica</h3>
-<p>Utiliza painéis formados por células fotovoltaicas, geralmente feitas de materiais semicondutores, como o silício. Essas células convertem a luz solar diretamente em energia elétrica.</p>
-<p><strong>Exemplo:</strong> produzir eletricidade para uma residência, escola ou empresa.</p>
-</div>
-<div class="card">
-<div class="emoji">🚿</div>
-<h3>Energia solar térmica</h3>
-<p>Utiliza coletores solares para captar o calor do Sol e transferi-lo para um fluido, como a água. É muito utilizada em sistemas de aquecimento.</p>
-<p><strong>Exemplo:</strong> aquecer a água de chuveiros e piscinas.</p>
-</div>
-<div class="card">
-<div class="emoji">🏭</div>
-<h3>Energia solar concentrada</h3>
-<p>Utiliza espelhos ou lentes para concentrar a radiação solar em uma região. O calor produzido pode gerar vapor e movimentar turbinas para produzir eletricidade.</p>
-<p><strong>Exemplo:</strong> usinas solares de concentração.</p>
-</div>
-</div>
-
-<h3>Fotovoltaica x Térmica: qual é a diferença?</h3>
-<table>
-<tr><th>Característica</th><th>Fotovoltaica</th><th>Térmica</th></tr>
-<tr><td>Principal resultado</td><td>Eletricidade</td><td>Calor</td></tr>
-<tr><td>Equipamento</td><td>Painéis fotovoltaicos</td><td>Coletores solares</td></tr>
-<tr><td>Aplicação</td><td>Alimentar aparelhos elétricos</td><td>Aquecer água</td></tr>
-<tr><td>Transformação</td><td>Luz em eletricidade</td><td>Radiação em energia térmica</td></tr>
-</table>
-<div class="highlight">Importante: um painel fotovoltaico não aquece a água diretamente. Ele produz eletricidade. Já o coletor solar térmico é desenvolvido para captar calor e aquecer água.</div>
-</section>
-
-<section id="funcionamento">
-<div class="section-title">
-<small>04 • CIÊNCIA NA PRÁTICA</small>
-<h2>Como funciona um sistema solar?</h2>
-<p class="lead">Vamos acompanhar as etapas que permitem aproveitar a energia do Sol.</p>
-</div>
-
-<div class="step">
-<h3>1. Captação da radiação</h3>
-<p>Os painéis ou coletores ficam posicionados para receber a radiação solar.</p>
-</div>
-<div class="step">
-<h3>2. Conversão ou transferência de energia</h3>
-<p>No sistema fotovoltaico, as células convertem a luz em eletricidade. No sistema térmico, o coletor absorve energia e transfere calor para um fluido.</p>
-</div>
-<div class="step">
-<h3>3. Distribuição ou armazenamento</h3>
-<p>A eletricidade pode ser utilizada, enviada à rede ou armazenada em baterias. No aquecimento solar, a água aquecida pode ficar em um reservatório térmico.</p>
-</div>
-<div class="step">
-<h3>4. Utilização</h3>
-<p>A energia aproveitada atende às necessidades de residências, escolas, indústrias e outros locais.</p>
-</div>
-
-<div class="card">
-<h3>O que acontece em dias nublados?</h3>
-<p>Os sistemas fotovoltaicos continuam podendo gerar eletricidade, pois parte da radiação solar atravessa as nuvens. Porém, a produção geralmente diminui. À noite, os painéis não recebem luz solar direta e não geram energia.</p>
-</div>
-
-<div class="card" style="margin-top:18px">
-<h3>O que é um inversor solar?</h3>
-<p>Em sistemas fotovoltaicos, os painéis produzem corrente contínua. O inversor transforma essa energia em corrente alternada, que é utilizada pela maioria dos equipamentos elétricos das casas e escolas.</p>
-</div>
-</section>
-
-<section id="aplicacoes">
-<div class="section-title">
-<small>05 • NO NOSSO DIA A DIA</small>
-<h2>Onde encontramos a energia solar?</h2>
-<p class="lead">A energia solar está presente em diferentes tecnologias e pode ajudar a atender necessidades de pessoas, comunidades e empresas.</p>
-</div>
-
-<div class="grid">
-<div class="card">
-<div class="emoji">🏠</div>
-<h3>Residências</h3>
-<p>Painéis fotovoltaicos podem gerar eletricidade para iluminação, geladeiras, televisores e outros aparelhos. Coletores térmicos podem aquecer a água do banho.</p>
-</div>
-<div class="card">
-<div class="emoji">🏫</div>
-<h3>Escolas</h3>
-<p>Sistemas solares podem contribuir com a eletricidade usada em salas, computadores, laboratórios e áreas comuns.</p>
-</div>
-<div class="card">
-<div class="emoji">🌾</div>
-<h3>Agricultura</h3>
-<p>A energia solar pode alimentar bombas de irrigação, sistemas de monitoramento e equipamentos utilizados no campo.</p>
-</div>
-<div class="card">
-<div class="emoji">🚦</div>
-<h3>Espaços públicos</h3>
-<p>Placas solares podem alimentar iluminação, sinalização e equipamentos instalados em locais afastados da rede elétrica.</p>
-</div>
-<div class="card">
-<div class="emoji">🏢</div>
-<h3>Empresas</h3>
-<p>Indústrias e comércios podem utilizar sistemas solares para gerar parte da eletricidade consumida em suas atividades.</p>
-</div>
-<div class="card">
-<div class="emoji">🛰️</div>
-<h3>Satélites e tecnologia</h3>
-<p>Painéis solares são utilizados em satélites e sondas espaciais para fornecer eletricidade aos equipamentos.</p>
-</div>
-</div>
-
 <div class="highlight">
-<strong>Uma aplicação interessante:</strong> calculadoras solares, postes de iluminação e carregadores solares portáteis mostram como a energia do Sol pode ser aproveitada em objetos e equipamentos do cotidiano.
+<strong>Você sabia?</strong>
+A luz solar não é composta apenas pela luz que enxergamos. Ela também contém radiações que nossos olhos não conseguem perceber.
 </div>
+<h3>Por que isso importa para os sensores?</h3>
+<p>Os sensores são dispositivos capazes de responder à luz ou a determinadas faixas da radiação eletromagnética. Dependendo do tipo de sensor, eles podem detectar a iluminação de um ambiente e transformar essa informação em um sinal elétrico.</p>
 </section>
 
-<section id="painel">
-<div class="section-title">
-<small>06 • CONHECENDO OS EQUIPAMENTOS</small>
-<h2>O que existe em um painel solar?</h2>
-</div>
-<div class="card">
-<p>Um painel fotovoltaico é formado por várias células solares conectadas entre si. Quando a luz atinge essas células, ocorre o efeito fotovoltaico, que permite gerar corrente elétrica.</p>
-<p>Além das células, os painéis possuem materiais de proteção, estruturas de suporte e conexões elétricas. Um conjunto de painéis forma um sistema fotovoltaico.</p>
-</div>
-<div class="grid" style="margin-top:18px">
-<div class="card"><h3>🔬 Células solares</h3><p>São responsáveis por converter a luz em energia elétrica.</p></div>
-<div class="card"><h3>🔌 Cabos e conexões</h3><p>Conduzem a energia gerada até os equipamentos do sistema.</p></div>
-<div class="card"><h3>⚙️ Inversor</h3><p>Adapta a energia elétrica para utilização em corrente alternada.</p></div>
-</div>
-</section>
-<section id="sustentabilidade">
-<div class="section-title">
-<small>07 • ENERGIA E MEIO AMBIENTE</small>
-<h2>Vantagens e desafios da energia solar</h2>
-<p class="lead">A energia solar oferece benefícios importantes, mas também apresenta desafios que precisam ser considerados.</p>
-</div>
-
+<div class="dark-section">
+<section id="sensores">
+<h2>2. Como funcionam os sensores de luz?</h2>
+<p class="intro">Sensores de luz são componentes eletrônicos que detectam a presença ou a intensidade da luz. Dois exemplos muito utilizados são o LDR e o fotodiodo.</p>
 <div class="grid">
 <div class="card">
-<div class="emoji">🌱</div>
-<h3>Fonte renovável</h3>
-<p>Utiliza a radiação do Sol, uma fonte natural que está disponível diariamente em diferentes regiões do planeta.</p>
-</div>
-<div class="card">
-<div class="emoji">🌍</div>
-<h3>Menores emissões durante a operação</h3>
-<p>A geração solar não exige a queima de combustíveis para produzir eletricidade, evitando emissões diretas de gases de efeito estufa durante a operação.</p>
-</div>
-<div class="card">
-<div class="emoji">💡</div>
-<h3>Economia na conta de luz</h3>
-<p>Um sistema bem dimensionado pode reduzir a quantidade de eletricidade comprada da rede, dependendo das condições e tarifas.</p>
-</div>
-<div class="card">
-<div class="emoji">🔋</div>
-<h3>Independência energética</h3>
-<p>Pode ampliar as opções de fornecimento de energia e, quando combinada com baterias, oferecer armazenamento.</p>
-</div>
-<div class="card">
-<div class="emoji">💰</div>
-<h3>Investimento inicial</h3>
-<p>A instalação dos equipamentos pode exigir um custo inicial elevado, embora possa gerar economia ao longo do tempo.</p>
-</div>
-<div class="card">
-<div class="emoji">🌧️</div>
-<h3>Dependência das condições solares</h3>
-<p>A geração varia conforme o horário, as condições climáticas, a estação do ano e a localização.</p>
-</div>
-<div class="card">
-<div class="emoji">♻️</div>
-<h3>Descarte dos equipamentos</h3>
-<p>Painéis e baterias precisam de destinação adequada e processos de reciclagem ao final da vida útil.</p>
-</div>
-<div class="card">
-<div class="emoji">🏞️</div>
-<h3>Uso do espaço</h3>
-<p>Grandes usinas podem ocupar áreas extensas e precisam de planejamento para reduzir impactos ambientais.</p>
-</div>
-</div>
-
-<div class="highlight">
-<strong>Uma reflexão:</strong> uma tecnologia ser renovável não significa que não cause nenhum impacto ambiental. A fabricação, o transporte, a instalação e o descarte dos equipamentos também precisam ser considerados.
-</div>
-</section>
-
-<section id="brasil">
-<div class="section-title">
-<small>08 • ENERGIA SOLAR NO MUNDO</small>
-<h2>O Brasil e o potencial solar</h2>
-</div>
-<div class="card">
-<p>O Brasil possui grande potencial para aproveitar a energia solar devido à quantidade de radiação recebida em boa parte do território. A tecnologia fotovoltaica está presente em telhados, propriedades rurais, empresas e grandes usinas.</p>
-<p>O aproveitamento solar pode complementar outras fontes da matriz elétrica brasileira, como a hidrelétrica, e contribuir para diversificar a produção de energia.</p>
-<p>O potencial de geração varia conforme a localização, a inclinação dos painéis, a orientação, as sombras e as condições climáticas.</p>
-</div>
-<div class="grid" style="margin-top:18px">
-<div class="card"><h3>🏡 Geração distribuída</h3><p>São sistemas instalados próximos aos locais de consumo, como telhados de casas, comércios e escolas.</p></div>
-<div class="card"><h3>🌞 Grandes usinas</h3><p>São instalações com muitos painéis solares que geram eletricidade em grande escala.</p></div>
-<div class="card"><h3>🌎 Transição energética</h3><p>A expansão das fontes renováveis faz parte das estratégias para transformar os sistemas de produção e consumo de energia.</p></div>
-</div>
-</section>
-
-<section id="curiosidades">
-<div class="section-title">
-<small>09 • VOCÊ SABIA?</small>
-<h2>Curiosidades sobre a energia solar</h2>
-</div>
-<div class="grid">
-<div class="card">
-<h3>☀️ O Sol é enorme!</h3>
-<p>Seu diâmetro é aproximadamente 109 vezes maior que o da Terra.</p>
-</div>
-<div class="card">
-<h3>⏱️ A luz viaja rapidamente</h3>
-<p>A luz do Sol leva cerca de 8 minutos e 20 segundos para chegar à Terra.</p>
-</div>
-<div class="card">
-<h3>🔬 Efeito fotovoltaico</h3>
-<p>Esse fenômeno físico permite que determinados materiais convertam luz em eletricidade.</p>
-</div>
-<div class="card">
-<h3>🌙 E à noite?</h3>
-<p>Os painéis fotovoltaicos não geram energia solar à noite. Sistemas com baterias podem utilizar energia armazenada durante o dia.</p>
-</div>
-<div class="card">
-<h3>🌡️ Calor e eletricidade</h3>
-<p>A energia solar pode ser aproveitada tanto para aquecer água quanto para produzir eletricidade.</p>
-</div>
-<div class="card">
-<h3>🧭 A posição importa</h3>
-<p>A orientação, a inclinação e a ausência de sombras influenciam o desempenho dos painéis.</p>
-</div>
-</div>
-</section>
-
-<section id="experimentos">
-<div class="section-title">
-<small>10 • APRENDENDO NA PRÁTICA</small>
-<h2>Experiências para explorar a energia solar</h2>
-<p class="lead">Pequenas atividades ajudam a observar como a radiação solar pode ser aproveitada.</p>
-</div>
-
-<div class="card">
-<h3>🧪 Experimento 1 — Aquecimento pela luz do Sol</h3>
-<p><strong>Materiais:</strong> dois recipientes iguais, água, termômetro e papel preto.</p>
-<p><strong>Como fazer:</strong> coloque a mesma quantidade de água nos recipientes. Cubra um deles com papel preto e deixe ambos em um local ensolarado, com supervisão. Meça a temperatura no início e após intervalos iguais.</p>
-<p><strong>O que observar:</strong> compare as temperaturas e discuta como a cor e a absorção de radiação podem influenciar o aquecimento.</p>
-</div>
-
-<div class="card" style="margin-top:15px">
-<h3>🔎 Experimento 2 — Investigando sombras</h3>
-<p><strong>Materiais:</strong> uma pequena placa solar educativa, multímetro apropriado e objetos para produzir sombra.</p>
-<p><strong>Como fazer:</strong> observe a saída elétrica da placa sob iluminação e depois cubra parte dela, sem danificar o equipamento. Compare as medições.</p>
-<p><strong>O que observar:</strong> perceba como o sombreamento pode diminuir a geração de eletricidade.</p>
-</div>
-
-<div class="card" style="margin-top:15px">
-<h3>📊 Experimento 3 — Comparando superfícies</h3>
-<p><strong>Materiais:</strong> superfícies de cores diferentes, termômetro e local ensolarado.</p>
-<p><strong>Como fazer:</strong> exponha as superfícies à luz solar pelo mesmo período e compare suas temperaturas.</p>
-<p><strong>O que observar:</strong> diferentes materiais e cores absorvem e refletem a radiação de maneiras distintas.</p>
-</div>
-
-<div class="highlight">Atenção: não olhe diretamente para o Sol, não utilize lentes para concentrar a luz solar e faça as experiências com acompanhamento de um professor ou adulto.</div>
-</section>
-
-<section id="piscina">
-<div class="section-title">
-<small>11 • APLICAÇÃO NA NOSSA ESCOLA</small>
-<h2>Energia solar para aquecer a piscina escolar</h2>
-<p class="lead">Depois de conhecer as tecnologias solares, podemos investigar uma aplicação prática: aproveitar o calor do Sol para aquecer a água da piscina do colégio.</p>
-</div>
-
-<div class="card">
-<h3>Como essa ideia funcionaria?</h3>
-<p>Um sistema de aquecimento solar térmico poderia utilizar coletores instalados em uma área adequada e conectados ao circuito de circulação da piscina. A água passaria pelos coletores, receberia calor e retornaria à piscina.</p>
-<p>Uma capa térmica também poderia ajudar a diminuir a perda de calor, principalmente pela evaporação.</p>
-<h3>O que precisaríamos estudar?</h3>
+<div class="icon">💡</div>
+<h3>LDR — Resistor dependente de luz</h3>
+<p>O LDR é um componente cuja resistência elétrica muda conforme a iluminação.</p>
 <ul>
-<li>Volume e profundidade da piscina.</li>
-<li>Temperatura inicial e temperatura desejada.</li>
-<li>Área disponível para os coletores.</li>
-<li>Insolação e condições climáticas locais.</li>
-<li>Perdas de calor, circulação da água e custos de instalação.</li>
+<li>Com pouca luz, sua resistência geralmente aumenta.</li>
+<li>Com muita luz, sua resistência geralmente diminui.</li>
+<li>É utilizado em postes automáticos, luminárias e projetos escolares.</li>
 </ul>
-<p><strong>Objetivo:</strong> avaliar, com dados reais e orientação técnica, se o aquecimento solar seria uma solução viável para nossa escola.</p>
 </div>
-</section>
-<section id="simulador">
-<div class="section-title">
-<small>12 • INTERATIVIDADE</small>
-<h2>Simulador de aquecimento solar</h2>
-<p class="lead">Faça uma simulação educativa para entender quanta energia térmica seria necessária para aquecer a água de uma piscina.</p>
-</div>
-
 <div class="card">
-<label for="volume">Volume de água (em m³)</label>
-<input id="volume" type="number" min="1" value="100">
-
-<label for="atual">Temperatura atual (°C)</label>
-<input id="atual" type="number" min="0" max="50" value="22">
-
-<label for="desejada">Temperatura desejada (°C)</label>
-<input id="desejada" type="number" min="0" max="50" value="28">
-
-<label for="area">Área de coletores solares (m²)</label>
-<input id="area" type="number" min="0" value="20">
-
-<button class="btn btn-blue" id="calcular" type="button">Calcular estimativa</button>
-
-<div class="result">
-<p>Energia térmica necessária:</p>
-<h2 id="energia">—</h2>
-<p id="estimativa">Preencha os valores e faça o cálculo.</p>
+<div class="icon">🔬</div>
+<h3>Fotodiodo</h3>
+<p>O fotodiodo é um componente semicondutor que transforma a luz recebida em uma corrente elétrica.</p>
+<ul>
+<li>Responde à luz que atinge sua superfície.</li>
+<li>Pode oferecer uma resposta rápida.</li>
+<li>É utilizado em equipamentos ópticos, controles e sistemas de medição.</li>
+</ul>
 </div>
-<p class="small">Estimativa simplificada: considera 1,163 kWh para aquecer 1 m³ de água em 1 °C. Para estimar a captação diária, considera 4,5 kWh/m²/dia de radiação e eficiência ilustrativa de 50%. Não considera perdas de calor, clima real, sombras, eficiência específica dos equipamentos ou características da piscina. Não substitui um projeto técnico.</p>
+</div>
+<h3>Qual é a diferença entre eles?</h3>
+<table>
+<tr><th>Característica</th><th>LDR</th><th>Fotodiodo</th></tr>
+<tr><td>Resposta à luz</td><td>Altera a resistência</td><td>Gera corrente elétrica</td></tr>
+<tr><td>Velocidade</td><td>Geralmente mais lento</td><td>Geralmente mais rápido</td></tr>
+<tr><td>Uso comum</td><td>Controle automático de iluminação</td><td>Detecção e medição de luz</td></tr>
+<tr><td>Aplicação escolar</td><td>Comparar claro e escuro</td><td>Investigar a resposta à iluminação</td></tr>
+</table>
+<div class="highlight">
+<strong>Atenção:</strong> o LDR e o fotodiodo não funcionam exatamente da mesma maneira. A escolha depende do tipo de medição, da precisão e da velocidade necessárias.
+</div>
+</section>
+</div>
+
+<section id="medicao">
+<h2>3. Como comparar a intensidade luminosa?</h2>
+<p class="intro">Podemos medir a intensidade da luz em diferentes locais, posições e horários para descobrir onde a iluminação é maior.</p>
+<p>Uma forma de fazer isso é utilizar um sensor conectado a um circuito eletrônico ou a uma placa como Arduino. O sensor recebe a luz e o sistema apresenta uma leitura que pode ser comparada.</p>
+<div class="sensor-demo">
+<h3>🔆 Simulador de intensidade luminosa</h3>
+<p>Mova o controle para simular diferentes níveis de iluminação recebidos por um sensor.</p>
+<label for="lightRange">Intensidade de luz simulada:</label>
+<input id="lightRange" type="range" min="0" max="100" value="50">
+<div class="big-number"><span id="lightValue">50</span>%</div>
+<div class="bar"><span id="lightBar" style="width:50%"></span></div>
+<p id="lightDescription">Iluminação moderada.</p>
+<p class="small">Este é um modelo ilustrativo, não uma leitura de um sensor físico.</p>
+</div>
+<h3>Como fazer uma comparação real?</h3>
+<div class="grid">
+<div class="card"><h3>📍 Posição A</h3><p>Coloque o sensor em um local e registre a leitura.</p></div>
+<div class="card"><h3>📍 Posição B</h3><p>Mude o sensor de lugar e mantenha as mesmas condições de medição.</p></div>
+<div class="card"><h3>📊 Comparação</h3><p>Compare os valores e identifique qual posição recebeu mais luz.</p></div>
+</div>
+<div class="highlight">
+Para uma comparação justa, procure manter a mesma orientação do sensor, a mesma distância de obstáculos e horários próximos. Registre também as condições do céu.
 </div>
 </section>
 
-<section id="quiz">
-<div class="section-title">
-<small>13 • TESTE SEUS CONHECIMENTOS</small>
-<h2>Quiz Solar</h2>
-<p class="lead">Responda às perguntas e descubra o que aprendeu sobre energia solar!</p>
+<div class="dark-section">
+<section id="acompanhamento">
+<h2>4. Como acompanhar a radiação solar?</h2>
+<p>O Sol parece mudar de posição no céu ao longo do dia por causa da rotação da Terra. Com isso, a direção e a intensidade da luz que chega a uma superfície também podem mudar.</p>
+<div class="grid">
+<div class="card"><div class="icon">🌅</div><h3>Manhã</h3><p>A luz chega de uma direção mais próxima do horizonte leste.</p></div>
+<div class="card"><div class="icon">☀️</div><h3>Meio do dia</h3><p>Em muitos locais, o Sol está mais alto no céu e a incidência pode ser mais direta.</p></div>
+<div class="card"><div class="icon">🌇</div><h3>Tarde</h3><p>A direção da luz muda em direção ao horizonte oeste.</p></div>
+</div>
+<h3>Como encontrar a melhor posição para um coletor solar?</h3>
+<ol>
+<li>Escolher diferentes posições ou inclinações para o coletor.</li>
+<li>Colocar o sensor na mesma orientação da superfície que será avaliada.</li>
+<li>Medir a iluminação em horários diferentes.</li>
+<li>Repetir as medições em dias diferentes.</li>
+<li>Comparar os resultados para identificar a posição mais favorável.</li>
+</ol>
+<p>É importante lembrar que a melhor posição depende da localização geográfica, da época do ano, da inclinação, da orientação e das sombras ao redor.</p>
+</section>
 </div>
 
-<div class="quizbox">
-<div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
-<strong id="qcount">Pergunta 1 de 8</strong>
-<strong id="score">Acertos: 0</strong>
+<section id="limitacoes">
+<h2>5. Quais são as limitações dos sensores?</h2>
+<p>Apesar de serem muito úteis, os sensores de luz possuem limitações. Uma leitura não representa necessariamente toda a energia solar que uma superfície recebe.</p>
+<div class="grid">
+<div class="card"><h3>☁️ Condições climáticas</h3><p>Nuvens, chuva e neblina podem alterar a quantidade de luz recebida.</p></div>
+<div class="card"><h3>📐 Ângulo de incidência</h3><p>A inclinação do sensor em relação à luz pode mudar a leitura.</p></div>
+<div class="card"><h3>🌳 Sombras</h3><p>Árvores, prédios e outros obstáculos podem bloquear parte da radiação.</p></div>
+<div class="card"><h3>⚙️ Precisão</h3><p>Sensores simples podem apresentar variações e precisam de calibração.</p></div>
+<div class="card"><h3>🌈 Tipo de radiação</h3><p>Um sensor pode responder melhor a algumas faixas de luz do que a outras.</p></div>
+<div class="card"><h3>🌡️ Temperatura</h3><p>A temperatura pode influenciar a resposta de alguns componentes eletrônicos.</p></div>
 </div>
-<div class="progress"><span id="progress"></span></div>
-<h3 id="question">Carregando pergunta...</h3>
-<div id="answers"></div>
-<div class="feedback" id="feedback" aria-live="polite"></div>
-<button class="btn btn-blue" id="next" type="button" disabled>Próxima pergunta</button>
-<button class="btn btn-outline" id="restart" type="button" hidden>Refazer quiz</button>
+<div class="highlight">
+<strong>Uma diferença importante:</strong> lux é uma unidade relacionada à iluminação percebida pelo olho humano. Já a irradiância solar é medida em watts por metro quadrado (W/m²) e representa a potência da radiação que chega a uma superfície por área. Um LDR comum não mede diretamente a irradiância solar.
+</div>
+</section>
+
+<div class="dark-section">
+<section id="experimento">
+<h2>6. Experimentos para aprender na prática</h2>
+<div class="grid">
+<div class="card">
+<div class="icon">🔦</div>
+<h3>Experimento 1 — Claro e escuro</h3>
+<p>Utilize um LDR conectado a um circuito. Cubra o sensor com a mão e depois ilumine-o com uma lanterna. Observe como a leitura muda.</p>
+</div>
+<div class="card">
+<div class="icon">📏</div>
+<h3>Experimento 2 — Distância da luz</h3>
+<p>Coloque uma lanterna a diferentes distâncias do sensor. Registre os valores e compare as mudanças.</p>
+</div>
+<div class="card">
+<div class="icon">🧭</div>
+<h3>Experimento 3 — Direção da luz</h3>
+<p>Gire o sensor em diferentes direções e observe como a posição em relação à fonte luminosa interfere na leitura.</p>
+</div>
+<div class="card">
+<div class="icon">🌤️</div>
+<h3>Experimento 4 — Acompanhando o Sol</h3>
+<p>Faça medições em diferentes horários do dia, sempre com o sensor na mesma orientação, e compare os resultados.</p>
+</div>
+</div>
+<h3>Registre os resultados</h3>
+<table>
+<tr><th>Horário</th><th>Local</th><th>Leitura do sensor</th></tr>
+<tr><td>08:00</td><td>Local A</td><td>________</td></tr>
+<tr><td>12:00</td><td>Local A</td><td>________</td></tr>
+<tr><td>15:00</td><td>Local A</td><td>________</td></tr>
+</table>
+<p class="small">Os espaços podem ser preenchidos com as medições realizadas durante o experimento.</p>
+</section>
+</div>
+
+<section id="aplicacao">
+<h2>7. Aplicações no cotidiano</h2>
+<div class="grid">
+<div class="card"><h3>💡 Iluminação automática</h3><p>Postes e luminárias podem utilizar sensores para acender quando o ambiente escurece.</p></div>
+<div class="card"><h3>🌱 Agricultura</h3><p>Acompanhamento da iluminação disponível para o crescimento das plantas.</p></div>
+<div class="card"><h3>🏠 Automação</h3><p>Sistemas inteligentes podem ajustar cortinas e iluminação conforme a luz ambiente.</p></div>
+<div class="card"><h3>🔋 Energia solar</h3><p>O acompanhamento da radiação ajuda a estudar o posicionamento e o desempenho de sistemas solares.</p></div>
+</div>
+<h3>Aplicação no projeto da piscina da escola</h3>
+<p>Os sensores podem ajudar a estudar quais áreas recebem mais luz solar ao longo do dia. Essas informações podem auxiliar na escolha do local e da orientação de um coletor solar destinado ao aquecimento da piscina.</p>
+<p>É importante destacar que o sensor de luz ajuda a comparar a iluminação, mas o dimensionamento do aquecimento também precisa considerar a área da piscina, a temperatura desejada, as perdas de calor e a eficiência do coletor.</p>
+</section>
+
+<div class="dark-section">
+<section id="quiz">
+<h2>8. Teste seus conhecimentos</h2>
+<p>Responda às perguntas e veja quantos pontos consegue fazer!</p>
+<div class="quizbox">
+<div id="quizContent"></div>
+<p id="quizResult"></p>
+<button onclick="nextQuestion()" id="nextBtn">Próxima pergunta</button>
+<button class="secondary" onclick="restartQuiz()">Recomeçar</button>
+</div>
+</section>
+</div>
+
+<section id="conclusao">
+<h2>9. Conclusão</h2>
+<p>Os sensores de luz são ferramentas importantes para observar e acompanhar a iluminação do ambiente. O LDR e o fotodiodo detectam a luz de maneiras diferentes e podem ser utilizados em diversas aplicações.</p>
+<p>Ao comparar medições em diferentes posições e horários, conseguimos compreender melhor como a radiação solar varia e como essas informações podem ajudar em projetos tecnológicos. Porém, é necessário conhecer as limitações dos sensores e utilizar instrumentos adequados quando queremos medir a energia solar com maior precisão.</p>
+<div class="highlight">
+<strong>Ideia principal:</strong> medir a luz é transformar um fenômeno natural em informação que podemos analisar, comparar e utilizar para desenvolver soluções.
 </div>
 </section>
 
 <section id="leitura">
-<h2>🔊 Ouça o conteúdo do site</h2>
-<p>Use a leitura em voz alta para acompanhar os textos. O navegador utilizará uma voz disponível em português.</p>
-<button class="btn btn-blue" id="readButton" type="button">▶ Ler em voz alta</button>
-<button class="btn btn-outline" id="pauseButton" type="button">⏸ Pausar / continuar</button>
-<button class="btn btn-outline" id="stopButton" type="button">■ Parar</button>
-<p id="speechStatus" role="status" aria-live="polite">Leitura pronta.</p>
-</section>
-
-<section id="conclusao">
-<div class="section-title">
-<small>14 • CONCLUSÃO</small>
-<h2>O Sol como fonte de possibilidades</h2>
+<h2>🔊 Acessibilidade — Ouvir o conteúdo</h2>
+<p>Use os controles abaixo para ouvir o conteúdo do site em voz alta.</p>
+<div class="read-controls">
+<button onclick="readPage()">▶ Ler em voz alta</button>
+<button onclick="speechSynthesis.pause()">⏸ Pausar</button>
+<button onclick="speechSynthesis.resume()">⏯ Continuar</button>
+<button class="secondary" onclick="speechSynthesis.cancel()">⏹ Parar</button>
 </div>
-<div class="card">
-<p>A energia solar é uma tecnologia importante para o presente e para o futuro. Ela permite gerar eletricidade, aquecer água e desenvolver soluções para diferentes necessidades da sociedade.</p>
-<p>Ao estudar seu funcionamento, suas vantagens e seus desafios, percebemos que a ciência e a tecnologia podem contribuir para um mundo mais sustentável.</p>
-<p>O conhecimento adquirido também pode nos ajudar a pensar em soluções para nossa própria escola, como a possibilidade de utilizar aquecimento solar na piscina.</p>
-<h3>Uma pergunta para refletir:</h3>
-<p>Como podemos aproveitar melhor a energia do Sol no nosso cotidiano?</p>
-</div>
+<p class="small">A leitura utiliza a voz disponível no seu navegador ou dispositivo.</p>
 </section>
-
-</main>
 
 <footer>
-<strong>☀ PROJETO SOLAR 2026</strong>
-<p>Aprender hoje para construir soluções mais sustentáveis amanhã.</p>
-<p class="small" style="color:#c8dbee">Ciência • Tecnologia • Educação • Sustentabilidade</p>
+<p><strong>☀️ Ciência da Luz</strong></p>
+<p>Projeto educativo — Sensores de luz e acompanhamento da radiação solar</p>
+<p>Aprender, experimentar e transformar conhecimento em tecnologia.</p>
 </footer>
 
-<a class="top" href="#inicio" aria-label="Voltar ao início">↑</a>
+<script>
+const range = document.getElementById("lightRange");
+const value = document.getElementById("lightValue");
+const bar = document.getElementById("lightBar");
+const description = document.getElementById("lightDescription");
 
-<!-- Acessibilidade VLibras -->
+function updateLight() {
+  let n = Number(range.value);
+  value.textContent = n;
+  bar.style.width = n + "%";
+  if(n < 25) description.textContent = "Pouca iluminação: o sensor está recebendo pouca luz.";
+  else if(n < 70) description.textContent = "Iluminação moderada: existe uma quantidade intermediária de luz.";
+  else description.textContent = "Alta iluminação: o sensor está recebendo bastante luz.";
+}
+range.addEventListener("input", updateLight);
+updateLight();
+
+const questions = [
+ {q:"O que acontece com a resistência de um LDR quando a luz aumenta?",a:["Ela geralmente diminui","Ela sempre aumenta","Ela desaparece"],c:0,e:"O LDR normalmente apresenta menor resistência quando recebe mais luz."},
+ {q:"O que o fotodiodo transforma em sinal elétrico?",a:["Som","Luz","Temperatura apenas"],c:1,e:"O fotodiodo responde à luz e produz uma corrente elétrica."},
+ {q:"Qual é uma forma de comparar a iluminação em dois locais?",a:["Medir com o mesmo sensor e condições semelhantes","Usar sensores diferentes sem comparação","Medir apenas uma vez sem registrar"],c:0,e:"Manter condições semelhantes ajuda a fazer uma comparação mais justa."},
+ {q:"O que pode interferir na leitura de um sensor?",a:["Sombras e inclinação","Somente a cor do aparelho","Nada interfere"],c:0,e:"Sombras, ângulo, clima e características do sensor podem alterar as medições."},
+ {q:"Lux e W/m² representam exatamente a mesma coisa?",a:["Sim","Não"],c:1,e:"Lux considera a sensibilidade do olho humano; W/m² mede potência radiante por área."},
+ {q:"Como os sensores podem ajudar a posicionar um coletor solar?",a:["Comparando a luz recebida em diferentes posições","Medindo o volume da piscina diretamente","Substituindo todos os cálculos térmicos"],c:0,e:"As medições ajudam a identificar posições com maior iluminação, mas não substituem o dimensionamento térmico."}
+];
+let current=0, score=0, answered=false;
+
+function showQuestion(){
+ answered=false;
+ const q=questions[current];
+ document.getElementById("quizContent").innerHTML =
+ `<h3>Pergunta ${current+1} de ${questions.length}</h3>
+ <p><strong>${q.q}</strong></p>`+
+ q.a.map((a,i)=>`<button class="answer" onclick="answerQuestion(${i},this)">${a}</button>`).join("");
+ document.getElementById("quizResult").textContent="";
+ document.getElementById("nextBtn").textContent=current===questions.length-1?"Ver resultado":"Próxima pergunta";
+}
+function answerQuestion(i,el){
+ if(answered)return;
+ answered=true;
+ const q=questions[current];
+ document.querySelectorAll(".answer").forEach((b,index)=>{
+  if(index===q.c)b.classList.add("correct");
+ });
+ if(i===q.c){
+  score++;
+  document.getElementById("quizResult").textContent="Muito bem! "+q.e;
+ }else{
+  el.classList.add("wrong");
+  document.getElementById("quizResult").textContent="Não foi dessa vez. "+q.e;
+ }
+}
+function nextQuestion(){
+ if(!answered){
+  document.getElementById("quizResult").textContent="Escolha uma alternativa antes de continuar.";
+  return;
+ }
+ if(current<questions.length-1){
+  current++;
+  showQuestion();
+ }else{
+  document.getElementById("quizContent").innerHTML="<h3>Quiz concluído!</h3>";
+  document.getElementById("quizResult").textContent=`Você acertou ${score} de ${questions.length} perguntas!`;
+  document.getElementById("nextBtn").style.display="none";
+ }
+}
+function restartQuiz(){
+ current=0;score=0;
+ document.getElementById("nextBtn").style.display="inline-block";
+ showQuestion();
+}
+showQuestion();
+
+function readPage(){
+ speechSynthesis.cancel();
+ const mainText=document.querySelectorAll("section");
+ let text="";
+ mainText.forEach(section=>text+=section.innerText+" ");
+ const utterance=new SpeechSynthesisUtterance(text);
+ utterance.lang="pt-BR";
+ utterance.rate=1;
+ speechSynthesis.speak(utterance);
+}
+</script>
+
+<!-- VLibras: recurso de acessibilidade em Libras -->
 <div vw class="enabled">
-<div vw-access-button class="active"></div>
-<div vw-plugin-wrapper>
-<div class="vw-plugin-top-wrapper"></div>
-</div>
+ <div vw-access-button class="active"></div>
+ <div vw-plugin-wrapper>
+  <div class="vw-plugin-top-wrapper"></div>
+ </div>
 </div>
 <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
 <script>
-new window.VLibras.Widget('https://vlibras.gov.br/app');
-</script>
-
-<script>
-/* SIMULADOR */
-function calcular(){
-  const volume = Number(document.getElementById('volume').value);
-  const atual = Number(document.getElementById('atual').value);
-  const desejada = Number(document.getElementById('desejada').value);
-  const area = Number(document.getElementById('area').value);
-
-  const energia = document.getElementById('energia');
-  const estimativa = document.getElementById('estimativa');
-
-  if(!Number.isFinite(volume) || !Number.isFinite(atual) ||
-     !Number.isFinite(desejada) || !Number.isFinite(area) ||
-     volume<=0 || area<0 || atual<0 || desejada<0 ||
-     atual>50 || desejada>50){
-    energia.textContent='Valores inválidos';
-    estimativa.textContent='Confira os valores. O volume deve ser maior que zero e as temperaturas devem estar entre 0 e 50 °C.';
-    return;
-  }
-
-  const diferenca = Math.max(0,desejada-atual);
-  const kwh = volume*1.163*diferenca;
-
-  energia.textContent=kwh.toLocaleString('pt-BR',{maximumFractionDigits:1})+' kWh';
-
-  if(diferenca===0){
-    estimativa.textContent='A água já está na temperatura desejada ou acima dela.';
-  }else if(area===0){
-    estimativa.textContent='Informe uma área de coletores maior que zero para estimar os dias de captação.';
-  }else{
-    const energiaDiaria=area*4.5*0.5;
-    const dias=kwh/energiaDiaria;
-    estimativa.textContent='Estimativa ilustrativa: aproximadamente '+dias.toLocaleString('pt-BR',{maximumFractionDigits:1})+' dias de captação solar, sem considerar as perdas de calor.';
-  }
-}
-
-document.getElementById('calcular').addEventListener('click',calcular);
-['volume','atual','desejada','area'].forEach(id=>{
-  document.getElementById(id).addEventListener('input',calcular);
-});
-calcular();
-
-/* QUIZ */
-const perguntas=[
-{
- q:'Qual é a principal fonte da energia solar?',
- a:['O vento','O Sol','O petróleo'],
- c:1,
- e:'Correto! A energia solar vem da radiação emitida pelo Sol.'
-},
-{
- q:'O que acontece no interior do Sol?',
- a:['Fusão nuclear','Combustão de carvão','Produção de eletricidade por painéis'],
- c:0,
- e:'Isso! A fusão nuclear libera a energia produzida no interior do Sol.'
-},
-{
- q:'O que os painéis fotovoltaicos produzem?',
- a:['Água quente diretamente','Energia elétrica','Combustível'],
- c:1,
- e:'Muito bem! As células fotovoltaicas convertem luz em eletricidade.'
-},
-{
- q:'Qual equipamento é utilizado para aquecer água com energia solar?',
- a:['Coletor solar térmico','Ventilador','Motor a gasolina'],
- c:0,
- e:'Correto! O coletor solar térmico absorve energia e transfere calor para a água.'
-},
-{
- q:'A energia solar é considerada renovável porque:',
- a:['Nunca muda de intensidade','Utiliza uma fonte natural disponível em escala humana','Não precisa de equipamentos'],
- c:1,
- e:'Exatamente! O Sol é uma fonte natural de energia renovável.'
-},
-{
- q:'O que pode diminuir a produção de um painel fotovoltaico?',
- a:['Sombreamento','Luz solar','Boa orientação'],
- c:0,
- e:'Isso! Sombras podem reduzir a geração elétrica do painel.'
-},
-{
- q:'O que acontece com a geração fotovoltaica durante a noite?',
- a:['Aumenta automaticamente','Continua igual','Não há geração de luz solar pelos painéis'],
- c:2,
- e:'Correto! À noite os painéis não recebem luz solar. Baterias podem fornecer energia armazenada.'
-},
-{
- q:'Qual é uma aplicação da energia solar térmica?',
- a:['Aquecer água','Produzir vento','Fabricar petróleo'],
- c:0,
- e:'Muito bem! Coletores solares térmicos podem aquecer água.'
-}
-];
-
-let indice=0;
-let acertos=0;
-let respondeu=false;
-
-function mostrarPergunta(){
-  const p=perguntas[indice];
-  respondeu=false;
-
-  document.getElementById('qcount').textContent='Pergunta '+(indice+1)+' de '+perguntas.length;
-  document.getElementById('score').textContent='Acertos: '+acertos;
-  document.getElementById('progress').style.width=(indice/perguntas.length*100)+'%';
-  document.getElementById('question').textContent=p.q;
-  document.getElementById('feedback').textContent='';
-  document.getElementById('next').disabled=true;
-  document.getElementById('next').hidden=false;
-  document.getElementById('restart').hidden=true;
-
-  const respostas=document.getElementById('answers');
-  respostas.innerHTML='';
-
-  p.a.forEach((opcao,i)=>{
-    const botao=document.createElement('button');
-    botao.className='answer';
-    botao.type='button';
-    botao.textContent=opcao;
-    botao.addEventListener('click',()=>responder(i,botao));
-    respostas.appendChild(botao);
-  });
-}
-
-function responder(escolha,botao){
-  if(respondeu)return;
-  respondeu=true;
-
-  const p=perguntas[indice];
-  const botoes=document.querySelectorAll('#answers .answer');
-
-  botoes.forEach((b,i)=>{
-    b.disabled=true;
-    if(i===p.c)b.classList.add('correct');
-  });
-
-  if(escolha===p.c){
-    acertos++;
-    document.getElementById('feedback').textContent='✓ '+p.e;
-  }else{
-    botao.classList.add('wrong');
-    document.getElementById('feedback').textContent='Não foi dessa vez. '+p.e;
-  }
-
-  document.getElementById('score').textContent='Acertos: '+acertos;
-  document.getElementById('next').disabled=false;
-}
-
-document.getElementById('next').addEventListener('click',()=>{
-  indice++;
-
-  if(indice<perguntas.length){
-    mostrarPergunta();
-  }else{
-    document.getElementById('question').textContent='Você concluiu o Quiz Solar!';
-    document.getElementById('answers').innerHTML='';
-    document.getElementById('feedback').textContent='Resultado: '+acertos+' de '+perguntas.length+' acertos. Continue aprendendo!';
-    document.getElementById('qcount').textContent='Quiz concluído';
-    document.getElementById('progress').style.width='100%';
-    document.getElementById('next').hidden=true;
-    document.getElementById('restart').hidden=false;
-  }
-});
-
-document.getElementById('restart').addEventListener('click',()=>{
-  indice=0;
-  acertos=0;
-  mostrarPergunta();
-});
-
-mostrarPergunta();
-
-/* LEITURA EM VOZ ALTA */
-(function(){
-  const ler=document.getElementById('readButton');
-  const pausar=document.getElementById('pauseButton');
-  const parar=document.getElementById('stopButton');
-  const status=document.getElementById('speechStatus');
-
-  if(!('speechSynthesis' in window)){
-    status.textContent='Seu navegador não oferece leitura em voz alta.';
-    ler.disabled=true;
-    pausar.disabled=true;
-    parar.disabled=true;
-    return;
-  }
-
-  let frases=[];
-  let posicao=0;
-  let pausado=false;
-
-  function prepararTexto(){
-    const copia=document.querySelector('main').cloneNode(true);
-
-    copia.querySelectorAll('button,input,script,style').forEach(el=>el.remove());
-
-    return copia.innerText
-      .split(/(?<=[.!?])\s+|\n+/)
-      .map(t=>t.trim())
-      .filter(t=>t.length>2);
-  }
-
-  function falarProxima(){
-    if(posicao>=frases.length){
-      status.textContent='Leitura concluída.';
-      return;
-    }
-
-    const fala=new SpeechSynthesisUtterance(frases[posicao]);
-    fala.lang='pt-BR';
-    fala.rate=1;
-    fala.pitch=1;
-
-    fala.onend=function(){
-      posicao++;
-      if(!pausado)falarProxima();
-    };
-
-    fala.onerror=function(){
-      status.textContent='Não foi possível continuar a leitura.';
-    };
-
-    speechSynthesis.speak(fala);
-  }
-
-  ler.addEventListener('click',()=>{
-    speechSynthesis.cancel();
-    frases=prepararTexto();
-    posicao=0;
-    pausado=false;
-
-    if(!frases.length){
-      status.textContent='Não encontrei conteúdo para ler.';
-      return;
-    }
-
-    status.textContent='Lendo o conteúdo em português...';
-    falarProxima();
-  });
-
-  pausar.addEventListener('click',()=>{
-    if(speechSynthesis.speaking && !speechSynthesis.paused){
-      speechSynthesis.pause();
-      pausado=true;
-      status.textContent='Leitura pausada.';
-    }else if(speechSynthesis.paused){
-      speechSynthesis.resume();
-      pausado=false;
-      status.textContent='Continuando a leitura.';
-    }
-  });
-
-  parar.addEventListener('click',()=>{
-    speechSynthesis.cancel();
-    posicao=0;
-    pausado=false;
-    status.textContent='Leitura parada.';
-  });
-})();
+new window.VLibras.Widget("https://vlibras.gov.br/app");
 </script>
 
 </body>
