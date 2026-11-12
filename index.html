@@ -3,26 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sensores de Luz e Radiação Solar</title>
+<title>Sensores de Luz | Ciência e Tecnologia</title>
+
 <style>
 :root {
-  --blue:#123d68;
-  --blue2:#1769aa;
-  --cyan:#39b8d5;
+  --navy:#123453;
+  --blue:#176b9d;
+  --cyan:#38b9d2;
   --yellow:#ffc94a;
-  --light:#f1f7fc;
-  --dark:#172b40;
+  --bg:#f2f7fb;
+  --text:#203449;
 }
 * {box-sizing:border-box;scroll-behavior:smooth}
 body {
   margin:0;
   font-family:Arial,sans-serif;
-  color:var(--dark);
-  background:var(--light);
+  background:var(--bg);
+  color:var(--text);
   line-height:1.65;
 }
 header {
-  background:var(--blue);
+  background:var(--navy);
   color:white;
   padding:16px 6%;
   display:flex;
@@ -31,75 +32,139 @@ header {
   flex-wrap:wrap;
   gap:12px;
 }
-header strong {font-size:19px}
-nav {display:flex;gap:14px;flex-wrap:wrap}
+header strong {font-size:20px}
+nav {display:flex;gap:13px;flex-wrap:wrap}
 nav a {color:white;text-decoration:none;font-size:14px}
 nav a:hover {color:var(--yellow)}
 .hero {
-  background:linear-gradient(130deg,#0c3155,#147eae);
+  background:linear-gradient(135deg,#102f50,#087da9);
   color:white;
-  padding:85px 8%;
   text-align:center;
+  padding:75px 7%;
 }
-.hero h1 {font-size:clamp(32px,5vw,55px);line-height:1.15}
-.hero p {max-width:750px;margin:20px auto;font-size:18px}
-.hero .sun {font-size:65px}
+.hero .sun {font-size:70px}
+.hero h1 {
+  font-size:clamp(32px,5vw,55px);
+  line-height:1.15;
+  max-width:900px;
+  margin:15px auto;
+}
+.hero p {font-size:18px;max-width:760px;margin:20px auto}
 button {
-  border:0;border-radius:9px;padding:12px 18px;
-  background:var(--blue2);color:white;font-weight:bold;
-  cursor:pointer;margin:4px;
+  border:0;
+  border-radius:9px;
+  padding:12px 18px;
+  background:var(--blue);
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+  margin:4px;
 }
 button:hover {filter:brightness(1.12)}
-button.secondary {background:#e4edf5;color:var(--blue)}
-section {padding:55px 8%;max-width:1200px;margin:auto}
-section h2 {color:var(--blue);font-size:30px}
-section h3 {color:var(--blue2)}
-.intro {font-size:18px;max-width:850px}
+button:disabled {opacity:.5;cursor:not-allowed}
+.yellow {background:var(--yellow);color:#18354e}
+.secondary {background:#e5eef6;color:var(--navy)}
+section {padding:52px 8%;max-width:1200px;margin:auto}
+section h2 {color:var(--navy);font-size:30px}
+section h3 {color:var(--blue)}
+.intro {font-size:18px;max-width:900px}
 .grid {
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-  gap:18px;margin-top:25px
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:18px;
+  margin-top:22px;
 }
-.card {
-  background:white;padding:22px;border-radius:15px;
-  box-shadow:0 4px 16px #183b5912;
+.card,.panel {
+  background:white;
+  padding:23px;
+  border-radius:15px;
+  box-shadow:0 4px 18px #183b5912;
 }
-.card h3 {margin-top:0}
-.icon {font-size:35px}
+.card h3 {margin-top:5px}
+.icon {font-size:38px}
+.dark {background:#e3eff7;max-width:none}
+.dark > section {max-width:1100px}
 .highlight {
-  background:#e1f2fb;border-left:5px solid var(--cyan);
-  padding:18px;border-radius:8px;margin:20px 0
+  background:#e3f3fa;
+  border-left:5px solid var(--cyan);
+  padding:17px;
+  border-radius:8px;
+  margin:20px 0;
 }
-.dark-section {background:#e4eef7;max-width:none}
-.dark-section > * {max-width:1050px;margin-left:auto;margin-right:auto}
-.sensor-demo,.simulator,.quizbox {
-  background:white;border-radius:16px;padding:25px;
-  box-shadow:0 4px 18px #183b5918;margin-top:25px
+.panel {margin:22px 0}
+input[type=range] {width:100%;accent-color:var(--blue)}
+input[type=text],input[type=number] {
+  width:100%;
+  padding:12px;
+  border:1px solid #cbd8e4;
+  border-radius:8px;
+  margin:7px 0 14px;
+  font-size:16px;
 }
-input[type=range] {width:100%;accent-color:var(--blue2)}
-.big-number {font-size:34px;color:var(--blue2);font-weight:bold}
-.bar {
-  height:24px;background:#e8edf2;border-radius:20px;overflow:hidden;
-}
-.bar span {display:block;height:100%;width:0%;background:linear-gradient(90deg,#f7c747,#f28a27);transition:.3s}
 label {font-weight:bold}
-table {width:100%;border-collapse:collapse;background:white;margin:20px 0}
-th,td {padding:12px;border:1px solid #d5e0e9;text-align:left}
-th {background:#dcecf7;color:var(--blue)}
-footer {background:var(--blue);color:white;text-align:center;padding:30px}
+.big {font-size:34px;font-weight:bold;color:var(--blue)}
+.bar {
+  height:20px;
+  background:#e8edf2;
+  border-radius:20px;
+  overflow:hidden;
+  margin:8px 0 18px;
+}
+.bar span {
+  display:block;
+  height:100%;
+  width:0;
+  background:linear-gradient(90deg,#ffc94a,#f28a27);
+  transition:width .3s;
+}
+.result {
+  background:#e8f4fb;
+  padding:16px;
+  border-radius:10px;
+  margin-top:15px;
+}
+.small {font-size:13px;color:#60758a}
+table {
+  width:100%;
+  border-collapse:collapse;
+  background:white;
+  margin:18px 0;
+}
+th,td {
+  border:1px solid #d4e0e9;
+  padding:11px;
+  text-align:left;
+}
+th {background:#dcecf7;color:var(--navy)}
+.table-wrap {overflow-x:auto}
+.choice {
+  display:block;
+  width:100%;
+  text-align:left;
+  background:#edf4fa;
+  color:var(--text);
+  margin:8px 0;
+}
+.choice.correct {background:#d7f4df;color:#155b2a}
+.choice.wrong {background:#ffe0df;color:#912525}
+.feedback {font-weight:bold;margin-top:12px;min-height:28px}
+.quiz-question {padding:14px 0;border-bottom:1px solid #ddd}
 .read-controls {display:flex;gap:8px;flex-wrap:wrap}
-.question {padding:15px 0;border-bottom:1px solid #ddd}
-.answer {display:block;width:100%;text-align:left;background:#edf4fa;color:var(--dark);margin:7px 0}
-.answer.correct {background:#d4f5dc;color:#155724}
-.answer.wrong {background:#ffe0df;color:#9d2424}
-.small {font-size:14px;color:#52677b}
+footer {
+  background:var(--navy);
+  color:white;
+  text-align:center;
+  padding:30px;
+}
 @media(max-width:600px) {
- header {justify-content:center}
- nav {justify-content:center}
- section {padding:40px 6%}
- .hero {padding:60px 6%}
+  header {justify-content:center}
+  nav {justify-content:center}
+  section {padding:38px 6%}
+  .hero {padding:55px 6%}
 }
 </style>
 </head>
+
 <body>
 
 <header>
@@ -109,31 +174,32 @@ footer {background:var(--blue);color:white;text-align:center;padding:30px}
 <a href="#radiacao">Radiação</a>
 <a href="#sensores">Sensores</a>
 <a href="#medicao">Medição</a>
-<a href="#experimento">Experimentos</a>
-<a href="#aplicacao">Aplicações</a>
+<a href="#laboratorio">Laboratório</a>
+<a href="#quiz">Quiz</a>
 </nav>
 </header>
 
 <div class="hero" id="inicio">
 <div class="sun">☀️</div>
 <h1>Sensores de Luz e o Acompanhamento da Radiação Solar</h1>
-<p>Como podemos detectar, medir e acompanhar a luz do Sol usando a tecnologia? Descubra como sensores transformam a luz em informações que ajudam a entender o ambiente e aproveitar melhor a radiação solar.</p>
-<a href="#radiacao"><button style="background:var(--yellow);color:#17344d">Começar a explorar</button></a>
+<p>Como a tecnologia consegue detectar a luz do Sol? Descubra como sensores transformam a iluminação em informações que podemos medir, comparar e utilizar em diferentes projetos.</p>
+<a href="#radiacao"><button class="yellow">Explorar o conteúdo ↓</button></a>
 </div>
 
 <section id="radiacao">
 <h2>1. O que é radiação eletromagnética?</h2>
-<p class="intro">A radiação eletromagnética é uma forma de energia que se propaga pelo espaço por meio de ondas eletromagnéticas. A luz solar é um exemplo muito importante desse fenômeno.</p>
+<p class="intro">A radiação eletromagnética é uma forma de energia que se propaga por meio de ondas eletromagnéticas. A luz solar é um exemplo desse fenômeno e chega até a Terra transportando energia.</p>
+
 <div class="grid">
 <div class="card">
 <div class="icon">🌈</div>
 <h3>Luz visível</h3>
-<p>É a parte da radiação que nossos olhos conseguem enxergar. Ela apresenta diferentes cores, que juntas formam a luz branca.</p>
+<p>É a parte da radiação que nossos olhos conseguem enxergar. É formada por diferentes cores, que juntas compõem a luz branca.</p>
 </div>
 <div class="card">
 <div class="icon">🔥</div>
 <h3>Infravermelho</h3>
-<p>Está relacionado à transferência de energia térmica. É uma parte importante da radiação emitida pelo Sol.</p>
+<p>É uma faixa da radiação eletromagnética relacionada à transferência de energia térmica.</p>
 </div>
 <div class="card">
 <div class="icon">🧴</div>
@@ -141,296 +207,659 @@ footer {background:var(--blue);color:white;text-align:center;padding:30px}
 <p>Não é visível aos nossos olhos. Em excesso, pode causar danos à pele e aos olhos.</p>
 </div>
 </div>
+
+<h3>Por que isso é importante?</h3>
+<p>Os sensores são dispositivos capazes de detectar a luz ou determinadas faixas da radiação eletromagnética. Eles transformam essa informação em sinais que podem ser interpretados por circuitos eletrônicos.</p>
+
 <div class="highlight">
-<strong>Você sabia?</strong>
-A luz solar não é composta apenas pela luz que enxergamos. Ela também contém radiações que nossos olhos não conseguem perceber.
+<strong>Curiosidade:</strong> a luz solar contém muito mais do que aquilo que conseguimos enxergar. Existem radiações invisíveis que também podem ser detectadas por equipamentos específicos.
 </div>
-<h3>Por que isso importa para os sensores?</h3>
-<p>Os sensores são dispositivos capazes de responder à luz ou a determinadas faixas da radiação eletromagnética. Dependendo do tipo de sensor, eles podem detectar a iluminação de um ambiente e transformar essa informação em um sinal elétrico.</p>
 </section>
 
-<div class="dark-section">
+<div class="dark">
 <section id="sensores">
 <h2>2. Como funcionam os sensores de luz?</h2>
-<p class="intro">Sensores de luz são componentes eletrônicos que detectam a presença ou a intensidade da luz. Dois exemplos muito utilizados são o LDR e o fotodiodo.</p>
+<p class="intro">Sensores de luz são componentes que detectam a presença ou a intensidade da iluminação. Dois exemplos importantes são o LDR e o fotodiodo.</p>
+
 <div class="grid">
 <div class="card">
 <div class="icon">💡</div>
-<h3>LDR — Resistor dependente de luz</h3>
-<p>O LDR é um componente cuja resistência elétrica muda conforme a iluminação.</p>
+<h3>LDR</h3>
+<p>O LDR é um resistor dependente de luz. Sua resistência elétrica muda de acordo com a iluminação recebida.</p>
 <ul>
-<li>Com pouca luz, sua resistência geralmente aumenta.</li>
-<li>Com muita luz, sua resistência geralmente diminui.</li>
-<li>É utilizado em postes automáticos, luminárias e projetos escolares.</li>
+<li>Pouca luz: resistência geralmente maior.</li>
+<li>Muita luz: resistência geralmente menor.</li>
+<li>Aplicações: postes automáticos e luminárias.</li>
 </ul>
 </div>
 <div class="card">
 <div class="icon">🔬</div>
 <h3>Fotodiodo</h3>
-<p>O fotodiodo é um componente semicondutor que transforma a luz recebida em uma corrente elétrica.</p>
+<p>O fotodiodo é um componente semicondutor que converte a luz recebida em uma corrente elétrica.</p>
 <ul>
-<li>Responde à luz que atinge sua superfície.</li>
-<li>Pode oferecer uma resposta rápida.</li>
-<li>É utilizado em equipamentos ópticos, controles e sistemas de medição.</li>
+<li>Responde à luz que chega à sua superfície.</li>
+<li>Pode ter resposta muito rápida.</li>
+<li>Aplicações: sistemas ópticos e equipamentos de medição.</li>
 </ul>
 </div>
 </div>
-<h3>Qual é a diferença entre eles?</h3>
+
+<h3>Comparando os dois componentes</h3>
+<div class="table-wrap">
 <table>
 <tr><th>Característica</th><th>LDR</th><th>Fotodiodo</th></tr>
-<tr><td>Resposta à luz</td><td>Altera a resistência</td><td>Gera corrente elétrica</td></tr>
+<tr><td>Funcionamento</td><td>Altera a resistência</td><td>Produz corrente elétrica</td></tr>
 <tr><td>Velocidade</td><td>Geralmente mais lento</td><td>Geralmente mais rápido</td></tr>
-<tr><td>Uso comum</td><td>Controle automático de iluminação</td><td>Detecção e medição de luz</td></tr>
-<tr><td>Aplicação escolar</td><td>Comparar claro e escuro</td><td>Investigar a resposta à iluminação</td></tr>
+<tr><td>Uso</td><td>Detectar claro e escuro</td><td>Detectar e medir luz</td></tr>
 </table>
+</div>
+
 <div class="highlight">
-<strong>Atenção:</strong> o LDR e o fotodiodo não funcionam exatamente da mesma maneira. A escolha depende do tipo de medição, da precisão e da velocidade necessárias.
+O LDR é bastante utilizado em projetos simples, enquanto o fotodiodo é útil em sistemas que precisam detectar luz com rapidez e características específicas.
 </div>
 </section>
 </div>
 
 <section id="medicao">
-<h2>3. Como comparar a intensidade luminosa?</h2>
-<p class="intro">Podemos medir a intensidade da luz em diferentes locais, posições e horários para descobrir onde a iluminação é maior.</p>
-<p>Uma forma de fazer isso é utilizar um sensor conectado a um circuito eletrônico ou a uma placa como Arduino. O sensor recebe a luz e o sistema apresenta uma leitura que pode ser comparada.</p>
-<div class="sensor-demo">
+<h2>3. Como medir a intensidade luminosa?</h2>
+<p>A intensidade luminosa recebida por um sensor pode variar conforme o local, a distância da fonte de luz, o horário e a presença de obstáculos.</p>
+
+<div class="panel">
 <h3>🔆 Simulador de intensidade luminosa</h3>
-<p>Mova o controle para simular diferentes níveis de iluminação recebidos por um sensor.</p>
-<label for="lightRange">Intensidade de luz simulada:</label>
-<input id="lightRange" type="range" min="0" max="100" value="50">
-<div class="big-number"><span id="lightValue">50</span>%</div>
-<div class="bar"><span id="lightBar" style="width:50%"></span></div>
-<p id="lightDescription">Iluminação moderada.</p>
-<p class="small">Este é um modelo ilustrativo, não uma leitura de um sensor físico.</p>
+<p>Movimente o controle para simular a luz que chega ao sensor.</p>
+<label>Intensidade da luz: <span id="lightLabel">50%</span></label>
+<input type="range" id="lightRange" min="0" max="100" value="50">
+<div class="big" id="lightNumber">50%</div>
+<div class="bar"><span id="lightBar"></span></div>
+<div class="result" id="lightText">Iluminação moderada.</div>
+<p class="small">Simulação ilustrativa, não é uma medição física.</p>
 </div>
-<h3>Como fazer uma comparação real?</h3>
+
+<h3>Como comparar diferentes posições?</h3>
 <div class="grid">
 <div class="card"><h3>📍 Posição A</h3><p>Coloque o sensor em um local e registre a leitura.</p></div>
-<div class="card"><h3>📍 Posição B</h3><p>Mude o sensor de lugar e mantenha as mesmas condições de medição.</p></div>
-<div class="card"><h3>📊 Comparação</h3><p>Compare os valores e identifique qual posição recebeu mais luz.</p></div>
+<div class="card"><h3>📍 Posição B</h3><p>Mude o sensor de lugar e faça outra leitura.</p></div>
+<div class="card"><h3>📊 Comparação</h3><p>Compare os valores para identificar onde a iluminação é maior.</p></div>
 </div>
-<div class="highlight">
-Para uma comparação justa, procure manter a mesma orientação do sensor, a mesma distância de obstáculos e horários próximos. Registre também as condições do céu.
-</div>
+<p>Para uma comparação confiável, procure utilizar o mesmo sensor, manter sua orientação e medir em horários próximos.</p>
 </section>
 
-<div class="dark-section">
-<section id="acompanhamento">
-<h2>4. Como acompanhar a radiação solar?</h2>
-<p>O Sol parece mudar de posição no céu ao longo do dia por causa da rotação da Terra. Com isso, a direção e a intensidade da luz que chega a uma superfície também podem mudar.</p>
-<div class="grid">
-<div class="card"><div class="icon">🌅</div><h3>Manhã</h3><p>A luz chega de uma direção mais próxima do horizonte leste.</p></div>
-<div class="card"><div class="icon">☀️</div><h3>Meio do dia</h3><p>Em muitos locais, o Sol está mais alto no céu e a incidência pode ser mais direta.</p></div>
-<div class="card"><div class="icon">🌇</div><h3>Tarde</h3><p>A direção da luz muda em direção ao horizonte oeste.</p></div>
+<div class="dark">
+<section id="sol">
+<h2>4. Acompanhando a posição do Sol</h2>
+<p>Ao longo do dia, a posição aparente do Sol muda no céu. Isso altera a direção e a quantidade de luz que chega a diferentes superfícies.</p>
+
+<div class="panel">
+<h3>🌞 Simulador do movimento aparente do Sol</h3>
+<label>Escolha o horário: <strong id="timeLabel">12:00</strong></label>
+<input type="range" id="timeRange" min="6" max="18" value="12">
+
+<div class="result" style="text-align:center">
+<div id="sunEmoji" style="font-size:65px">☀️</div>
+<h3 id="sunTitle">Sol próximo de sua maior altura diária</h3>
+<div class="big" id="sunPercent">100%</div>
+<p>Intensidade relativa ilustrativa</p>
+<div class="bar"><span id="sunBar"></span></div>
+<p id="sunInfo">Período próximo ao meio-dia.</p>
 </div>
+<p class="small">Modelo didático simplificado. A iluminação real depende da localização, da estação, das nuvens e dos obstáculos.</p>
+</div>
+
 <h3>Como encontrar a melhor posição para um coletor solar?</h3>
 <ol>
-<li>Escolher diferentes posições ou inclinações para o coletor.</li>
-<li>Colocar o sensor na mesma orientação da superfície que será avaliada.</li>
-<li>Medir a iluminação em horários diferentes.</li>
-<li>Repetir as medições em dias diferentes.</li>
-<li>Comparar os resultados para identificar a posição mais favorável.</li>
+<li>Escolher diferentes posições e inclinações.</li>
+<li>Posicionar o sensor na orientação da superfície avaliada.</li>
+<li>Medir a luz em horários diferentes.</li>
+<li>Repetir as medições em outros dias.</li>
+<li>Comparar os resultados.</li>
 </ol>
-<p>É importante lembrar que a melhor posição depende da localização geográfica, da época do ano, da inclinação, da orientação e das sombras ao redor.</p>
 </section>
 </div>
 
 <section id="limitacoes">
-<h2>5. Quais são as limitações dos sensores?</h2>
-<p>Apesar de serem muito úteis, os sensores de luz possuem limitações. Uma leitura não representa necessariamente toda a energia solar que uma superfície recebe.</p>
+<h2>5. Limitações dos sensores</h2>
 <div class="grid">
-<div class="card"><h3>☁️ Condições climáticas</h3><p>Nuvens, chuva e neblina podem alterar a quantidade de luz recebida.</p></div>
-<div class="card"><h3>📐 Ângulo de incidência</h3><p>A inclinação do sensor em relação à luz pode mudar a leitura.</p></div>
-<div class="card"><h3>🌳 Sombras</h3><p>Árvores, prédios e outros obstáculos podem bloquear parte da radiação.</p></div>
-<div class="card"><h3>⚙️ Precisão</h3><p>Sensores simples podem apresentar variações e precisam de calibração.</p></div>
-<div class="card"><h3>🌈 Tipo de radiação</h3><p>Um sensor pode responder melhor a algumas faixas de luz do que a outras.</p></div>
-<div class="card"><h3>🌡️ Temperatura</h3><p>A temperatura pode influenciar a resposta de alguns componentes eletrônicos.</p></div>
+<div class="card"><h3>☁️ Clima</h3><p>Nuvens, chuva e neblina alteram a luz recebida.</p></div>
+<div class="card"><h3>📐 Inclinação</h3><p>O ângulo do sensor em relação à luz interfere na leitura.</p></div>
+<div class="card"><h3>🌳 Sombras</h3><p>Árvores e prédios bloqueiam parte da radiação.</p></div>
+<div class="card"><h3>⚙️ Precisão</h3><p>Sensores simples podem precisar de calibração.</p></div>
+<div class="card"><h3>🌈 Faixa de luz</h3><p>Alguns sensores respondem melhor a certas faixas da radiação.</p></div>
+<div class="card"><h3>🌡️ Temperatura</h3><p>A temperatura pode influenciar alguns componentes.</p></div>
 </div>
+
 <div class="highlight">
-<strong>Uma diferença importante:</strong> lux é uma unidade relacionada à iluminação percebida pelo olho humano. Já a irradiância solar é medida em watts por metro quadrado (W/m²) e representa a potência da radiação que chega a uma superfície por área. Um LDR comum não mede diretamente a irradiância solar.
+<strong>Importante:</strong> lux é uma unidade de iluminância, relacionada à sensibilidade do olho humano. Já W/m² mede a irradiância, ou seja, a potência da radiação recebida por área. Um LDR comum não mede diretamente toda a energia solar.
 </div>
 </section>
 
-<div class="dark-section">
-<section id="experimento">
-<h2>6. Experimentos para aprender na prática</h2>
+<div class="dark">
+<section id="laboratorio">
+<h2>6. Laboratório interativo</h2>
+<p>Agora é sua vez de experimentar! Modifique os controles, observe os resultados e teste seus conhecimentos.</p>
+
+<div class="panel">
+<h3>🔬 Experimento A — LDR e fotodiodo</h3>
+<p>Veja como os dois componentes respondem a diferentes intensidades de luz.</p>
+
+<label>Quantidade de luz: <strong id="sensorLabel">50%</strong></label>
+<input type="range" id="sensorRange" min="0" max="100" value="50">
+
+<h3>Resposta do LDR</h3>
+<p>Resistência simulada: <strong id="ldrValue">50 kΩ</strong></p>
+<div class="bar"><span id="ldrBar"></span></div>
+
+<h3>Resposta do fotodiodo</h3>
+<p>Corrente simulada: <strong id="photoValue">25 µA</strong></p>
+<div class="bar"><span id="photoBar"></span></div>
+
+<div class="result" id="sensorResult">Experimente mudar a iluminação!</div>
+<p class="small">Valores ilustrativos, não representam especificações de um componente real.</p>
+</div>
+
+<div class="panel">
+<h3>📊 Experimento B — Compare locais</h3>
+<p>Registre as medições que você realizou com seu sensor ou luxímetro.</p>
+
+<label>Nome do local</label>
+<input type="text" id="placeInput" placeholder="Ex.: Pátio">
+
+<label>Valor medido</label>
+<input type="number" id="valueInput" min="0" placeholder="Ex.: 850">
+
+<button onclick="addRecord()">Registrar medição</button>
+<button class="secondary" onclick="clearRecords()">Apagar registros</button>
+
+<div class="table-wrap">
+<table>
+<thead><tr><th>Local</th><th>Valor</th><th>Resultado</th></tr></thead>
+<tbody id="records">
+<tr><td colspan="3">Nenhuma medição registrada.</td></tr>
+</tbody>
+</table>
+</div>
+<div class="result" id="recordResult">Faça sua primeira medição!</div>
+<p class="small">Compare valores obtidos com o mesmo instrumento e a mesma unidade.</p>
+</div>
+
+<div class="panel">
+<h3>🧭 Experimento C — Escolha a melhor posição</h3>
+<p>Imagine que você está testando três posições para um coletor solar. Clique em cada posição para observar os resultados simulados.</p>
+
+<div class="grid">
+<button onclick="positionTest(0)">Posição A</button>
+<button onclick="positionTest(1)">Posição B</button>
+<button onclick="positionTest(2)">Posição C</button>
+</div>
+<div class="result" id="positionResult">Escolha uma posição para começar.</div>
+<p class="small">Exemplo fictício para demonstrar a comparação. Não representa medições reais.</p>
+</div>
+
+<div class="panel">
+<h3>🧠 Experimento D — Desafio dos sensores</h3>
+<p id="challengeQuestion">Carregando pergunta...</p>
+<div id="challengeOptions"></div>
+<div class="feedback" id="challengeFeedback"></div>
+<button class="secondary" onclick="nextChallenge()">Próxima situação</button>
+</div>
+</section>
+</div>
+
+<section id="experimentos">
+<h2>7. Experimentos para fazer na escola</h2>
 <div class="grid">
 <div class="card">
 <div class="icon">🔦</div>
-<h3>Experimento 1 — Claro e escuro</h3>
-<p>Utilize um LDR conectado a um circuito. Cubra o sensor com a mão e depois ilumine-o com uma lanterna. Observe como a leitura muda.</p>
+<h3>Claro e escuro</h3>
+<p>Use um LDR. Cubra-o com a mão e depois ilumine-o com uma lanterna. Observe como a leitura muda.</p>
 </div>
 <div class="card">
 <div class="icon">📏</div>
-<h3>Experimento 2 — Distância da luz</h3>
-<p>Coloque uma lanterna a diferentes distâncias do sensor. Registre os valores e compare as mudanças.</p>
+<h3>Distância da luz</h3>
+<p>Aproxime e afaste uma lanterna do sensor. Compare as leituras.</p>
 </div>
 <div class="card">
 <div class="icon">🧭</div>
-<h3>Experimento 3 — Direção da luz</h3>
-<p>Gire o sensor em diferentes direções e observe como a posição em relação à fonte luminosa interfere na leitura.</p>
+<h3>Direção da luz</h3>
+<p>Gire o sensor e observe como a orientação interfere na resposta.</p>
 </div>
 <div class="card">
 <div class="icon">🌤️</div>
-<h3>Experimento 4 — Acompanhando o Sol</h3>
-<p>Faça medições em diferentes horários do dia, sempre com o sensor na mesma orientação, e compare os resultados.</p>
+<h3>Acompanhamento solar</h3>
+<p>Faça medições pela manhã, ao meio-dia e à tarde.</p>
 </div>
 </div>
-<h3>Registre os resultados</h3>
-<table>
-<tr><th>Horário</th><th>Local</th><th>Leitura do sensor</th></tr>
-<tr><td>08:00</td><td>Local A</td><td>________</td></tr>
-<tr><td>12:00</td><td>Local A</td><td>________</td></tr>
-<tr><td>15:00</td><td>Local A</td><td>________</td></tr>
-</table>
-<p class="small">Os espaços podem ser preenchidos com as medições realizadas durante o experimento.</p>
 </section>
-</div>
 
-<section id="aplicacao">
-<h2>7. Aplicações no cotidiano</h2>
+<div class="dark">
+<section id="aplicacoes">
+<h2>8. Onde esses sensores são utilizados?</h2>
 <div class="grid">
-<div class="card"><h3>💡 Iluminação automática</h3><p>Postes e luminárias podem utilizar sensores para acender quando o ambiente escurece.</p></div>
-<div class="card"><h3>🌱 Agricultura</h3><p>Acompanhamento da iluminação disponível para o crescimento das plantas.</p></div>
-<div class="card"><h3>🏠 Automação</h3><p>Sistemas inteligentes podem ajustar cortinas e iluminação conforme a luz ambiente.</p></div>
-<div class="card"><h3>🔋 Energia solar</h3><p>O acompanhamento da radiação ajuda a estudar o posicionamento e o desempenho de sistemas solares.</p></div>
+<div class="card"><h3>💡 Iluminação automática</h3><p>Postes podem acender quando o ambiente escurece.</p></div>
+<div class="card"><h3>🌱 Agricultura</h3><p>Monitoramento da luz disponível para plantas.</p></div>
+<div class="card"><h3>🏠 Automação</h3><p>Controle de cortinas e iluminação de ambientes.</p></div>
+<div class="card"><h3>🔋 Sistemas solares</h3><p>Estudo da iluminação e do posicionamento de coletores e painéis.</p></div>
 </div>
-<h3>Aplicação no projeto da piscina da escola</h3>
-<p>Os sensores podem ajudar a estudar quais áreas recebem mais luz solar ao longo do dia. Essas informações podem auxiliar na escolha do local e da orientação de um coletor solar destinado ao aquecimento da piscina.</p>
-<p>É importante destacar que o sensor de luz ajuda a comparar a iluminação, mas o dimensionamento do aquecimento também precisa considerar a área da piscina, a temperatura desejada, as perdas de calor e a eficiência do coletor.</p>
-</section>
 
-<div class="dark-section">
+<h3>Aplicação no aquecimento da piscina da escola</h3>
+<p>Os sensores podem ajudar a identificar quais áreas recebem mais luz solar durante o dia. Com essas informações, podemos estudar onde posicionar um coletor solar para o aquecimento da piscina.</p>
+<p>As medições de luz são apenas uma parte do estudo. Também é necessário considerar as dimensões da piscina, as perdas de calor, a temperatura desejada e a eficiência do coletor.</p>
+</section>
+</div>
+
 <section id="quiz">
-<h2>8. Teste seus conhecimentos</h2>
-<p>Responda às perguntas e veja quantos pontos consegue fazer!</p>
-<div class="quizbox">
-<div id="quizContent"></div>
-<p id="quizResult"></p>
-<button onclick="nextQuestion()" id="nextBtn">Próxima pergunta</button>
+<h2>9. Teste seus conhecimentos!</h2>
+<p>Responda às perguntas e veja sua pontuação.</p>
+<div class="panel">
+<div id="quizArea"></div>
+<div class="feedback" id="quizFeedback"></div>
+<button id="nextQuiz" onclick="nextQuiz()">Próxima pergunta</button>
 <button class="secondary" onclick="restartQuiz()">Recomeçar</button>
 </div>
 </section>
-</div>
 
+<div class="dark">
 <section id="conclusao">
-<h2>9. Conclusão</h2>
-<p>Os sensores de luz são ferramentas importantes para observar e acompanhar a iluminação do ambiente. O LDR e o fotodiodo detectam a luz de maneiras diferentes e podem ser utilizados em diversas aplicações.</p>
-<p>Ao comparar medições em diferentes posições e horários, conseguimos compreender melhor como a radiação solar varia e como essas informações podem ajudar em projetos tecnológicos. Porém, é necessário conhecer as limitações dos sensores e utilizar instrumentos adequados quando queremos medir a energia solar com maior precisão.</p>
+<h2>10. Conclusão</h2>
+<p>Os sensores de luz permitem transformar um fenômeno natural em informações que podemos medir e analisar. O LDR e o fotodiodo possuem funcionamentos diferentes e são utilizados em diversas tecnologias.</p>
+<p>Ao comparar a iluminação em diferentes horários e posições, conseguimos compreender melhor o comportamento da radiação solar. Essas informações podem contribuir para projetos científicos, tecnológicos e ambientais.</p>
 <div class="highlight">
-<strong>Ideia principal:</strong> medir a luz é transformar um fenômeno natural em informação que podemos analisar, comparar e utilizar para desenvolver soluções.
+<strong>Ideia principal:</strong> observar a luz, medir sua intensidade e transformar os resultados em conhecimento e soluções tecnológicas.
 </div>
 </section>
+</div>
 
 <section id="leitura">
-<h2>🔊 Acessibilidade — Ouvir o conteúdo</h2>
-<p>Use os controles abaixo para ouvir o conteúdo do site em voz alta.</p>
-<div class="read-controls">
+<h2>🔊 Ouvir o conteúdo</h2>
+<p>Você pode ouvir o texto do site em voz alta.</p>
 <button onclick="readPage()">▶ Ler em voz alta</button>
-<button onclick="speechSynthesis.pause()">⏸ Pausar</button>
-<button onclick="speechSynthesis.resume()">⏯ Continuar</button>
+<button class="secondary" onclick="speechSynthesis.pause()">⏸ Pausar</button>
+<button class="secondary" onclick="speechSynthesis.resume()">▶ Continuar</button>
 <button class="secondary" onclick="speechSynthesis.cancel()">⏹ Parar</button>
-</div>
-<p class="small">A leitura utiliza a voz disponível no seu navegador ou dispositivo.</p>
+<p class="small">A leitura utiliza a voz disponível no navegador ou dispositivo.</p>
 </section>
 
 <footer>
-<p><strong>☀️ Ciência da Luz</strong></p>
-<p>Projeto educativo — Sensores de luz e acompanhamento da radiação solar</p>
+<strong>☀️ CIÊNCIA DA LUZ</strong>
+<p>Sensores de luz e acompanhamento da radiação solar</p>
 <p>Aprender, experimentar e transformar conhecimento em tecnologia.</p>
 </footer>
 
 <script>
-const range = document.getElementById("lightRange");
-const value = document.getElementById("lightValue");
-const bar = document.getElementById("lightBar");
-const description = document.getElementById("lightDescription");
+// SIMULADOR DE INTENSIDADE LUMINOSA
+const lightRange = document.getElementById("lightRange");
 
 function updateLight() {
-  let n = Number(range.value);
-  value.textContent = n;
-  bar.style.width = n + "%";
-  if(n < 25) description.textContent = "Pouca iluminação: o sensor está recebendo pouca luz.";
-  else if(n < 70) description.textContent = "Iluminação moderada: existe uma quantidade intermediária de luz.";
-  else description.textContent = "Alta iluminação: o sensor está recebendo bastante luz.";
+  const n = Number(lightRange.value);
+  document.getElementById("lightLabel").textContent = n + "%";
+  document.getElementById("lightNumber").textContent = n + "%";
+  document.getElementById("lightBar").style.width = n + "%";
+
+  let message = n < 25
+    ? "Pouca iluminação: o sensor recebe pouca luz."
+    : n < 70
+    ? "Iluminação moderada: existe uma quantidade intermediária de luz."
+    : "Alta iluminação: o sensor recebe bastante luz.";
+
+  document.getElementById("lightText").textContent = message;
 }
-range.addEventListener("input", updateLight);
+lightRange.addEventListener("input", updateLight);
 updateLight();
 
-const questions = [
- {q:"O que acontece com a resistência de um LDR quando a luz aumenta?",a:["Ela geralmente diminui","Ela sempre aumenta","Ela desaparece"],c:0,e:"O LDR normalmente apresenta menor resistência quando recebe mais luz."},
- {q:"O que o fotodiodo transforma em sinal elétrico?",a:["Som","Luz","Temperatura apenas"],c:1,e:"O fotodiodo responde à luz e produz uma corrente elétrica."},
- {q:"Qual é uma forma de comparar a iluminação em dois locais?",a:["Medir com o mesmo sensor e condições semelhantes","Usar sensores diferentes sem comparação","Medir apenas uma vez sem registrar"],c:0,e:"Manter condições semelhantes ajuda a fazer uma comparação mais justa."},
- {q:"O que pode interferir na leitura de um sensor?",a:["Sombras e inclinação","Somente a cor do aparelho","Nada interfere"],c:0,e:"Sombras, ângulo, clima e características do sensor podem alterar as medições."},
- {q:"Lux e W/m² representam exatamente a mesma coisa?",a:["Sim","Não"],c:1,e:"Lux considera a sensibilidade do olho humano; W/m² mede potência radiante por área."},
- {q:"Como os sensores podem ajudar a posicionar um coletor solar?",a:["Comparando a luz recebida em diferentes posições","Medindo o volume da piscina diretamente","Substituindo todos os cálculos térmicos"],c:0,e:"As medições ajudam a identificar posições com maior iluminação, mas não substituem o dimensionamento térmico."}
+// SIMULADOR DO SOL
+const timeRange = document.getElementById("timeRange");
+
+function updateSun() {
+  const h = Number(timeRange.value);
+  const intensity = Math.round(
+    Math.max(0, Math.sin((h - 6) * Math.PI / 12)) * 100
+  );
+
+  document.getElementById("timeLabel").textContent =
+    String(h).padStart(2,"0") + ":00";
+  document.getElementById("sunPercent").textContent = intensity + "%";
+  document.getElementById("sunBar").style.width = intensity + "%";
+
+  let title, info, emoji;
+
+  if(h < 9) {
+    title = "Sol baixo no céu";
+    info = "Período da manhã. A direção da luz está próxima ao leste.";
+    emoji = "🌅";
+  } else if(h < 12) {
+    title = "Sol subindo no céu";
+    info = "A iluminação pode aumentar conforme o Sol se eleva.";
+    emoji = "🌤️";
+  } else if(h === 12) {
+    title = "Próximo ao meio-dia";
+    info = "Em muitos locais, o Sol está próximo de sua maior altura diária.";
+    emoji = "☀️";
+  } else if(h < 16) {
+    title = "Sol descendo no céu";
+    info = "A direção da luz muda ao longo da tarde.";
+    emoji = "🌤️";
+  } else {
+    title = "Sol próximo ao horizonte";
+    info = "Final da tarde. A luz se aproxima da direção oeste.";
+    emoji = "🌇";
+  }
+
+  document.getElementById("sunTitle").textContent = title;
+  document.getElementById("sunInfo").textContent = info;
+  document.getElementById("sunEmoji").textContent = emoji;
+}
+timeRange.addEventListener("input", updateSun);
+updateSun();
+
+// SIMULADOR DOS SENSORES
+const sensorRange = document.getElementById("sensorRange");
+
+function updateSensors() {
+  const n = Number(sensorRange.value);
+  const resistance = 100 - n;
+  const current = n * 0.5;
+
+  document.getElementById("sensorLabel").textContent = n + "%";
+  document.getElementById("ldrValue").textContent =
+    (1 + resistance * 0.99).toFixed(1) + " kΩ";
+  document.getElementById("photoValue").textContent =
+    current.toFixed(1) + " µA";
+
+  document.getElementById("ldrBar").style.width = n + "%";
+  document.getElementById("photoBar").style.width = n + "%";
+
+  let message = n < 30
+    ? "Pouca luz: a resistência do LDR aumenta e a corrente do fotodiodo diminui."
+    : n < 70
+    ? "Luz intermediária: os dois sensores apresentam respostas intermediárias."
+    : "Muita luz: a resistência do LDR diminui e a corrente do fotodiodo aumenta.";
+
+  document.getElementById("sensorResult").textContent = message;
+}
+sensorRange.addEventListener("input", updateSensors);
+updateSensors();
+
+// REGISTRO DE MEDIÇÕES
+let measurements = [];
+
+function addRecord() {
+  const name = document.getElementById("placeInput").value.trim();
+  const raw = document.getElementById("valueInput").value;
+  const value = Number(raw);
+
+  if(!name || raw === "" || !Number.isFinite(value) || value < 0) {
+    alert("Preencha o local e uma medição válida.");
+    return;
+  }
+
+  measurements.push({name, value});
+  document.getElementById("placeInput").value = "";
+  document.getElementById("valueInput").value = "";
+  renderRecords();
+}
+
+function renderRecords() {
+  const tbody = document.getElementById("records");
+  tbody.replaceChildren();
+
+  if(measurements.length === 0) {
+    const row = tbody.insertRow();
+    const cell = row.insertCell();
+    cell.colSpan = 3;
+    cell.textContent = "Nenhuma medição registrada.";
+    document.getElementById("recordResult").textContent =
+      "Faça sua primeira medição!";
+    return;
+  }
+
+  const highest = Math.max(...measurements.map(m => m.value));
+
+  measurements.forEach(m => {
+    const row = tbody.insertRow();
+    row.insertCell().textContent = m.name;
+    row.insertCell().textContent = m.value;
+    row.insertCell().textContent =
+      m.value === highest ? "Maior leitura" : "Registrado";
+  });
+
+  const winners = measurements
+    .filter(m => m.value === highest)
+    .map(m => m.name).join(", ");
+
+  document.getElementById("recordResult").textContent =
+    "Maior leitura: " + highest + ". Local: " + winners + ".";
+}
+
+function clearRecords() {
+  measurements = [];
+  renderRecords();
+}
+
+// COMPARAÇÃO DE POSIÇÕES
+function positionTest(i) {
+  const positions = [
+    {name:"Posição A",value:45,desc:"Recebe uma quantidade intermediária de luz."},
+    {name:"Posição B",value:90,desc:"Recebe a maior intensidade entre as posições simuladas."},
+    {name:"Posição C",value:25,desc:"Recebe menos luz, possivelmente por causa de obstáculos."}
+  ];
+
+  const p = positions[i];
+
+  document.getElementById("positionResult").innerHTML =
+    "<strong>" + p.name + "</strong><br>" +
+    "Intensidade relativa simulada: " + p.value + "%<br>" +
+    p.desc;
+}
+
+// DESAFIO DOS SENSORES
+const challenges = [
+  {
+    q:"Você quer acender uma lâmpada automaticamente quando escurecer. Qual componente pode ser utilizado?",
+    a:["LDR","Fotodiodo obrigatoriamente","Nenhum sensor"],
+    c:0,
+    e:"O LDR pode detectar mudanças na iluminação e ajudar a controlar uma lâmpada."
+  },
+  {
+    q:"Qual componente costuma ser mais rápido na detecção de luz?",
+    a:["LDR","Fotodiodo","Interruptor"],
+    c:1,
+    e:"O fotodiodo costuma apresentar resposta rápida à luz."
+  },
+  {
+    q:"Como comparar a luz em diferentes pontos da escola?",
+    a:["Utilizar o mesmo sensor em condições semelhantes","Trocar de sensor a cada leitura","Medir somente uma vez"],
+    c:0,
+    e:"O mesmo instrumento e condições semelhantes tornam a comparação mais confiável."
+  },
+  {
+    q:"Qual instrumento é adequado para medir irradiância solar em W/m²?",
+    a:["LDR sem calibração","Piranômetro","Lâmpada"],
+    c:1,
+    e:"O piranômetro é um instrumento utilizado para medir a irradiância solar."
+  }
 ];
-let current=0, score=0, answered=false;
 
-function showQuestion(){
- answered=false;
- const q=questions[current];
- document.getElementById("quizContent").innerHTML =
- `<h3>Pergunta ${current+1} de ${questions.length}</h3>
- <p><strong>${q.q}</strong></p>`+
- q.a.map((a,i)=>`<button class="answer" onclick="answerQuestion(${i},this)">${a}</button>`).join("");
- document.getElementById("quizResult").textContent="";
- document.getElementById("nextBtn").textContent=current===questions.length-1?"Ver resultado":"Próxima pergunta";
-}
-function answerQuestion(i,el){
- if(answered)return;
- answered=true;
- const q=questions[current];
- document.querySelectorAll(".answer").forEach((b,index)=>{
-  if(index===q.c)b.classList.add("correct");
- });
- if(i===q.c){
-  score++;
-  document.getElementById("quizResult").textContent="Muito bem! "+q.e;
- }else{
-  el.classList.add("wrong");
-  document.getElementById("quizResult").textContent="Não foi dessa vez. "+q.e;
- }
-}
-function nextQuestion(){
- if(!answered){
-  document.getElementById("quizResult").textContent="Escolha uma alternativa antes de continuar.";
-  return;
- }
- if(current<questions.length-1){
-  current++;
-  showQuestion();
- }else{
-  document.getElementById("quizContent").innerHTML="<h3>Quiz concluído!</h3>";
-  document.getElementById("quizResult").textContent=`Você acertou ${score} de ${questions.length} perguntas!`;
-  document.getElementById("nextBtn").style.display="none";
- }
-}
-function restartQuiz(){
- current=0;score=0;
- document.getElementById("nextBtn").style.display="inline-block";
- showQuestion();
-}
-showQuestion();
+let challengeIndex = 0;
+let challengeAnswered = false;
 
-function readPage(){
- speechSynthesis.cancel();
- const mainText=document.querySelectorAll("section");
- let text="";
- mainText.forEach(section=>text+=section.innerText+" ");
- const utterance=new SpeechSynthesisUtterance(text);
- utterance.lang="pt-BR";
- utterance.rate=1;
- speechSynthesis.speak(utterance);
+function showChallenge() {
+  const q = challenges[challengeIndex];
+  challengeAnswered = false;
+
+  document.getElementById("challengeQuestion").textContent = q.q;
+  document.getElementById("challengeFeedback").textContent = "";
+
+  const area = document.getElementById("challengeOptions");
+  area.replaceChildren();
+
+  q.a.forEach((answer,i) => {
+    const button = document.createElement("button");
+    button.className = "choice";
+    button.textContent = answer;
+    button.onclick = () => answerChallenge(i);
+    area.appendChild(button);
+  });
+}
+
+function answerChallenge(i) {
+  if(challengeAnswered) return;
+  challengeAnswered = true;
+
+  const q = challenges[challengeIndex];
+  const buttons = document.querySelectorAll("#challengeOptions button");
+
+  buttons.forEach((button,index) => {
+    if(index === q.c) button.classList.add("correct");
+    else if(index === i) button.classList.add("wrong");
+    button.disabled = true;
+  });
+
+  document.getElementById("challengeFeedback").textContent =
+    (i === q.c ? "✅ Correto! " : "❌ Vamos aprender! ") + q.e;
+}
+
+function nextChallenge() {
+  challengeIndex = (challengeIndex + 1) % challenges.length;
+  showChallenge();
+}
+showChallenge();
+
+// QUIZ
+const questions = [
+  {
+    q:"O que acontece com a resistência do LDR quando a luz aumenta?",
+    a:["Diminui geralmente","Aumenta sempre","Desaparece"],
+    c:0,
+    e:"O LDR normalmente apresenta menor resistência quando recebe mais luz."
+  },
+  {
+    q:"O que o fotodiodo transforma em sinal elétrico?",
+    a:["Som","Luz","Pressão"],
+    c:1,
+    e:"O fotodiodo responde à luz e produz corrente elétrica."
+  },
+  {
+    q:"O que pode alterar a leitura de um sensor?",
+    a:["Sombras e inclinação","Nada","Apenas o nome do sensor"],
+    c:0,
+    e:"Sombras, ângulos e condições do ambiente podem interferir na leitura."
+  },
+  {
+    q:"Lux e W/m² são a mesma unidade?",
+    a:["Sim","Não"],
+    c:1,
+    e:"Lux é iluminância; W/m² representa irradiância."
+  },
+  {
+    q:"Como descobrir qual local recebe mais luz?",
+    a:["Comparando medições","Olhando apenas uma vez","Sem usar instrumentos"],
+    c:0,
+    e:"Comparar medições feitas de maneira adequada ajuda a identificar o local."
+  },
+  {
+    q:"O que é um piranômetro?",
+    a:["Um tipo de lâmpada","Um instrumento para medir irradiância solar","Um resistor"],
+    c:1,
+    e:"O piranômetro mede a irradiância solar."
+  }
+];
+
+let quizIndex = 0;
+let quizScore = 0;
+let quizAnswered = false;
+
+function showQuiz() {
+  quizAnswered = false;
+  const q = questions[quizIndex];
+
+  document.getElementById("quizArea").innerHTML =
+    "<h3>Pergunta " + (quizIndex+1) + " de " + questions.length + "</h3>" +
+    "<p><strong>" + q.q + "</strong></p>" +
+    q.a.map((a,i) =>
+      '<button class="choice" onclick="answerQuiz(' + i + ')">' + a + '</button>'
+    ).join("");
+
+  document.getElementById("quizFeedback").textContent = "";
+  document.getElementById("nextQuiz").textContent =
+    quizIndex === questions.length-1 ? "Ver resultado" : "Próxima pergunta";
+}
+
+function answerQuiz(i) {
+  if(quizAnswered) return;
+  quizAnswered = true;
+
+  const q = questions[quizIndex];
+  const buttons = document.querySelectorAll("#quizArea .choice");
+
+  buttons.forEach((b,index) => {
+    if(index === q.c) b.classList.add("correct");
+    else if(index === i) b.classList.add("wrong");
+    b.disabled = true;
+  });
+
+  if(i === q.c) {
+    quizScore++;
+    document.getElementById("quizFeedback").textContent =
+      "✅ Muito bem! " + q.e;
+  } else {
+    document.getElementById("quizFeedback").textContent =
+      "❌ Não foi dessa vez. " + q.e;
+  }
+}
+
+function nextQuiz() {
+  if(!quizAnswered) {
+    document.getElementById("quizFeedback").textContent =
+      "Escolha uma alternativa primeiro!";
+    return;
+  }
+
+  if(quizIndex < questions.length-1) {
+    quizIndex++;
+    showQuiz();
+  } else {
+    document.getElementById("quizArea").innerHTML =
+      "<h3>Quiz finalizado!</h3>";
+    document.getElementById("quizFeedback").textContent =
+      "Você acertou " + quizScore + " de " + questions.length + " perguntas!";
+    document.getElementById("nextQuiz").style.display = "none";
+  }
+}
+
+function restartQuiz() {
+  quizIndex = 0;
+  quizScore = 0;
+  document.getElementById("nextQuiz").style.display = "inline-block";
+  showQuiz();
+}
+showQuiz();
+
+// LEITURA EM VOZ ALTA
+function readPage() {
+  if(!("speechSynthesis" in window)) {
+    alert("Seu navegador não oferece leitura em voz alta.");
+    return;
+  }
+
+  speechSynthesis.cancel();
+
+  const text = Array.from(document.querySelectorAll("section"))
+    .map(section => section.innerText)
+    .join(". ");
+
+  const speech = new SpeechSynthesisUtterance(text);
+  speech.lang = "pt-BR";
+  speech.rate = 1;
+
+  speechSynthesis.speak(speech);
 }
 </script>
 
-<!-- VLibras: recurso de acessibilidade em Libras -->
+<!-- VLibras -->
 <div vw class="enabled">
- <div vw-access-button class="active"></div>
- <div vw-plugin-wrapper>
-  <div class="vw-plugin-top-wrapper"></div>
- </div>
+  <div vw-access-button class="active"></div>
+  <div vw-plugin-wrapper>
+    <div class="vw-plugin-top-wrapper"></div>
+  </div>
 </div>
 <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
 <script>
