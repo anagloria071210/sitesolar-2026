@@ -4,8 +4,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="SolarSense: sensores de luz e acompanhamento da radiação solar.">
-<title>SolarSense | Sensores e Radiação Solar</title>
+<meta name="description" content="Projeto educativo sobre sensores de luz e acompanhamento da radiação solar.">
+<title>SolarSense | Radiação Solar e Sensores</title>
 
 <style>
 :root {
@@ -19,7 +19,6 @@
 }
 
 * {box-sizing:border-box}
-
 html {scroll-behavior:smooth}
 
 body {
@@ -164,8 +163,6 @@ section {
 
 .card h3,.simulator h3 {color:var(--blue2);margin-top:0}
 
-.simulator {margin-top:20px}
-
 .tag {
   display:inline-block;
   background:#e9f4fa;
@@ -191,8 +188,6 @@ input[type=range] {
   accent-color:var(--blue2);
   cursor:pointer;
 }
-
-input[type=radio] {accent-color:var(--blue2)}
 
 .sky {
   height:260px;
@@ -352,8 +347,6 @@ footer {
   text-align:center;
 }
 
-body.large-text {font-size:1.2rem}
-
 body.high-contrast {
   --bg:#fff;
   --text:#000;
@@ -392,11 +385,11 @@ body.high-contrast .simulator {border:2px solid #000}
 </header>
 
 <!-- ACESSIBILIDADE -->
-<div class="accessibility-bar" aria-label="Controles de acessibilidade">
+<div class="accessibility-bar" aria-label="Recursos de acessibilidade">
   <button type="button" id="fontPlus">A+ Aumentar texto</button>
   <button type="button" id="fontMinus">A- Diminuir texto</button>
   <button type="button" id="contrastButton">Alto contraste</button>
-  <button type="button" id="readButton">🔊 Ler página</button>
+  <button type="button" id="readButton">🔊 Ler página em português</button>
   <button type="button" id="pauseButton">⏸ Pausar</button>
   <button type="button" id="stopButton">⏹ Parar leitura</button>
   <button type="button" id="resetAccess" class="secondary">Restaurar</button>
@@ -404,7 +397,6 @@ body.high-contrast .simulator {border:2px solid #000}
 
 <main>
 
-<!-- INÍCIO -->
 <div class="hero" id="inicio">
   <div>
     <span class="tag">Ciência • Tecnologia • Energia solar</span>
@@ -422,7 +414,6 @@ body.high-contrast .simulator {border:2px solid #000}
   </div>
 </div>
 
-<!-- SOBRE -->
 <section id="sobre">
   <h2 class="section-title">O que é o SolarSense?</h2>
   <p class="section-intro">
@@ -436,12 +427,10 @@ body.high-contrast .simulator {border:2px solid #000}
       <h3>☀ Radiação solar</h3>
       <p>Energia emitida pelo Sol em diferentes comprimentos de onda.</p>
     </article>
-
     <article class="card">
       <h3>📡 Sensores</h3>
       <p>Dispositivos que detectam a luz e transformam essa informação em sinais.</p>
     </article>
-
     <article class="card">
       <h3>📊 Monitoramento</h3>
       <p>Acompanhamento das mudanças na intensidade da radiação ao longo do dia.</p>
@@ -449,7 +438,6 @@ body.high-contrast .simulator {border:2px solid #000}
   </div>
 </section>
 
-<!-- SOL -->
 <section id="sol">
   <h2 class="section-title">1. Movimento aparente do Sol</h2>
   <p class="section-intro">
@@ -459,7 +447,6 @@ body.high-contrast .simulator {border:2px solid #000}
 
   <div class="simulator">
     <h3>Controle o horário e observe o céu</h3>
-
     <div class="sky" id="sky">
       <div class="sun" id="movingSun"></div>
       <div class="horizon"></div>
@@ -481,7 +468,6 @@ body.high-contrast .simulator {border:2px solid #000}
   </div>
 </section>
 
-<!-- LUMINOSIDADE -->
 <section id="luminosidade">
   <h2 class="section-title">2. Variação da luminosidade durante o dia</h2>
   <p class="section-intro">
@@ -499,7 +485,6 @@ body.high-contrast .simulator {border:2px solid #000}
   </div>
 </section>
 
-<!-- SENSORES -->
 <section id="sensores">
   <h2 class="section-title">3. Como funcionam os sensores?</h2>
   <p class="section-intro">
@@ -507,19 +492,16 @@ body.high-contrast .simulator {border:2px solid #000}
   </p>
 
   <div class="grid">
-
     <article class="card">
       <h3>LDR</h3>
       <p>
         O LDR é um resistor dependente da luz.
         Em geral, quando a iluminação aumenta, sua resistência elétrica diminui.
       </p>
-
       <div class="sensor-visual">
         <div class="light-beam" id="ldrBeam"></div>
         <div class="sensor">☼</div>
       </div>
-
       <label for="ldrSlider">Intensidade da luz</label>
       <input id="ldrSlider" type="range" min="0" max="100" value="50">
       <div class="output" id="ldrOutput">Resistência: 2,0 kΩ</div>
@@ -531,12 +513,10 @@ body.high-contrast .simulator {border:2px solid #000}
         O fotodiodo converte a luz recebida em uma corrente elétrica.
         Quanto maior a luz incidente, maior tende a ser a resposta.
       </p>
-
       <div class="sensor-visual">
         <div class="light-beam" id="photoBeam"></div>
         <div class="sensor">◉</div>
       </div>
-
       <label for="photoSlider">Luz recebida</label>
       <input id="photoSlider" type="range" min="0" max="100" value="50">
       <div class="output" id="photoOutput">Resposta relativa: 50%</div>
@@ -548,21 +528,17 @@ body.high-contrast .simulator {border:2px solid #000}
         Instrumento utilizado para medir a irradiância solar,
         geralmente expressa em watts por metro quadrado (W/m²).
       </p>
-
       <div class="sensor-visual">
         <div style="font-size:3rem">☀️</div>
         <div style="font-size:2.5rem">📡</div>
       </div>
-
       <label for="pyrSlider">Radiação simulada</label>
       <input id="pyrSlider" type="range" min="0" max="1200" value="650" step="10">
       <div class="output" id="pyrOutput">650 W/m²</div>
     </article>
-
   </div>
 </section>
 
-<!-- EXPERIMENTOS -->
 <section id="experimentos">
   <h2 class="section-title">4. Laboratório interativo</h2>
   <p class="section-intro">
@@ -626,9 +602,7 @@ body.high-contrast .simulator {border:2px solid #000}
 
   <div class="simulator">
     <h3>Experimento C — LDR ou fotodiodo?</h3>
-    <p>
-      Altere a iluminação e compare a resposta dos dois sensores.
-    </p>
+    <p>Altere a iluminação e compare a resposta dos dois sensores.</p>
 
     <label for="compareSlider">Intensidade da luz</label>
     <input id="compareSlider" type="range" min="0" max="100" value="50">
@@ -639,7 +613,6 @@ body.high-contrast .simulator {border:2px solid #000}
         <div class="output" id="compareLdr">Resistência: 2,0 kΩ</div>
         <p>Com mais luz, a resistência tende a diminuir.</p>
       </div>
-
       <div class="card">
         <h3>Fotodiodo</h3>
         <div class="output" id="comparePhoto">Resposta: 50%</div>
@@ -649,7 +622,6 @@ body.high-contrast .simulator {border:2px solid #000}
   </div>
 </section>
 
-<!-- ESPECTRO -->
 <section id="espectro">
   <h2 class="section-title">5. Explorador do espectro eletromagnético</h2>
   <p class="section-intro">
@@ -666,7 +638,6 @@ body.high-contrast .simulator {border:2px solid #000}
   </div>
 </section>
 
-<!-- MONITORAMENTO -->
 <section id="monitoramento">
   <h2 class="section-title">6. Monitoramento da radiação solar</h2>
   <p class="section-intro">
@@ -677,12 +648,8 @@ body.high-contrast .simulator {border:2px solid #000}
   <div class="grid">
     <article class="card">
       <h3>O que é irradiância?</h3>
-      <p>
-        É a potência da radiação recebida por unidade de área.
-        Sua unidade é W/m².
-      </p>
+      <p>É a potência da radiação recebida por unidade de área. Sua unidade é W/m².</p>
     </article>
-
     <article class="card">
       <h3>O que é iluminância?</h3>
       <p>
@@ -690,7 +657,6 @@ body.high-contrast .simulator {border:2px solid #000}
         considerando a sensibilidade do olho humano. Sua unidade é lux.
       </p>
     </article>
-
     <article class="card">
       <h3>Por que monitorar?</h3>
       <p>
@@ -706,7 +672,6 @@ body.high-contrast .simulator {border:2px solid #000}
   </div>
 </section>
 
-<!-- PISCINA -->
 <section id="piscina">
   <h2 class="section-title">7. Aplicação: aquecimento solar de uma piscina</h2>
   <p class="section-intro">
@@ -745,7 +710,6 @@ body.high-contrast .simulator {border:2px solid #000}
   </div>
 </section>
 
-<!-- QUIZ -->
 <section id="quiz">
   <h2 class="section-title">8. Desafio SolarSense</h2>
   <p class="section-intro">Teste o que você aprendeu nas experiências.</p>
@@ -760,7 +724,6 @@ body.high-contrast .simulator {border:2px solid #000}
   </div>
 </section>
 
-<!-- ACESSIBILIDADE -->
 <section id="acessibilidade">
   <h2 class="section-title">9. Acessibilidade</h2>
   <div class="card">
@@ -768,7 +731,7 @@ body.high-contrast .simulator {border:2px solid #000}
     <p>
       O SolarSense conta com recursos para facilitar o acesso às informações.
       É possível aumentar ou diminuir o texto, ativar o alto contraste,
-      ouvir o conteúdo em voz alta e utilizar a tradução para Libras.
+      ouvir o conteúdo em português brasileiro e utilizar a tradução para Libras.
     </p>
     <p>
       Para utilizar Libras, clique no botão flutuante do VLibras,
@@ -776,6 +739,7 @@ body.high-contrast .simulator {border:2px solid #000}
     </p>
     <p>
       Para ouvir o conteúdo, utilize os controles de leitura no início da página.
+      A narração está configurada para português do Brasil.
     </p>
   </div>
 </section>
@@ -791,7 +755,7 @@ body.high-contrast .simulator {border:2px solid #000}
   </p>
 </footer>
 
-<!-- VLibras -->
+<!-- WIDGET VLibras -->
 <div vw class="enabled">
   <div vw-access-button class="active"></div>
   <div vw-plugin-wrapper>
@@ -811,7 +775,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (el) el.addEventListener(event, fn);
   };
 
-  // ACESSIBILIDADE: TAMANHO E CONTRASTE
+  // ACESSIBILIDADE
 
   let fontSize = 16;
 
@@ -838,15 +802,17 @@ document.addEventListener("DOMContentLoaded", function () {
     applyFont();
     document.body.classList.remove("high-contrast");
     stopReading();
+    $("pauseButton").textContent = "⏸ Pausar";
   });
 
-  // LEITURA EM VOZ ALTA
+  // LEITURA EM VOZ ALTA EM PORTUGUÊS BRASILEIRO
 
   const speech = window.speechSynthesis;
   let currentUtterance = null;
 
   function readPage() {
-    if (!("speechSynthesis" in window)) {
+    if (!("speechSynthesis" in window) ||
+        !("SpeechSynthesisUtterance" in window)) {
       alert("Seu navegador não oferece suporte à leitura em voz alta.");
       return;
     }
@@ -859,21 +825,36 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!text.trim()) return;
 
     currentUtterance = new SpeechSynthesisUtterance(text);
+
+    // Define a língua da narração como português do Brasil.
     currentUtterance.lang = "pt-BR";
     currentUtterance.rate = 1;
     currentUtterance.pitch = 1;
 
-    const voices = speech.getVoices();
-    const portugueseVoice = voices.find(voice =>
-      voice.lang.toLowerCase().startsWith("pt-br")
-    );
+    function choosePortugueseVoice() {
+      const voices = speech.getVoices();
 
-    if (portugueseVoice) {
-      currentUtterance.voice = portugueseVoice;
+      const voice = voices.find(v =>
+        v.lang.toLowerCase() === "pt-br"
+      ) || voices.find(v =>
+        v.lang.toLowerCase().startsWith("pt")
+      );
+
+      if (voice && currentUtterance) {
+        currentUtterance.voice = voice;
+      }
     }
+
+    choosePortugueseVoice();
 
     currentUtterance.onend = () => {
       currentUtterance = null;
+      $("pauseButton").textContent = "⏸ Pausar";
+    };
+
+    currentUtterance.onerror = () => {
+      currentUtterance = null;
+      $("pauseButton").textContent = "⏸ Pausar";
     };
 
     speech.speak(currentUtterance);
@@ -905,7 +886,7 @@ document.addEventListener("DOMContentLoaded", function () {
     $("pauseButton").textContent = "⏸ Pausar";
   });
 
-  // MOVIMENTO DO SOL
+  // MOVIMENTO APARENTE DO SOL
 
   const hourSlider = $("hourSlider");
 
@@ -1276,7 +1257,7 @@ document.addEventListener("DOMContentLoaded", function () {
   bind("checkQuiz", "click", checkQuiz);
   bind("resetQuiz", "click", resetQuiz);
 
-  // INICIALIZAÇÃO DOS CONTROLES
+  // INICIALIZAÇÃO
 
   updateSun();
   updateLDR();
